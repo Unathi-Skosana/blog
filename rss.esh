@@ -1,0 +1,38 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>untitld</title>
+      <link>https://untitld.now.sh</link>
+      <description>physics, writing, programming, design</description>
+      <atom:link href="https://untitld.now.sh/index.xml" rel="self" type="application/rss+xml" />
+      <image>
+        <title>untitld</title>
+        <url>https://untitld.now.sh/favicon/micro-128.png</url>
+        <link>https://untitld.now.sh</link>
+      </image>
+      <language>en-us</language>
+      <copyright>Creative Commons BY-NC-SA 4.0</copyright>
+      <%
+        posts=$(find "./content/posts" -mindepth 1 -maxdepth 3 -type f -iname "*.md")
+        for f in $posts; do
+          id=$(basename "${f##*/}" .md)
+          post_title=$(rg "title" -m 1 "$f" | sed -e 's/^[a-z]*:\|\"//g')
+          dt=$(rg "date" -m 1 "$f" | sed -e 's/^[a-z]*:\|\"//g')
+          post_date=$(date -d "$dt" +%m/%d/%Y)
+          post_link="https://untitld.now.sh/posts/$id/"
+          html=$(pandoc -t html "$f")
+
+          echo "<item>"
+
+          echo "<title>$post_title</title>"
+          echo "<description>$html</description>"
+          echo "<link>$post_link</link>"
+          echo "<pubDate>$post_date</pubDate>"
+          echo "<guid>$post_link</guid>"
+
+          echo "</item>"
+
+          done
+      %>
+
+    </channel>
+</rss>

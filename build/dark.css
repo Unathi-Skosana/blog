@@ -1,0 +1,79 @@
+:root {
+  --red:#ff5874;
+  --dark-red:#fc514e
+
+  --green: #00cfaf;
+  --dark-green:#21c7a8;
+
+  --blue:#82aaff;
+  --dark-blue:#82aaff;
+
+  --magenta:#ae81ff;
+  --dark-magenta:#c792ea;
+
+  --cyan:#7fdbca;
+  --dark-cyan:#7fdbca;
+
+  --yellow:#e3d18a;
+  --dark-ellow:#ecc48d;
+
+  --black: #111;
+  --light-black: #666;
+
+  --white: #fff;
+  --dark-white: #eee;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+}
+
+header ul li:nth-child(4) {
+  border-right: .1rem solid var(--white);
+}
+
+header ul li a[href] {
+  color: var(--white);
+}
+
+header ul li a[href]:hover {
+  color: var(--light-black);
+}
+
+header ul li a.active {
+  color: var(--light-black) !important;
+}
+
+.logo a img {
+  filter: invert(1);
+}
+
+h3.t a {
+  text-decoration: none;
+  color: var(--white)
+}
+
+h3.t a:hover {
+  color: var(--light-black)
+}
+
+div.content {
+  background: var(--black);
+}
+
+.date {
+  color: var(--dark-white);
+}
+
+/* links */
+
+footer a[href],p a[href], li a[href] {
+  text-decoration: underline var(--dark-blue);
+  color: var(--dark-blue);
+}
+
+p a[href^="#"] {
+  text-decoration-style: dashed;
+}
+

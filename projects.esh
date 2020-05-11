@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1">
+    <meta content="#ffffff" name="theme-color">
+    <meta name="HandheldFriendly" content="true">
+    <meta property="og:title" content="Unathi Skosana">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Nondescript">
+    <meta property="og:url" content="https://untitld.now.sh">
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+    <link rel="stylesheet" href="/dark.css" media="(prefers-color-scheme: dark)">
+    <script type="module" src="https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs"></script>
+
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/build/favicon/micro-16.png">
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="/build/favicon/micro-32.png">
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="/build/favicon/micro-62.png">
+    <link rel="icon" type="image/x-icon" sizes="128x128" href="/build/favicon/micro-128.png">
+    <title>Untitld — Projects</title>
+
+    <body>
+      <header class="nav-header">
+        <h1 class="logo">
+          <a href="/">
+            <img src="/build/favicon/micro-128.png" width="32" height="32"/>
+          </a>
+        </h1>
+        <ul class="navigation">
+          <li><a href="/about/">About</a></li>
+          <li><a class="active" href="/projects/">Projects</a></li>
+          <li><a href="/academia/">Academia</a></li>
+          <li><a href="/misc/">Misc</a></li>
+          <li>
+            <dark-mode-toggle
+              id="dark-mode-toggle-1"
+              dark="Dark"
+              light="Light"/>
+          </li>
+        </ul>
+      </header>
+
+      <div class="content">
+        <div class="pro">
+            <% pandoc --quiet -t html --highlight-style monochrome "$file" %>
+        </div>
+      </div>
+
+      <footer>
+        <div class="separator"></div>
+        <a href="https://github.com/Unathi-Skosana">Github</a>
+        ·
+        <a href="https://twitter.com/UnathiSkosana">Twitter</a>
+        ·
+        <a href="mailto:ukskosana@gmail.com">Mail</a>
+        ·
+        <a href="mailto:ukskosana@gmail.com">RSS</a>
+        ·
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          <img class="cc" src="https://d33wubrfki0l68.cloudfront.net/94387e9d77fbc8b4360db81e72603ecba3df94a7/632bc/static/cc.svg">
+        </a>
+      </footer>
+
+    </body>
+  </head>
+</html>

@@ -1,0 +1,180 @@
+@import url('https://rsms.me/inter/inter.css');
+
+html {
+  height: 100%;
+}
+
+/* light mode by default */
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 3em;
+    line-height: 1.7;
+}
+
+@supports (font-variation-settings: normal) {
+  body {
+    font-family: 'Inter var', sans-serif;
+    font-feature-settings: 'ss01' 1, 'kern' 1, 'liga' 1, 'cv05' 1, 'tnum' 1;
+  }
+}
+
+
+
+/* header */
+
+header.nav-header {
+  display: flex;
+  justify-content: space-between;
+  height: 5rem;
+  font-size: .8rem;
+  cursor: default;
+}
+
+header h1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+header ul {
+  text-align: left;
+  display: flex;
+  padding: 0px;
+}
+
+header ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+header ul li:last-child {
+  margin-left: 5px;
+}
+
+header ul li a[href] {
+  cursor: pointer;
+  padding: 0 0.5rem;
+  text-decoration: none;
+}
+
+h1,h2,h3,h4,h5 {
+  margin: 0px;
+  display: inline-block;
+}
+
+h3.t a {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* content */
+
+div.content {
+  margin-top: 0;
+  margin-bottom: 60px;
+  padding-bottom: 2.5rem;
+}
+
+.p {
+  padding-bottom: 1.0rem;
+}
+
+.date {
+  font-weight: 400;
+  font-size: 0.80rem;
+}
+
+.b .time {
+  display: flex;
+  justify-content: space-between;
+}
+
+.b .time span:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .9rem;
+  line-height: 24px;
+  width: 80px;
+}
+
+.b .time span:last-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .9rem;
+  line-height: 24px;
+  width: 115px;
+}
+
+.s h1 {
+  margin-top: 3rem;
+}
+
+.pro h1 {
+  font-size: 3.5rem;
+}
+
+.misc h2 {
+  font-size: 3.0rem;
+}
+
+.pro p {
+  font-size: 1.2rem;
+}
+
+.r {
+  opacity: 0;
+}
+
+.nav-header:hover .r {
+    transition: opacity .4s;
+    opacity: 1;
+}
+
+/* links */
+
+p a[href^="#"] {
+  text-decoration-style: dashed;
+}
+
+
+/* footer styles */
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.separator {
+  height: .5rem;
+  border-top: 2px solid #eee;
+}
+
+img.cc {
+  max-height: 0.7rem;
+  display: inline-block;
+  vertical-align: middle;
+  image-orientation: from-image;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+header, div.content, footer {
+  margin: 0 20px;
+}

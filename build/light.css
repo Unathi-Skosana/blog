@@ -1,0 +1,78 @@
+:root {
+  --red:#ff5874;
+  --dark-red:#fc514e
+
+  --green: #00cfaf;
+  --dark-green:#21c7a8;
+
+  --blue:#82aaff;
+  --dark-blue:#82aaff;
+
+  --magenta:#ae81ff;
+  --dark-magenta:#c792ea;
+
+  --cyan:#7fdbca;
+  --dark-cyan:#7fdbca;
+
+  --yellow:#e3d18a;
+  --dark-ellow:#ecc48d;
+
+  --black: #111;
+  --light-black: #666;
+
+  --white: #fff;
+  --dark-white: #eee;
+}
+
+body {
+    background: var(--white);
+    color: var(--black);
+}
+
+header ul li:nth-child(4) {
+  border-right: .1rem solid var(--black);
+}
+
+header ul li a[href] {
+  color: var(--light-black);
+}
+
+header ul li a[href]:hover {
+  color: var(--black);
+}
+
+header ul li a.active {
+  color: var(--black) !important;
+}
+
+
+h3.t a {
+  text-decoration: none;
+  color: var(--black)
+}
+
+h3.t a:hover {
+  color: var(--light-black)
+}
+
+.nav-header:hover {
+  color: var(--black) !important;
+}
+
+div.content {
+  background: var(--white);
+}
+
+.date {
+  color: var(--light-black);
+}
+
+/* links */
+footer a[href],p a[href], li a[href] {
+  text-decoration: underline var(--blue);
+  color: var(--blue);
+}
+
+p a[href^="#"] {
+  text-decoration-style: dashed;
+}
