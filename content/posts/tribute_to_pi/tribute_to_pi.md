@@ -49,15 +49,13 @@ What would be even more visually appealing is if we could connect the same-value
 digits that are one point away from each other in either direction with edges as in
 the original poster. For example, for a 3 by 3 grid
 
-`
 $$
-\begin{align*}
-    3,1,4 \newline
-    1,5,9 \newline
+\begin{aligned}
+    3,1,4 \\
+    1,5,9 \\
     2,6,6
-\end{align*}
+\end{aligned}
 $$
-`
 
 In this case the $1$s across the diagonal from the first row and second row will
 be connected with an edge. Similarly the $6$s along the third row
@@ -75,15 +73,13 @@ implementation would be up to the task.
 However, it turns out this task is related to labeling components in a
 pixel array. Consider the following $3\times3$ pixel array.
 
-`
 $$
-\begin{align*}
-    0,1,0 \newline
-    1,0,1 \newline
+\begin{aligned}
+    0,1,0 \\
+    1,0,1 \\
     0,1,0
-\end{align*}
+\end{aligned}
 $$
-`
 
 The four $1$s in the grid would deemed as a label/component and we would have
 only one component in the grid. The `SciPy` has a high performance C implementation,

@@ -145,6 +145,10 @@ div.content {
 
 /* links */
 
+a {
+  outline: 0;
+}
+
 p a[href^="#"] {
   text-decoration-style: dashed;
 }

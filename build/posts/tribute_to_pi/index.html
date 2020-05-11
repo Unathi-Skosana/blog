@@ -13,19 +13,47 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
     <link rel="stylesheet" href="/dark.css" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon/micro-16.png">
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon/micro-32.png">
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="/favicon/micro-62.png">
+    <link rel="icon" type="image/x-icon" sizes="128x128" href="/favicon/micro-128.png">
+
     <script type="module" src="https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs"></script>
 
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="/build/favicon/micro-16.png">
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="/build/favicon/micro-32.png">
-    <link rel="icon" type="image/x-icon" sizes="64x64" href="/build/favicon/micro-62.png">
-    <link rel="icon" type="image/x-icon" sizes="128x128" href="/build/favicon/micro-128.png">
-    <title>Untitld — 2020-03-14 16:33</title>
+    <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+      ul.task-list{list-style: none;}
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+      katex.render(texText.data, mathElements[i], {
+        displayMode: mathElements[i].classList.contains('display'),
+        throwOnError: false,
+        fleqn: false
+      });
+    }}});
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <![endif]-->
+
+    <title>Untitld — Tribute to &pi;</title>
 
     <body>
       <header class="nav-header">
         <h1 class="logo">
           <a href="/">
-            <img src="/build/favicon/micro-128.png" width="32" height="32"/>
+            <img src="/favicon/micro-128.png" width="32" height="32"/>
           </a>
         </h1>
         <ul class="r navigation">
@@ -37,14 +65,16 @@
             <dark-mode-toggle
               id="dark-mode-toggle-1"
               dark="Dark"
-              light="Light"/>
+              light="Light"
+              permanent="true"
+              />
           </li>
         </ul>
       </header>
 
       <div class="content">
         <div class="s p">
-          <h1>2020-03-14 16:33</h1>
+          <h1>Tribute to &pi;</h1>
           <div class="b">
             <div class="time">
               <span>
@@ -63,7 +93,7 @@
                     fill="currentColor"
                   />
                 </svg>
-                 min
+                4.9 min
               </span>
               <span>
                 <svg
@@ -84,25 +114,35 @@
                     fill="currentColor"
                   />
                 </svg>
-                03/14/2020 min
+                03/14/2020
             </span>
-
-
             </div>
-            <p>Happy 3.14 Day, which also happens to be the day Albert Einstein was born ! So March 14 is irrationally (bad pun, I know) anticipated with much excitement by the science and mathematics communities alike. I will follow tradition, as I did last year and honor <span class="math inline"><em>π</em></span>-day by recreating a visual representation of the digits of <span class="math inline"><em>π</em></span>. The recreation will be a derivative of a 2013 <span class="math inline"><em>π</em></span>-day poster by <a href="https://twitter.com/MKrzywinski">Martin Krzywinski</a> found at <a href="http://mkweb.bcgsc.ca/pi/piday">http://mkweb.bcgsc.ca/pi/piday</a></p>
-<p>The digits of <span class="math inline"><em>π</em></span> were computed using the <a href="https://en.wikipedia.org/wiki/Chudnovsky_algorithm">Chudnovsky algorithm</a>. Due to the CPU-intensive nature of such a computation, I precomputed the digits and saved to them a .dat file for reuse. This is less time consuming than computing the digits every time when visualizing them (or if you write buggy programs like I do). Below is the python script that computes the <span class="math inline"><em>n</em></span> first digits of <span class="math inline"><em>π</em></span> and saves as them to .dat file:</p>
+            <p>Happy 3.14 Day, which also happens to be the day Albert Einstein was born ! So March 14 is irrationally (bad pun, I know) anticipated with much excitement by the science and mathematics communities alike. I will follow tradition, as I did last year and honor <span class="math inline">\pi</span>-day by recreating a visual representation of the digits of <span class="math inline">\pi</span>. The recreation will be a derivative of a 2013 <span class="math inline">\pi</span>-day poster by <a href="https://twitter.com/MKrzywinski">Martin Krzywinski</a> found at <a href="http://mkweb.bcgsc.ca/pi/piday">http://mkweb.bcgsc.ca/pi/piday</a></p>
+<p>The digits of <span class="math inline">\pi</span> were computed using the <a href="https://en.wikipedia.org/wiki/Chudnovsky_algorithm">Chudnovsky algorithm</a>. Due to the CPU-intensive nature of such a computation, I precomputed the digits and saved to them a .dat file for reuse. This is less time consuming than computing the digits every time when visualizing them (or if you write buggy programs like I do). Below is the python script that computes the <span class="math inline">n</span> first digits of <span class="math inline">\pi</span> and saves as them to .dat file:</p>
 <p>{{&lt; gist Unathi-Skosana f612e6d6b2511cd30c0df2be8497af14 &gt;}}</p>
 <p>Since the digits will be displayed on a grid, the python script takes as input the dimensions of the grid, the number of rows and number of columns respectively.</p>
-<p>Now that we have computed the <span class="math inline"><em>n</em> = <em>r</em><em>c</em></span> digits of <span class="math inline"><em>π</em></span>, we want to visualize them. The visualization was done using <code>scatter</code> from <code>matplotlib</code> where the digits are laid out on a <span class="math inline"><em>r</em> × <em>c</em></span> evenly-spaced meshgrid and the values of the digits are used to fill the colors of the points on the grid, these colors are taken from a discrete color map of size <span class="math inline">10</span>. The python script used to read the digits from a file and visualize them as explained above is as follows:</p>
+<p>Now that we have computed the <span class="math inline">n = rc</span> digits of <span class="math inline">\pi</span>, we want to visualize them. The visualization was done using <code>scatter</code> from <code>matplotlib</code> where the digits are laid out on a <span class="math inline">r \times c</span> evenly-spaced meshgrid and the values of the digits are used to fill the colors of the points on the grid, these colors are taken from a discrete color map of size <span class="math inline">10</span>. The python script used to read the digits from a file and visualize them as explained above is as follows:</p>
 <p>{{&lt; gist Unathi-Skosana a97583a8eaec4247191c4fda2ed41e77&gt;}}</p>
-<p>The visualizations below were for <span class="math inline">23 × 23</span>, <span class="math inline">31 × 31</span>, <span class="math inline">47 × 47</span>,<span class="math inline">59 × 59</span> and <span class="math inline">71 × 71</span> grids (yes, I like primes) respectively.</p>
+<p>The visualizations below were for <span class="math inline">23\times23</span>, <span class="math inline">31\times31</span>, <span class="math inline">47\times47</span>,<span class="math inline">59\times59</span> and <span class="math inline">71\times71</span> grids (yes, I like primes) respectively.</p>
 <p>{{&lt; imgproc “pi_23_by_23.png” Fit 800x800/&gt;}} {{&lt; imgproc “pi_31_by_31.png” Fit 800x800/&gt;}} {{&lt; imgproc “pi_47_by_47.png” Fit 800x800/&gt;}} {{&lt; imgproc “pi_59_by_59.png” Fit 800x800/&gt;}} {{&lt; imgproc “pi_71_by_71.png” Fit 800x800/&gt;}}</p>
 <p>What would be even more visually appealing is if we could connect the same-valued digits that are one point away from each other in either direction with edges as in the original poster. For example, for a 3 by 3 grid</p>
-<p><code>$$ \begin{align*}     3,1,4 \newline     1,5,9 \newline     2,6,6 \end{align*} $$</code></p>
+<p><span class="math display">
+\begin{aligned}
+    3,1,4 \\
+    1,5,9 \\
+    2,6,6
+\end{aligned}
+</span></p>
 <p>In this case the <span class="math inline">1</span>s across the diagonal from the first row and second row will be connected with an edge. Similarly the <span class="math inline">6</span>s along the third row will be connected with an edge.</p>
-<p>To do this, we need to able to find the indices of the connected clusters of numbers across the whole grid and use them to draw the edges between the corresponding grid points. Scouring around the internet, I found that such a computation is related to a concept in graph theory, which is the concept of <a href="https://en.wikipedia.org/wiki/Component_(graph_theory)">connected components</a> of an undirected graph. Finding the connected components of all the digits from <span class="math inline">0 − 9</span> across the grid will give us what we seek. At first sight, this seemed like a daunting task and I was apprehensive of whether a vanilla python implementation would be up to the task. However, it turns out this task is related to labeling components in a pixel array. Consider the following <span class="math inline">3 × 3</span> pixel array.</p>
-<p><code>$$ \begin{align*}     0,1,0 \newline     1,0,1 \newline     0,1,0 \end{align*} $$</code></p>
-<p>The four <span class="math inline">1</span>s in the grid would deemed as a label/component and we would have only one component in the grid. The <code>SciPy</code> has a high performance C implementation, <code>scipy.ndimage.label</code>, to label the components and subsequently extract their indices. The single downfall of this method is that it also considers isolated groups (<span class="math inline">1</span> surrounded by <span class="math inline">0</span>s in all directions) as connected components. However, one can filter out isolated groups from the original array as done <a href="https://stackoverflow.com/questions/28274091/removing-completely-isolated-cells-from-python-array">here</a>. Putting this all together, we can produce the stunning visuals below. Here are the visualizations for <span class="math inline">23 × 23</span>,<span class="math inline">31 × 31</span>, <span class="math inline">47 × 47</span>,<span class="math inline">59 × 59</span> and <span class="math inline">71 × 71</span> grids.</p>
+<p>To do this, we need to able to find the indices of the connected clusters of numbers across the whole grid and use them to draw the edges between the corresponding grid points. Scouring around the internet, I found that such a computation is related to a concept in graph theory, which is the concept of <a href="https://en.wikipedia.org/wiki/Component_(graph_theory)">connected components</a> of an undirected graph. Finding the connected components of all the digits from <span class="math inline">0-9</span> across the grid will give us what we seek. At first sight, this seemed like a daunting task and I was apprehensive of whether a vanilla python implementation would be up to the task. However, it turns out this task is related to labeling components in a pixel array. Consider the following <span class="math inline">3\times3</span> pixel array.</p>
+<p><span class="math display">
+\begin{aligned}
+    0,1,0 \\
+    1,0,1 \\
+    0,1,0
+\end{aligned}
+</span></p>
+<p>The four <span class="math inline">1</span>s in the grid would deemed as a label/component and we would have only one component in the grid. The <code>SciPy</code> has a high performance C implementation, <code>scipy.ndimage.label</code>, to label the components and subsequently extract their indices. The single downfall of this method is that it also considers isolated groups (<span class="math inline">1</span> surrounded by <span class="math inline">0</span>s in all directions) as connected components. However, one can filter out isolated groups from the original array as done <a href="https://stackoverflow.com/questions/28274091/removing-completely-isolated-cells-from-python-array">here</a>. Putting this all together, we can produce the stunning visuals below. Here are the visualizations for <span class="math inline">23\times23</span>,<span class="math inline">31\times31</span>, <span class="math inline">47\times47</span>,<span class="math inline">59\times59</span> and <span class="math inline">71\times71</span> grids.</p>
 <p>{{&lt; imgproc “pi_23_by_23_edges.png” Fit 800x800/&gt;}} {{&lt; imgproc “pi_31_by_31_edges.png” Fit 800x800/&gt;}} {{&lt; imgproc “pi_47_by_47_edges.png” Fit 800x800/&gt;}} {{&lt; imgproc “pi_59_by_59_edges.png” Fit 800x800/&gt;}} {{&lt; imgproc “pi_71_by_71_edges.png” Fit 800x800/&gt;}}</p>
 <p>The updated source code and higher quality images can be found <a href="https://github.com/Unathi-Skosana/numart">here</a>. If you have comments or quarrels, <a href="/">reach out</a>.</p>
 <h2 id="updates-47-by-47-meshgrids-for-eulers-number-and-the-golden-ratio">Updates : 47 by 47 meshgrids for Euler’s number and the golden ratio</h2>

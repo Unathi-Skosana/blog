@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 title() {
-  echo $(rg "date" -m 1 "$1" | sed -e 's/^[a-z]*:\|\"//g')
+  echo $(rg "title" -m 1 "$1" | sed -e 's/^[a-z]*:\|\"//g')
 }
 
 format_date() {
@@ -25,8 +25,8 @@ post_link_wrapper() {
 }
 
 read_time() {
-  echo "$minu"
   minu="$(eva -f 1 $1/150 | xargs)"
+  echo "$minu"
 }
 
 cat > "./build/index.html" << EOF
@@ -41,7 +41,7 @@ cat > "./build/index.html" << EOF
     <meta content="#ffffff" name="theme-color">
     <meta name="viewport" content="initial-scale=1">
     <meta charset="UTF-8">
-    <title>Untitld Home</title>
+    <title>Untitld — Home</title>
     <link rel="icon" type="image/x-icon" sizes="128x128" href="/favicon/micro-128.png">
     <link rel="icon" type="image/x-icon" sizes="64x64" href="/favicon/micro-62.png">
     <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon/micro-32.png">
@@ -57,19 +57,19 @@ cat > "./build/index.html" << EOF
     <header class="nav-header">
       <h1 class="logo">
         <a href="/">
-          <img src="/favc/micro-128.png" width="32" height="32"/>
+          <img src="/favicon/micro-128.png" width="32" height="32"/>
         </a>
       </h1>
 
-      <ul class="r navigation">
+      <ul class="navigation">
         <li><a href="/about/">About</a></li>
         <li><a href="/academia/">Academia</a></li>
         <li><a href="/misc/">Misc</a></li>
         <li><a href="/projects/">Projects</a></li>
-        </li>
+        <li>
         <dark-mode-toggle
           id="dark-mode-toggle-1"/>
-        <li>
+        </li>
       </ul>
     </header>
 

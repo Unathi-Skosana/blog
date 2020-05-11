@@ -15,17 +15,17 @@
     <link rel="stylesheet" href="/dark.css" media="(prefers-color-scheme: dark)">
     <script type="module" src="https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs"></script>
 
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="/build/favicon/micro-16.png">
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="/build/favicon/micro-32.png">
-    <link rel="icon" type="image/x-icon" sizes="64x64" href="/build/favicon/micro-62.png">
-    <link rel="icon" type="image/x-icon" sizes="128x128" href="/build/favicon/micro-128.png">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon/micro-16.png">
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon/micro-32.png">
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="/favicon/micro-62.png">
+    <link rel="icon" type="image/x-icon" sizes="128x128" href="/favicon/micro-128.png">
     <title>Untitld — Misc</title>
 
     <body>
       <header class="nav-header">
         <h1 class="logo">
           <a href="/">
-            <img src="/build/favicon/micro-128.png" width="32" height="32"/>
+            <img src="/favicon/micro-128.png" width="32" height="32"/>
           </a>
         </h1>
         <ul class="navigation">
@@ -37,7 +37,9 @@
             <dark-mode-toggle
               id="dark-mode-toggle-1"
               dark="Dark"
-              light="Light"/>
+              light="Light"
+              permanent="true"
+              />
           </li>
         </ul>
       </header>
