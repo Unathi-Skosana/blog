@@ -20,53 +20,52 @@
     <link rel="icon" type="image/x-icon" sizes="64x64" href="/favicon/micro-62.png">
     <link rel="icon" type="image/x-icon" sizes="128x128" href="/favicon/micro-128.png">
     <title>Untitld — About</title>
+  </head>
 
-    <body>
-      <header class="nav-header">
-        <h1 class="logo">
-          <a href="/">
-            <img src="/favicon/micro-128.png" width="32" height="32"/>
-          </a>
-        </h1>
-        <ul class="navigation">
-          <li><a class="active" href="/about/">About</a></li>
-          <li><a href="/projects/">Projects</a></li>
-          <li><a href="/academia/">Academia</a></li>
-          <li><a href="/misc/">Misc</a></li>
-          <li>
-            <dark-mode-toggle
-              id="dark-mode-toggle-1"
-              dark="Dark"
-              light="Light"
-              permanent="true"
-              />
-          </li>
-        </ul>
-      </header>
+  <body>
+    <header class="nav-header">
+      <h1 class="logo">
+        <a href="/">
+          <img src="/favicon/micro-128.png" width="32" height="32"/>
+        </a>
+      </h1>
+      <ul class="navigation">
+        <li><a class="active" href="/about/">About</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/academia/">Academia</a></li>
+        <li><a href="/misc/">Misc</a></li>
+        <li>
+          <dark-mode-toggle
+            id="dark-mode-toggle-1"
+            dark="Dark"
+            light="Light"
+            permanent="true"
+            />
+        </li>
+      </ul>
+    </header>
 
-      <div class="content">
-        <div class="s p">
-          <div class="b">
-            <% pandoc --quiet -t html --highlight-style monochrome "$file" %>
-          </div>
+    <div class="content">
+      <div class="s p">
+        <div class="b">
+          <% pandoc --quiet -t html --highlight-style monochrome "$file" %>
         </div>
       </div>
+    </div>
 
-      <footer>
-        <div class="separator"></div>
-        <a href="https://github.com/Unathi-Skosana">Github</a>
-        ·
-        <a href="https://twitter.com/UnathiSkosana">Twitter</a>
-        ·
-        <a href="mailto:ukskosana@gmail.com">Mail</a>
-        ·
-        <a href="mailto:ukskosana@gmail.com">RSS</a>
-        ·
-        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-          <img class="cc" src="https://d33wubrfki0l68.cloudfront.net/94387e9d77fbc8b4360db81e72603ecba3df94a7/632bc/static/cc.svg">
-        </a>
-      </footer>
-
-    </body>
-  </head>
+    <footer>
+      <div class="separator"></div>
+      <a href="https://github.com/Unathi-Skosana">Github</a>
+      ·
+      <a href="https://twitter.com/UnathiSkosana">Twitter</a>
+      ·
+      <a href="mailto:ukskosana@gmail.com">Mail</a>
+      ·
+      <a href="mailto:ukskosana@gmail.com">RSS</a>
+      ·
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <img class="cc" src="https://d33wubrfki0l68.cloudfront.net/94387e9d77fbc8b4360db81e72603ecba3df94a7/632bc/static/cc.svg">
+      </a>
+    </footer>
+  </body>
 </html>

@@ -51,32 +51,32 @@ cat > "./build/index.html" << EOF
     <link rel="stylesheet" href="/style.css">
     <script type="module" src="https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs"></script>
   </head>
+
   <body>
+      <!-- header !-->
+      <header class="nav-header">
+        <h1 class="logo">
+          <a href="/">
+            <img src="/favicon/micro-128.png" width="32" height="32"/>
+          </a>
+        </h1>
 
-    <!-- header !-->
-    <header class="nav-header">
-      <h1 class="logo">
-        <a href="/">
-          <img src="/favicon/micro-128.png" width="32" height="32"/>
-        </a>
-      </h1>
+        <ul class="navigation">
+          <li><a href="/about/">About</a></li>
+          <li><a href="/academia/">Academia</a></li>
+          <li><a href="/misc/">Misc</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li>
+          <dark-mode-toggle
+            id="dark-mode-toggle-1"/>
+          </li>
+        </ul>
+      </header>
 
-      <ul class="navigation">
-        <li><a href="/about/">About</a></li>
-        <li><a href="/academia/">Academia</a></li>
-        <li><a href="/misc/">Misc</a></li>
-        <li><a href="/projects/">Projects</a></li>
-        <li>
-        <dark-mode-toggle
-          id="dark-mode-toggle-1"/>
-        </li>
-      </ul>
-    </header>
+      <!-- posts --!>
 
-    <!-- posts --!>
-
-    <div class="content">
-      <div class="posts">
+      <div class="content">
+        <div class="posts">
 EOF
 
 mkdir -p "./build/posts"
@@ -141,17 +141,21 @@ esh -s /bin/bash \
     "./rss.esh"
 
 cat >> "./build/index.html" << EOF
-        <footer>
-          <div class="separator"></div>
-          <a href="https://github.com/Unathi-Skosana">Github</a>
-          <a href="https://twitter.com/UnathiSkosana">Twitter</a>
-          <a href="mailto:ukskosana@gmail.com">Mail</a>
-          <a href="mailto:ukskosana@gmail.com">RSS</a>
-          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-            <img class="cc" src="https://d33wubrfki0l68.cloudfront.net/94387e9d77fbc8b4360db81e72603ecba3df94a7/632bc/static/cc.svg">
-          </a>
-        </footer>
       </div>
+      <footer>
+        <div class="separator"></div>
+        <a href="https://github.com/Unathi-Skosana">Github</a>
+        ·
+        <a href="https://twitter.com/UnathiSkosana">Twitter</a>
+        ·
+        <a href="mailto:ukskosana@gmail.com">Mail</a>
+        ·
+        <a href="mailto:ukskosana@gmail.com">RSS</a>
+        ·
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          <img class="cc" src="https://d33wubrfki0l68.cloudfront.net/94387e9d77fbc8b4360db81e72603ecba3df94a7/632bc/static/cc.svg">
+        </a>
+      </footer>
     </div>
   </body>
 </html>

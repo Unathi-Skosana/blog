@@ -1,4 +1,9 @@
 @import url('https://rsms.me/inter/inter.css');
+@import url('https://cdn.jsdelivr.net/npm/@typopro/web-iosevka@3.7.5/TypoPRO-Iosevka.css');
+
+:root {
+  --h-margins: 20px;
+}
 
 html {
   height: 100%;
@@ -7,13 +12,13 @@ html {
 /* light mode by default */
 
 body {
+    position: relative;
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     width: 100%;
     max-width: 720px;
     margin: 0 auto;
     min-height: 100%;
-    position: relative;
     padding-bottom: 3em;
     line-height: 1.7;
 }
@@ -25,7 +30,9 @@ body {
   }
 }
 
-
+pre, code {
+  font-family: 'TypoPRO Iosevka Term', monospace;
+}
 
 /* header */
 
@@ -85,6 +92,7 @@ div.content {
   margin-bottom: 60px;
   padding-bottom: 2.5rem;
 }
+
 
 .p {
   padding-bottom: 1.0rem;
@@ -159,7 +167,8 @@ p a[href^="#"] {
 footer {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  left: var(--h-margins);
+  right: var(--h-margins);
   height: 2.5rem;
   font-size: 0.8rem;
   text-align: center;
@@ -170,6 +179,8 @@ footer {
   border-top: 2px solid #eee;
 }
 
+/* images */
+
 img.cc {
   max-height: 0.7rem;
   display: inline-block;
@@ -179,6 +190,36 @@ img.cc {
   box-shadow: none;
 }
 
+img {
+  max-width: 500px;
+}
+
+img[src*='#right'] {
+  display: block;
+  image-orientation: from-image;
+  float: right;
+  margin: 0 0 1rem 5rem;
+}
+
+img[src*='#left'] {
+    display: block;
+    image-orientation: from-image;
+    float: left;
+    margin: 0 5rem 1rem 0;
+}
+
+img[src*='#center'] {
+    display: block;
+    image-orientation: from-image;
+    margin: 4rem auto;
+    max-width: 500px;
+    width: 100%;
+}
+
+img[title*='me'] {
+  width: 130px;
+}
+
 header, div.content, footer {
-  margin: 0 20px;
+  margin: 0 var(--h-margins);
 }

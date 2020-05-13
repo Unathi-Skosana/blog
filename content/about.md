@@ -3,10 +3,13 @@ title: "About me"
 date: 2020-02-07 13:12
 ---
 
+![](/me.jpeg#right "me")
+
 Hi, I am Unathi.
 
 I'm a Masters physics student with research interests in quantum information science at Stellenbosch University.
 In 2019, I completed my Honours degree in physics at the aforementioned university.
+
 
 My [primary research interests](/academia) are centered around quantum optics
 which involves the study of quantum properties of light and the applications to
@@ -22,4 +25,4 @@ If you ever have any concerns, comments, questions, or suggestions please feel f
 
 pronouns: him/he
 
-[CV](/pdf/resume.pdf) (02/02/20)
+[CV](/resume.pdf) (02/02/20)

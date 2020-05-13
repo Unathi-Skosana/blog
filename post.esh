@@ -10,6 +10,7 @@
     <meta property="og:description" content="Nondescript">
     <meta property="og:url" content="https://untitld.now.sh">
 
+    <link rel="stylesheet" href="/syntax.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
     <link rel="stylesheet" href="/dark.css" media="(prefers-color-scheme: dark)">
@@ -19,16 +20,6 @@
     <link rel="icon" type="image/x-icon" sizes="128x128" href="/favicon/micro-128.png">
 
     <script type="module" src="https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs"></script>
-
-    <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-      div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-      ul.task-list{list-style: none;}
-    </style>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function () {
     var mathElements = document.getElementsByClassName("math");
@@ -48,8 +39,9 @@
     <![endif]-->
 
     <title>Untitld — <%=$title%></title>
+  </head>
 
-    <body>
+  <body>
       <header class="nav-header">
         <h1 class="logo">
           <a href="/">
@@ -121,6 +113,19 @@
           </div>
         </div>
       </div>
-    </body>
-  </head>
+    <footer>
+      <div class="separator"></div>
+      <a href="https://github.com/Unathi-Skosana">Github</a>
+      ·
+      <a href="https://twitter.com/UnathiSkosana">Twitter</a>
+      ·
+      <a href="mailto:ukskosana@gmail.com">Mail</a>
+      ·
+      <a href="mailto:ukskosana@gmail.com">RSS</a>
+      ·
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <img class="cc" src="https://d33wubrfki0l68.cloudfront.net/94387e9d77fbc8b4360db81e72603ecba3df94a7/632bc/static/cc.svg">
+      </a>
+    </footer>
+  </body>
 </html>
