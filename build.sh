@@ -53,31 +53,33 @@ cat > "./build/index.html" << EOF
   </head>
 
   <body>
-      <!-- header !-->
-      <header class="nav-header">
-        <h1 class="logo">
-          <a href="/">
-            <img src="/favicon/micro-128.png" width="32" height="32"/>
-          </a>
-        </h1>
+    <!-- header !-->
+    <header class="nav-header">
+      <h1 class="logo">
+        <a href="/">
+          <img src="/favicon/micro-128.png" width="32" height="32"/>
+        </a>
+      </h1>
 
-        <ul class="navigation">
-          <li><a href="/about/">About</a></li>
-          <li><a href="/academia/">Academia</a></li>
-          <li><a href="/misc/">Misc</a></li>
-          <li><a href="/projects/">Projects</a></li>
-          <li>
-          <dark-mode-toggle
-            id="dark-mode-toggle-1"/>
-          </li>
-        </ul>
-      </header>
+      <ul class="navigation">
+        <li><a href="/about/">About</a></li>
+        <li><a href="/academia/">Academia</a></li>
+        <li><a href="/misc/">Misc</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li>
+        <dark-mode-toggle
+          id="dark-mode-toggle-1"/>
+        </li>
+      </ul>
+    </header>
 
-      <!-- posts --!>
+    <!-- posts --!>
 
-      <div class="content">
-        <div class="posts">
+    <div class="content">
+      <div class="posts">
 EOF
+
+echo "purging previously built posts..."
 
 mkdir -p "./build/posts"
 rm -rf "./build/posts/"
@@ -95,8 +97,8 @@ for f in $posts; do
   post_link=$(post_link_wrapper "$id" "$post_title" "$post_date")
 
   echo -ne $post_link >> "./build/index.html"
-  mkdir -p "./build/posts/$id"
 
+  mkdir -p "./build/posts/$id"
 
   echo "\$ Building post $id ..."
   echo "\$ Copying assets ..."

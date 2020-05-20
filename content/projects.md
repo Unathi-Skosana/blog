@@ -15,4 +15,3 @@ Some small fun projects I've been involved in or contributed in
 - [Huff-n-puff](/) — NASM Huffman compressor. 
 - [Network Layout](/) — A graph layout algorithm to minimize the number of edge crossings. 
 - [QPong](/) — Quantum Pong
-- [VQSD](/) — A quantum algorithm to diagonalize quantum states implemented on Qiskit's algorithm module Aqua. 
