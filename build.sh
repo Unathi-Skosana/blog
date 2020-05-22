@@ -13,10 +13,14 @@ post_link_wrapper() {
 # 1 - id
 # 2 - title
 # 3 - date
+# 4 - time
 
   echo -ne "
   <div class=\"p\">
-    <div class=\"date\">$3</div>
+    <div class=\"time\">
+      <div class=\"date\">$3</div>
+      <div class=\"date\">— $4 Min</div>
+    </div>
     <h3 class=\"t\">
       <a href=\"/posts/$1\">$2</a>
     </h3>
@@ -33,7 +37,7 @@ cat > "./build/index.html" << EOF
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta property="og:url" content="https://untitld.now.sh">
+    <meta property="og:url" content="http://untitld.xyz">
     <meta property="og:description" content="Nondescript">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Unathi Skosana">
@@ -79,7 +83,7 @@ cat > "./build/index.html" << EOF
       <div class="posts">
 EOF
 
-echo "purging previously built posts..."
+echo -e "$ Purging previously built posts..."
 
 mkdir -p "./build/posts"
 rm -rf "./build/posts/"
@@ -94,7 +98,7 @@ for f in $posts; do
   r_time=$(read_time "$words")
   post_title="$(title "$f")"
   post_date="$(format_date "$f")"
-  post_link=$(post_link_wrapper "$id" "$post_title" "$post_date")
+  post_link=$(post_link_wrapper "$id" "$post_title" "$post_date" "$r_time")
 
   echo -ne $post_link >> "./build/index.html"
 
@@ -153,10 +157,6 @@ cat >> "./build/index.html" << EOF
         <a href="mailto:ukskosana@gmail.com">Mail</a>
         ·
         <a href="mailto:ukskosana@gmail.com">RSS</a>
-        ·
-        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-          <img class="cc" src="https://d33wubrfki0l68.cloudfront.net/94387e9d77fbc8b4360db81e72603ecba3df94a7/632bc/static/cc.svg">
-        </a>
       </footer>
     </div>
   </body>

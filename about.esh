@@ -8,7 +8,7 @@
     <meta property="og:title" content="Unathi Skosana">
     <meta property="og:type" content="website">
     <meta property="og:description" content="Nondescript">
-    <meta property="og:url" content="https://untitld.now.sh">
+    <meta property="og:url" content="http://untitld.xyz">
 
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
@@ -62,10 +62,6 @@
       <a href="mailto:ukskosana@gmail.com">Mail</a>
       ·
       <a href="mailto:ukskosana@gmail.com">RSS</a>
-      ·
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-        <img class="cc" src="https://d33wubrfki0l68.cloudfront.net/94387e9d77fbc8b4360db81e72603ecba3df94a7/632bc/static/cc.svg">
-      </a>
     </footer>
   </body>
 </html>

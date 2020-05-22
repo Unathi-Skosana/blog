@@ -8,7 +8,7 @@
     <meta property="og:title" content="Unathi Skosana">
     <meta property="og:type" content="website">
     <meta property="og:description" content="Nondescript">
-    <meta property="og:url" content="https://untitld.now.sh">
+    <meta property="og:url" content="http://untitld.xyz">
 
     <link rel="stylesheet" href="/syntax.css">
     <link rel="stylesheet" href="/style.css">
@@ -111,131 +111,131 @@
             </div>
             <p>Happy 3.14 Day, which also happens to be the day Albert Einstein was born ! So March 14 is irrationally (bad pun, I know) anticipated with much excitement by the science and mathematics communities alike. I will follow tradition, as I did last year and honor <span class="math inline">\pi</span>-day by recreating a visual representation of the digits of <span class="math inline">\pi</span>. The recreation will be a derivative of a 2013 <span class="math inline">\pi</span>-day poster by <a href="https://twitter.com/MKrzywinski">Martin Krzywinski</a> found at <a href="http://mkweb.bcgsc.ca/pi/piday">http://mkweb.bcgsc.ca/pi/piday</a></p>
 <p>The digits of <span class="math inline">\pi</span> were computed using the <a href="https://en.wikipedia.org/wiki/Chudnovsky_algorithm">Chudnovsky algorithm</a>. Due to the CPU-intensive nature of such a computation, I precomputed the digits and saved to them a .dat file for reuse. This is less time consuming than computing the digits every time when visualizing them (or if you write buggy programs like I do). Below is the python script that computes the <span class="math inline">n</span> first digits of <span class="math inline">\pi</span> and saves as them to .dat file:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> csv</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">from</span> decimal <span class="im">import</span> Decimal, getcontext</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="im">from</span> math <span class="im">import</span> factorial</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="kw">def</span> pi_digits(n):</span>
-<span id="cb1-9"><a href="#cb1-9"></a>    <span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">    Computes PI using the Chudnovsky algorithm from</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co">    http://stackoverflow.com/questions/28284996/python-pi-calculation</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co">    &quot;&quot;&quot;</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a></span>
-<span id="cb1-14"><a href="#cb1-14"></a>    <span class="co"># Set precision</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a></span>
-<span id="cb1-16"><a href="#cb1-16"></a>    getcontext().prec <span class="op">=</span> n</span>
-<span id="cb1-17"><a href="#cb1-17"></a></span>
-<span id="cb1-18"><a href="#cb1-18"></a>    t <span class="op">=</span> Decimal(<span class="dv">0</span>)</span>
-<span id="cb1-19"><a href="#cb1-19"></a>    pi <span class="op">=</span> Decimal(<span class="dv">0</span>)</span>
-<span id="cb1-20"><a href="#cb1-20"></a>    d <span class="op">=</span> Decimal(<span class="dv">0</span>)</span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a>    <span class="co"># Chudnovsky algorithm</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a></span>
-<span id="cb1-24"><a href="#cb1-24"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb1-25"><a href="#cb1-25"></a>        t <span class="op">=</span> ((<span class="op">-</span><span class="dv">1</span>)<span class="op">**</span>k)<span class="op">*</span>(factorial(<span class="dv">6</span><span class="op">*</span>k))<span class="op">*</span>(<span class="dv">13591409</span><span class="op">+</span><span class="dv">545140134</span><span class="op">*</span>k)</span>
-<span id="cb1-26"><a href="#cb1-26"></a>        d <span class="op">=</span> factorial(<span class="dv">3</span><span class="op">*</span>k)<span class="op">*</span>(factorial(k)<span class="op">**</span><span class="dv">3</span>)<span class="op">*</span>(<span class="dv">640320</span><span class="op">**</span>(<span class="dv">3</span><span class="op">*</span>k))</span>
-<span id="cb1-27"><a href="#cb1-27"></a></span>
-<span id="cb1-28"><a href="#cb1-28"></a>        pi <span class="op">+=</span> Decimal(t) <span class="op">/</span> Decimal(d)</span>
-<span id="cb1-29"><a href="#cb1-29"></a></span>
-<span id="cb1-30"><a href="#cb1-30"></a>    pi <span class="op">=</span> pi <span class="op">*</span> Decimal(<span class="dv">12</span>) <span class="op">/</span> Decimal(<span class="dv">640320</span><span class="op">**</span>(Decimal(<span class="fl">1.5</span>)))</span>
-<span id="cb1-31"><a href="#cb1-31"></a>    pi <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> pi</span>
-<span id="cb1-32"><a href="#cb1-32"></a></span>
-<span id="cb1-33"><a href="#cb1-33"></a>    <span class="cf">return</span> <span class="bu">str</span>(pi)</span>
-<span id="cb1-34"><a href="#cb1-34"></a></span>
-<span id="cb1-35"><a href="#cb1-35"></a></span>
-<span id="cb1-36"><a href="#cb1-36"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb1-37"><a href="#cb1-37"></a>    <span class="im">import</span> argparse</span>
-<span id="cb1-38"><a href="#cb1-38"></a></span>
-<span id="cb1-39"><a href="#cb1-39"></a>    <span class="co"># Parse arguments</span></span>
-<span id="cb1-40"><a href="#cb1-40"></a>    parser <span class="op">=</span> argparse.ArgumentParser(</span>
-<span id="cb1-41"><a href="#cb1-41"></a>        description<span class="op">=</span><span class="st">&quot;Compute Pi digits that fit in an r x c grid.&quot;</span>)</span>
-<span id="cb1-42"><a href="#cb1-42"></a>    parser.add_argument(<span class="st">&quot;r&quot;</span>, nargs<span class="op">=</span><span class="dv">1</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Rows of grid&quot;</span>)</span>
-<span id="cb1-43"><a href="#cb1-43"></a>    parser.add_argument(<span class="st">&quot;c&quot;</span>, nargs<span class="op">=</span><span class="dv">1</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Columns of grid&quot;</span>)</span>
-<span id="cb1-44"><a href="#cb1-44"></a>    args <span class="op">=</span> parser.parse_args()</span>
-<span id="cb1-45"><a href="#cb1-45"></a></span>
-<span id="cb1-46"><a href="#cb1-46"></a>    rows <span class="op">=</span> args.r[<span class="dv">0</span>]</span>
-<span id="cb1-47"><a href="#cb1-47"></a>    cols <span class="op">=</span> args.c[<span class="dv">0</span>]</span>
-<span id="cb1-48"><a href="#cb1-48"></a></span>
-<span id="cb1-49"><a href="#cb1-49"></a>    <span class="co"># Put digits in 2D array</span></span>
-<span id="cb1-50"><a href="#cb1-50"></a>    digits <span class="op">=</span> pi_digits(rows <span class="op">*</span> cols)</span>
-<span id="cb1-51"><a href="#cb1-51"></a>    digits <span class="op">=</span> digits.replace(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
-<span id="cb1-52"><a href="#cb1-52"></a>    digits <span class="op">=</span> [[digits[r<span class="op">*</span>cols <span class="op">+</span> c] <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">range</span>(cols)] <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(rows)]</span>
-<span id="cb1-53"><a href="#cb1-53"></a></span>
-<span id="cb1-54"><a href="#cb1-54"></a>    <span class="co"># digits to .dat file to reuse</span></span>
-<span id="cb1-55"><a href="#cb1-55"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;pi_</span><span class="sc">{}</span><span class="st">_by_</span><span class="sc">{}</span><span class="st">.dat&#39;</span>.<span class="bu">format</span>(rows, cols), <span class="st">&#39;w&#39;</span>, newline<span class="op">=</span><span class="st">&#39;&#39;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
-<span id="cb1-56"><a href="#cb1-56"></a>        writer <span class="op">=</span> csv.writer(<span class="bu">file</span>)</span>
-<span id="cb1-57"><a href="#cb1-57"></a>        writer.writerows(digits)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="im">import</span> csv</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="im">from</span> decimal <span class="im">import</span> Decimal, getcontext</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="im">from</span> math <span class="im">import</span> factorial</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">def</span> pi_digits(n):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co">    Computes PI using the Chudnovsky algorithm from</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co">    http://stackoverflow.com/questions/28284996/python-pi-calculation</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    <span class="co"># Set precision</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    getcontext().prec <span class="op">=</span> n</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>    t <span class="op">=</span> Decimal(<span class="dv">0</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>    pi <span class="op">=</span> Decimal(<span class="dv">0</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>    d <span class="op">=</span> Decimal(<span class="dv">0</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    <span class="co"># Chudnovsky algorithm</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>        t <span class="op">=</span> ((<span class="op">-</span><span class="dv">1</span>)<span class="op">**</span>k)<span class="op">*</span>(factorial(<span class="dv">6</span><span class="op">*</span>k))<span class="op">*</span>(<span class="dv">13591409</span><span class="op">+</span><span class="dv">545140134</span><span class="op">*</span>k)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>        d <span class="op">=</span> factorial(<span class="dv">3</span><span class="op">*</span>k)<span class="op">*</span>(factorial(k)<span class="op">**</span><span class="dv">3</span>)<span class="op">*</span>(<span class="dv">640320</span><span class="op">**</span>(<span class="dv">3</span><span class="op">*</span>k))</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>        pi <span class="op">+=</span> Decimal(t) <span class="op">/</span> Decimal(d)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>    pi <span class="op">=</span> pi <span class="op">*</span> Decimal(<span class="dv">12</span>) <span class="op">/</span> Decimal(<span class="dv">640320</span><span class="op">**</span>(Decimal(<span class="fl">1.5</span>)))</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>    pi <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> pi</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>    <span class="cf">return</span> <span class="bu">str</span>(pi)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a>    <span class="im">import</span> argparse</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a>    <span class="co"># Parse arguments</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a>    parser <span class="op">=</span> argparse.ArgumentParser(</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true"></a>        description<span class="op">=</span><span class="st">&quot;Compute Pi digits that fit in an r x c grid.&quot;</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true"></a>    parser.add_argument(<span class="st">&quot;r&quot;</span>, nargs<span class="op">=</span><span class="dv">1</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Rows of grid&quot;</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true"></a>    parser.add_argument(<span class="st">&quot;c&quot;</span>, nargs<span class="op">=</span><span class="dv">1</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Columns of grid&quot;</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true"></a>    args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true"></a>    rows <span class="op">=</span> args.r[<span class="dv">0</span>]</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true"></a>    cols <span class="op">=</span> args.c[<span class="dv">0</span>]</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true"></a>    <span class="co"># Put digits in 2D array</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true"></a>    digits <span class="op">=</span> pi_digits(rows <span class="op">*</span> cols)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true"></a>    digits <span class="op">=</span> digits.replace(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true"></a>    digits <span class="op">=</span> [[digits[r<span class="op">*</span>cols <span class="op">+</span> c] <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">range</span>(cols)] <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(rows)]</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true"></a>    <span class="co"># digits to .dat file to reuse</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;pi_</span><span class="sc">{}</span><span class="st">_by_</span><span class="sc">{}</span><span class="st">.dat&#39;</span>.<span class="bu">format</span>(rows, cols), <span class="st">&#39;w&#39;</span>, newline<span class="op">=</span><span class="st">&#39;&#39;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true"></a>        writer <span class="op">=</span> csv.writer(<span class="bu">file</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true"></a>        writer.writerows(digits)</span></code></pre></div>
 <p>Since the digits will be displayed on a grid, the python script takes as input the dimensions of the grid, the number of rows and number of columns respectively.</p>
 <p>Now that we have computed the <span class="math inline">n = rc</span> digits of <span class="math inline">\pi</span>, we want to visualize them. The visualization was done using <code>scatter</code> from <code>matplotlib</code> where the digits are laid out on a <span class="math inline">r \times c</span> evenly-spaced meshgrid and the values of the digits are used to fill the colors of the points on the grid, these colors are taken from a discrete color map of size <span class="math inline">10</span>. The python script used to read the digits from a file and visualize them as explained above is as follows:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> csv</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="im">from</span> matplotlib <span class="im">import</span> rc</span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># Aesthetics</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>rc(<span class="st">&#39;font&#39;</span>, <span class="op">**</span>{<span class="st">&#39;family&#39;</span>: <span class="st">&#39;monospace&#39;</span>,</span>
-<span id="cb2-9"><a href="#cb2-9"></a>              <span class="st">&#39;serif&#39;</span>: [<span class="st">&#39;DejaVu Sans Mono&#39;</span>], <span class="st">&#39;size&#39;</span>: <span class="st">&#39;20&#39;</span>})</span>
-<span id="cb2-10"><a href="#cb2-10"></a>rc(<span class="st">&#39;text&#39;</span>, usetex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-11"><a href="#cb2-11"></a>plt.style.use(<span class="st">&#39;dark_background&#39;</span>)</span>
-<span id="cb2-12"><a href="#cb2-12"></a></span>
-<span id="cb2-13"><a href="#cb2-13"></a></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="kw">def</span> read_digits(dat):</span>
-<span id="cb2-15"><a href="#cb2-15"></a>    digits <span class="op">=</span> []</span>
-<span id="cb2-16"><a href="#cb2-16"></a>    <span class="cf">with</span> <span class="bu">open</span>(dat) <span class="im">as</span> csv_file:</span>
-<span id="cb2-17"><a href="#cb2-17"></a>        csv_reader <span class="op">=</span> csv.reader(csv_file, delimiter<span class="op">=</span><span class="st">&#39;,&#39;</span>)</span>
-<span id="cb2-18"><a href="#cb2-18"></a>        <span class="cf">for</span> row <span class="kw">in</span> csv_reader:</span>
-<span id="cb2-19"><a href="#cb2-19"></a>            digits.append(row)</span>
-<span id="cb2-20"><a href="#cb2-20"></a>    <span class="cf">return</span> np.array(digits, dtype<span class="op">=</span><span class="st">&quot;int&quot;</span>)</span>
-<span id="cb2-21"><a href="#cb2-21"></a></span>
-<span id="cb2-22"><a href="#cb2-22"></a></span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="co"># By Jake VanderPlas</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="co"># License: BSD-style</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a><span class="co"># https://gist.github.com/jakevdp/91077b0cae40f8f8244a</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="kw">def</span> discrete_cmap(N, base_cmap<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb2-27"><a href="#cb2-27"></a>    <span class="co">&quot;&quot;&quot;Create an N-bin discrete colormap from the specified input map&quot;&quot;&quot;</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a></span>
-<span id="cb2-29"><a href="#cb2-29"></a>    <span class="co"># Note that if base_cmap is a string or None, you can simply do</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a>    <span class="co">#    return plt.cm.get_cmap(base_cmap, N)</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a>    <span class="co"># The following works for string, None, or a colormap instance:</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a></span>
-<span id="cb2-33"><a href="#cb2-33"></a>    base <span class="op">=</span> plt.cm.get_cmap(base_cmap)</span>
-<span id="cb2-34"><a href="#cb2-34"></a>    color_list <span class="op">=</span> base(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, N))</span>
-<span id="cb2-35"><a href="#cb2-35"></a>    cmap_name <span class="op">=</span> base.name <span class="op">+</span> <span class="bu">str</span>(N)</span>
-<span id="cb2-36"><a href="#cb2-36"></a>    <span class="cf">return</span> base.from_list(cmap_name, color_list, N)</span>
-<span id="cb2-37"><a href="#cb2-37"></a></span>
-<span id="cb2-38"><a href="#cb2-38"></a></span>
-<span id="cb2-39"><a href="#cb2-39"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb2-40"><a href="#cb2-40"></a>    <span class="im">import</span> argparse</span>
-<span id="cb2-41"><a href="#cb2-41"></a></span>
-<span id="cb2-42"><a href="#cb2-42"></a>    <span class="co"># Parse arguments</span></span>
-<span id="cb2-43"><a href="#cb2-43"></a>    parser <span class="op">=</span> argparse.ArgumentParser(</span>
-<span id="cb2-44"><a href="#cb2-44"></a>        description<span class="op">=</span><span class="st">&quot;Read digits from data file.&quot;</span>)</span>
-<span id="cb2-45"><a href="#cb2-45"></a>    parser.add_argument(<span class="st">&quot;dat&quot;</span>, nargs<span class="op">=</span><span class="dv">1</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;name of file&quot;</span>)</span>
-<span id="cb2-46"><a href="#cb2-46"></a>    args <span class="op">=</span> parser.parse_args()</span>
-<span id="cb2-47"><a href="#cb2-47"></a></span>
-<span id="cb2-48"><a href="#cb2-48"></a>    dat <span class="op">=</span> args.dat[<span class="dv">0</span>]</span>
-<span id="cb2-49"><a href="#cb2-49"></a>    digits <span class="op">=</span> read_digits(dat)</span>
-<span id="cb2-50"><a href="#cb2-50"></a>    r, c <span class="op">=</span> np.shape(digits)</span>
-<span id="cb2-51"><a href="#cb2-51"></a>    x, y <span class="op">=</span> np.meshgrid(np.arange(r), np.arange(c))</span>
-<span id="cb2-52"><a href="#cb2-52"></a></span>
-<span id="cb2-53"><a href="#cb2-53"></a>    fig, axes <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(r, c))</span>
-<span id="cb2-54"><a href="#cb2-54"></a></span>
-<span id="cb2-55"><a href="#cb2-55"></a>    scat <span class="op">=</span> axes.scatter(x, y, c<span class="op">=</span>digits[x, y], s<span class="op">=</span><span class="dv">50</span>,</span>
-<span id="cb2-56"><a href="#cb2-56"></a>                        cmap<span class="op">=</span>discrete_cmap(<span class="dv">10</span>, <span class="st">&#39;rainbow&#39;</span>))</span>
-<span id="cb2-57"><a href="#cb2-57"></a>    axes.axis(<span class="st">&#39;off&#39;</span>)</span>
-<span id="cb2-58"><a href="#cb2-58"></a></span>
-<span id="cb2-59"><a href="#cb2-59"></a>    <span class="co"># produce a legend with the unique colors from the scatter</span></span>
-<span id="cb2-60"><a href="#cb2-60"></a>    legend1 <span class="op">=</span> axes.legend(<span class="op">*</span>scat.legend_elements(),</span>
-<span id="cb2-61"><a href="#cb2-61"></a>                          loc<span class="op">=</span><span class="st">&quot;lower center&quot;</span>, ncol<span class="op">=</span><span class="dv">10</span>, frameon<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb2-62"><a href="#cb2-62"></a>                          bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>))</span>
-<span id="cb2-63"><a href="#cb2-63"></a>    axes.add_artist(legend1)</span>
-<span id="cb2-64"><a href="#cb2-64"></a>    plt.tight_layout()</span>
-<span id="cb2-65"><a href="#cb2-65"></a>    fig.savefig(<span class="st">&#39;pi_</span><span class="sc">{}</span><span class="st">_by_</span><span class="sc">{}</span><span class="st">.svg&#39;</span>.<span class="bu">format</span>(r, c), <span class="bu">format</span><span class="op">=</span><span class="st">&#39;svg&#39;</span>, dpi<span class="op">=</span><span class="dv">1200</span>,</span>
-<span id="cb2-66"><a href="#cb2-66"></a>                pad_inches<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="im">import</span> csv</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="im">from</span> matplotlib <span class="im">import</span> rc</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co"># Aesthetics</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>rc(<span class="st">&#39;font&#39;</span>, <span class="op">**</span>{<span class="st">&#39;family&#39;</span>: <span class="st">&#39;monospace&#39;</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>              <span class="st">&#39;serif&#39;</span>: [<span class="st">&#39;DejaVu Sans Mono&#39;</span>], <span class="st">&#39;size&#39;</span>: <span class="st">&#39;20&#39;</span>})</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>rc(<span class="st">&#39;text&#39;</span>, usetex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>plt.style.use(<span class="st">&#39;dark_background&#39;</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">def</span> read_digits(dat):</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    digits <span class="op">=</span> []</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    <span class="cf">with</span> <span class="bu">open</span>(dat) <span class="im">as</span> csv_file:</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>        csv_reader <span class="op">=</span> csv.reader(csv_file, delimiter<span class="op">=</span><span class="st">&#39;,&#39;</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>        <span class="cf">for</span> row <span class="kw">in</span> csv_reader:</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>            digits.append(row)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>    <span class="cf">return</span> np.array(digits, dtype<span class="op">=</span><span class="st">&quot;int&quot;</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="co"># By Jake VanderPlas</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a><span class="co"># License: BSD-style</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a><span class="co"># https://gist.github.com/jakevdp/91077b0cae40f8f8244a</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="kw">def</span> discrete_cmap(N, base_cmap<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>    <span class="co">&quot;&quot;&quot;Create an N-bin discrete colormap from the specified input map&quot;&quot;&quot;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a>    <span class="co"># Note that if base_cmap is a string or None, you can simply do</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>    <span class="co">#    return plt.cm.get_cmap(base_cmap, N)</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>    <span class="co"># The following works for string, None, or a colormap instance:</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>    base <span class="op">=</span> plt.cm.get_cmap(base_cmap)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>    color_list <span class="op">=</span> base(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, N))</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>    cmap_name <span class="op">=</span> base.name <span class="op">+</span> <span class="bu">str</span>(N)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>    <span class="cf">return</span> base.from_list(cmap_name, color_list, N)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a>    <span class="im">import</span> argparse</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a>    <span class="co"># Parse arguments</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a>    parser <span class="op">=</span> argparse.ArgumentParser(</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a>        description<span class="op">=</span><span class="st">&quot;Read digits from data file.&quot;</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a>    parser.add_argument(<span class="st">&quot;dat&quot;</span>, nargs<span class="op">=</span><span class="dv">1</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;name of file&quot;</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a>    args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a>    dat <span class="op">=</span> args.dat[<span class="dv">0</span>]</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a>    digits <span class="op">=</span> read_digits(dat)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a>    r, c <span class="op">=</span> np.shape(digits)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a>    x, y <span class="op">=</span> np.meshgrid(np.arange(r), np.arange(c))</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a>    fig, axes <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(r, c))</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true"></a>    scat <span class="op">=</span> axes.scatter(x, y, c<span class="op">=</span>digits[x, y], s<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true"></a>                        cmap<span class="op">=</span>discrete_cmap(<span class="dv">10</span>, <span class="st">&#39;rainbow&#39;</span>))</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true"></a>    axes.axis(<span class="st">&#39;off&#39;</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true"></a>    <span class="co"># produce a legend with the unique colors from the scatter</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true"></a>    legend1 <span class="op">=</span> axes.legend(<span class="op">*</span>scat.legend_elements(),</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true"></a>                          loc<span class="op">=</span><span class="st">&quot;lower center&quot;</span>, ncol<span class="op">=</span><span class="dv">10</span>, frameon<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true"></a>                          bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>))</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true"></a>    axes.add_artist(legend1)</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true"></a>    plt.tight_layout()</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true"></a>    fig.savefig(<span class="st">&#39;pi_</span><span class="sc">{}</span><span class="st">_by_</span><span class="sc">{}</span><span class="st">.svg&#39;</span>.<span class="bu">format</span>(r, c), <span class="bu">format</span><span class="op">=</span><span class="st">&#39;svg&#39;</span>, dpi<span class="op">=</span><span class="dv">1200</span>,</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true"></a>                pad_inches<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
 <p>The visualizations below were for <span class="math inline">23\times23</span> and <span class="math inline">31\times31</span> grids (yes, I like primes) respectively.</p>
 <p><img src="./pi_23_by_23.png#center" title="pi 23x23" /> <img src="./pi_31_by_31.png#center" title="pi 31x31" /></p>
 <p>What would be even more visually appealing is if we could connect the same-valued digits that are one point away from each other in either direction with edges as in the original poster. For example, for a 3 by 3 grid</p>
@@ -283,10 +283,6 @@
       <a href="mailto:ukskosana@gmail.com">Mail</a>
       ·
       <a href="mailto:ukskosana@gmail.com">RSS</a>
-      ·
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-        <img class="cc" src="https://d33wubrfki0l68.cloudfront.net/94387e9d77fbc8b4360db81e72603ecba3df94a7/632bc/static/cc.svg">
-      </a>
     </footer>
   </body>
 </html>

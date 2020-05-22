@@ -34,6 +34,13 @@ pre, code {
   font-family: 'TypoPRO Iosevka Term', monospace;
 }
 
+pre:not(.sourceCode),div.sourceCode {
+  overflow: auto !important;
+  padding: 1.5rem;
+  border: 2px solid var(--dark-white);
+  border-radius: 0.5rem;
+}
+
 /* header */
 
 header.nav-header {
@@ -42,6 +49,7 @@ header.nav-header {
   height: 5rem;
   font-size: .8rem;
   cursor: default;
+  margin-bottom: 2rem;
 }
 
 header h1 {
@@ -103,7 +111,7 @@ div.content {
   font-size: 0.80rem;
 }
 
-.b .time {
+.b .time, .p .time {
   display: flex;
   justify-content: space-between;
 }
@@ -181,15 +189,6 @@ footer {
 
 /* images */
 
-img.cc {
-  max-height: 0.7rem;
-  display: inline-block;
-  vertical-align: middle;
-  image-orientation: from-image;
-  cursor: pointer;
-  box-shadow: none;
-}
-
 img {
   max-width: 500px;
 }
@@ -227,3 +226,5 @@ header, div.content, footer {
 strong {
   color: var(--dark-red);
 }
+
+

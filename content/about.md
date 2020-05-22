@@ -25,4 +25,4 @@ If you ever have any concerns, comments, questions, or suggestions please feel f
 
 pronouns: him/he
 
-[CV](/resume.pdf) (02/02/20)
+[CV](https://docs.google.com/viewer?url=https://github.com/Unathi-Skosana/Resume/raw/master/resume.pdf) (02/02/20)
