@@ -1,19 +1,20 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+
+  <rss version='2.0' xmlns:atom='http://www.w3.org/2005/Atom'>
     <channel>
       <title>untitld</title>
       <link>http://untitld.xyz</link>
       <description>physics, writing, programming, design</description>
-      <atom:link href="http://untitld.xyz/index.xml" rel="self" type="application/rss+xml" />
+      <atom:link href='http://untitld.xyz/index.xml' rel='self' type='application/rss+xml' />
       <image>
         <title>untitld</title>
-        <url>http://untitld.xyz/favicon/micro-128.png</url>
+        <url>http://untitld.xyz/static/favicon/micro-128.png</url>
         <link>http://untitld.xyz.sh</link>
       </image>
       <language>en-us</language>
       <copyright>Creative Commons BY-NC-SA 4.0</copyright>
-      <item>
-<title> Ground Zero</title>
-<description><p>Warm welcomes.</p>
+      
+    <item>
+      <description><p>Warm welcomes.</p>
 <p>After more than a handful of failed attempts to start blogging, I’ve built up enough courage to start writing, and I’m thrilled that <a href="/"><em>untitld</em></a> has seen the light of day.</p>
 <p>Reasons for failure were manifold, among them being an unforgiving academic schedule. The kind that forbids one from partaking in extracurricular activities without worrying about losing time. But perhaps the most relevant to this blog was failure to find a motif for <em>untitld</em>. I gave a lot of thought about the objectives of <em>untitld</em>, attempting to narrow down possible topics of departure from “Ground Zero” proved to be rather unfruitful and tiresome. I gave up altogether. However, this would later come up again in conversation with a friend. </p>
 <p>At some point during the conversation, I told my friend that I would be blogging soon. They paused and proceeded to ask “What will the blog be about?”. To their dismay, they were met with an eerie silence. "I thought blogs are supposed to have a theme’, they continued. Alas, for my friend and those that share the same views will be disappointed to hear that, this site will only fulfill the role of a core dump where I occasionally write, whenever and about whatever I please. I prefer this over what my friend was insinuating as the latter implies an agenda which goes against the eventual ethos of <em>untitld</em>.</p>
@@ -21,13 +22,13 @@
 <p>Thank you for being here. Until the next blog post.</p>
 <p>Yours truly,</p>
 <p>Unathi</p></description>
-<link>http://untitld.xyz/posts/ground_zero/</link>
-<pubDate>02/10/2020</pubDate>
-<guid>http://untitld.xyz/posts/ground_zero/</guid>
-</item>
-<item>
-<title> Tribute to &pi;</title>
-<description><p>Happy 3.14 Day, which also happens to be the day Albert Einstein was born ! So March 14 is irrationally (bad pun, I know) anticipated with much excitement by the science and mathematics communities alike. I will follow tradition, as I did last year and honor <span class="math inline"><em>π</em></span>-day by recreating a visual representation of the digits of <span class="math inline"><em>π</em></span>. The recreation will be a derivative of a 2013 <span class="math inline"><em>π</em></span>-day poster by <a href="https://twitter.com/MKrzywinski">Martin Krzywinski</a> found at <a href="http://mkweb.bcgsc.ca/pi/piday">http://mkweb.bcgsc.ca/pi/piday</a></p>
+      <link>http://untitld.xyz/posts/ground_zero/</link>
+      <pubDate>02/10/2020</pubDate>
+      <guid>http://untitld.xyz/posts/ground_zero/</guid>
+    </item>
+    
+    <item>
+      <description><p>Happy 3.14 Day, which also happens to be the day Albert Einstein was born ! So March 14 is irrationally (bad pun, I know) anticipated with much excitement by the science and mathematics communities alike. I will follow tradition, as I did last year and honor <span class="math inline"><em>π</em></span>-day by recreating a visual representation of the digits of <span class="math inline"><em>π</em></span>. The recreation will be a derivative of a 2013 <span class="math inline"><em>π</em></span>-day poster by <a href="https://twitter.com/MKrzywinski">Martin Krzywinski</a> found at <a href="http://mkweb.bcgsc.ca/pi/piday">http://mkweb.bcgsc.ca/pi/piday</a></p>
 <p>The digits of <span class="math inline"><em>π</em></span> were computed using the <a href="https://en.wikipedia.org/wiki/Chudnovsky_algorithm">Chudnovsky algorithm</a>. Due to the CPU-intensive nature of such a computation, I precomputed the digits and saved to them a .dat file for reuse. This is less time consuming than computing the digits every time when visualizing them (or if you write buggy programs like I do). Below is the python script that computes the <span class="math inline"><em>n</em></span> first digits of <span class="math inline"><em>π</em></span> and saves as them to .dat file:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="im">import</span> csv</span>
@@ -155,7 +156,7 @@
 <span id="cb2-65"><a href="#cb2-65" aria-hidden="true"></a>    fig.savefig(<span class="st">&#39;pi_</span><span class="sc">{}</span><span class="st">_by_</span><span class="sc">{}</span><span class="st">.svg&#39;</span>.<span class="bu">format</span>(r, c), <span class="bu">format</span><span class="op">=</span><span class="st">&#39;svg&#39;</span>, dpi<span class="op">=</span><span class="dv">1200</span>,</span>
 <span id="cb2-66"><a href="#cb2-66" aria-hidden="true"></a>                pad_inches<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
 <p>The visualizations below were for <span class="math inline">23 × 23</span> and <span class="math inline">31 × 31</span> grids (yes, I like primes) respectively.</p>
-<p><img src="./pi_23_by_23.png#center" title="pi 23x23" /> <img src="./pi_31_by_31.png#center" title="pi 31x31" /></p>
+<p><img src="/static/images/pi_23_by_23.png#center" title="pi 23x23" /> <img src="/static/images/pi_31_by_31.png#center" title="pi 31x31" /></p>
 <p>What would be even more visually appealing is if we could connect the same-valued digits that are one point away from each other in either direction with edges as in the original poster. For example, for a 3 by 3 grid</p>
 <p><br /><span class="math display">$$
 \begin{aligned}
@@ -174,24 +175,25 @@ $$</span><br /></p>
 \end{aligned}
 $$</span><br /></p>
 <p>The four <span class="math inline">1</span>s in the grid would deemed as a label/component and we would have only one component in the grid. The <code>SciPy</code> has a high performance C implementation, <code>scipy.ndimage.label</code>, to label the components and subsequently extract their indices. The single downfall of this method is that it also considers isolated groups (<span class="math inline">1</span> surrounded by <span class="math inline">0</span>s in all directions) as connected components. However, one can filter out isolated groups from the original array as done <a href="https://stackoverflow.com/questions/28274091/removing-completely-isolated-cells-from-python-array">here</a>. Putting this all together, we can produce the stunning visuals below. Here are the visualizations for <span class="math inline">23 × 23</span> and <span class="math inline">31 × 31</span> grids.</p>
-<p><img src="./pi_23_by_23_edges.png#center" title="pi 23x23" /> <img src="./pi_31_by_31_edges.png#center" title="pi 31x31" /></p>
+<p><img src="/static/images/pi_23_by_23_edges.png#center" title="pi 23x23" /> <img src="/static/images/pi_31_by_31_edges.png#center" title="pi 31x31" /></p>
 <p>The updated source code and higher quality images can be found <a href="https://github.com/Unathi-Skosana/numart">here</a>. If you have comments or quarrels, <a href="/">reach out</a>.</p>
 <h2 id="updates-23-by-23-meshgrids-for-eulers-number-and-the-golden-ratio">Updates : 23 by 23 meshgrids for Euler’s number and the golden ratio</h2>
-<p><img src="./e_23_by_23_edges.png#center" title="e 23x23" /> <img src="./phi_23_by_23_edges.png#center" title="phi 23x23" /></p>
+<p><img src="/static/images/e_23_by_23_edges.png#center" title="e 23x23" /> <img src="/static/images/phi_23_by_23_edges.png#center" title="phi 23x23" /></p>
 <h2 id="sources">Sources:</h2>
 <ul>
-<li>[1] : https://stackoverflow.com/questions/46737409/finding-connected-components-in-a-pixel-array</li>
-<li>[2] : https://stackoverflow.com/questions/28274091/removing-completely-isolated-cells-from-python-array</li>
-<li>[3] : https://stackoverflow.com/questions/28284996/python-pi-calculation</li>
-<li>[4] : http://mkweb.bcgsc.ca/pi/piday/</li>
-<li>[5] : https://en.wikipedia.org/wiki/Component_(graph_theory)</li>
-<li>[6] : https://en.wikipedia.org/wiki/Chudnovsky_algorithm</li>
-<li>[7] : https://gist.github.com/jakevdp/91077b0cae40f8f8244a</li>
+<li>[1]: <a href="https://stackoverflow.com/questions/46737409/finding-connected-components-in-a-pixel-array">Finding connected components in a pixel array</a></li>
+<li>[2]: <a href="https://stackoverflow.com/questions/28274091/removing-completely-isolated-cells-from-python-array">Removing completely isolated cells from python array</a></li>
+<li>[3]: <a href="https://stackoverflow.com/questions/28284996/python-pi-calculation">Python pi calculation</a></li>
+<li>[4]: <a href="http://mkweb.bcgsc.ca/pi/piday/">Pi day</a></li>
+<li>[5]: <a href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Connected components (graph theory)</a></li>
+<li>[6]: <a href="https://en.wikipedia.org/wiki/Chudnovsky_algorithm">Chudnovsky algorithm</a></li>
+<li>[7]: <a href="https://gist.github.com/jakevdp/91077b0cae40f8f8244a">Discrete matplotlib colormap</a></li>
 </ul></description>
-<link>http://untitld.xyz/posts/tribute_to_pi/</link>
-<pubDate>03/14/2020</pubDate>
-<guid>http://untitld.xyz/posts/tribute_to_pi/</guid>
-</item>
-
+      <link>http://untitld.xyz/posts/tribute_to_pi/</link>
+      <pubDate>03/14/2020</pubDate>
+      <guid>http://untitld.xyz/posts/tribute_to_pi/</guid>
+    </item>
+    
     </channel>
-</rss>
+  </rss>
+  

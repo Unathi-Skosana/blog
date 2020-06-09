@@ -163,8 +163,8 @@ if __name__ == '__main__':
 The visualizations below were for $23\times23$ and $31\times31$
 grids (yes, I like primes) respectively.
 
-![](./pi_23_by_23.png#center "pi 23x23")
-![](./pi_31_by_31.png#center "pi 31x31")
+![](/static/images/pi_23_by_23.png#center "pi 23x23")
+![](/static/images/pi_31_by_31.png#center "pi 31x31")
 
 What would be even more visually appealing is if we could connect the same-valued
 digits that are one point away from each other in either direction with edges as in
@@ -213,8 +213,8 @@ original array as done
 for $23\times23$ and $31\times31$ grids.
 
 
-![](./pi_23_by_23_edges.png#center "pi 23x23")
-![](./pi_31_by_31_edges.png#center "pi 31x31")
+![](/static/images/pi_23_by_23_edges.png#center "pi 23x23")
+![](/static/images/pi_31_by_31_edges.png#center "pi 31x31")
 
 The updated source code and higher quality images can be found
 [here](https://github.com/Unathi-Skosana/numart). If you have comments or
@@ -222,14 +222,14 @@ quarrels, [reach out](/).
 
 ## Updates : 23 by 23 meshgrids for Euler's number and the golden ratio
 
-![](./e_23_by_23_edges.png#center "e 23x23")
-![](./phi_23_by_23_edges.png#center "phi 23x23")
+![](/static/images/e_23_by_23_edges.png#center "e 23x23")
+![](/static/images/phi_23_by_23_edges.png#center "phi 23x23")
 
 ## Sources:
-- [1] : https://stackoverflow.com/questions/46737409/finding-connected-components-in-a-pixel-array
-- [2] : https://stackoverflow.com/questions/28274091/removing-completely-isolated-cells-from-python-array
-- [3] : https://stackoverflow.com/questions/28284996/python-pi-calculation
-- [4] : http://mkweb.bcgsc.ca/pi/piday/
-- [5] : https://en.wikipedia.org/wiki/Component_(graph_theory)
-- [6] : https://en.wikipedia.org/wiki/Chudnovsky_algorithm
-- [7] : https://gist.github.com/jakevdp/91077b0cae40f8f8244a
+- [1]: [Finding connected components in a pixel array](https://stackoverflow.com/questions/46737409/finding-connected-components-in-a-pixel-array)
+- [2]: [Removing completely isolated cells from python array](https://stackoverflow.com/questions/28274091/removing-completely-isolated-cells-from-python-array)
+- [3]: [Python pi calculation](https://stackoverflow.com/questions/28284996/python-pi-calculation)
+- [4]: [Pi day](http://mkweb.bcgsc.ca/pi/piday/)
+- [5]: [Connected components (graph theory)](https://en.wikipedia.org/wiki/Component_(graph_theory)) 
+- [6]: [Chudnovsky algorithm](https://en.wikipedia.org/wiki/Chudnovsky_algorithm)
+- [7]: [Discrete matplotlib colormap](https://gist.github.com/jakevdp/91077b0cae40f8f8244a)

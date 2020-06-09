@@ -1,75 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
+
+  <!DOCTYPE html>
+  <html lang='en'>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1">
-    <meta content="#ffffff" name="theme-color">
-    <meta name="HandheldFriendly" content="true">
-    <meta property="og:title" content="Unathi Skosana">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="Nondescript">
-    <meta property="og:url" content="http://untitld.xyz">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src='https://www.googletagmanager.com/gtag/js?id=UA-167451864-1'></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
-    <link rel="stylesheet" href="/dark.css" media="(prefers-color-scheme: dark)">
-    <script type="module" src="https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs"></script>
+      gtag('config', 'UA-167451864-1');
+    </script>
+    <script type='module' src='https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js'></script>
+    <script>document.addEventListener('DOMContentLoaded', function () {
+    var mathElements = document.getElementsByClassName('math');
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == 'SPAN') {
+      katex.render(texText.data, mathElements[i], {
+        displayMode: mathElements[i].classList.contains('display'),
+        throwOnError: false,
+        fleqn: false
+      });
+    }}});
+    </script>
 
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon/micro-16.png">
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon/micro-32.png">
-    <link rel="icon" type="image/x-icon" sizes="64x64" href="/favicon/micro-62.png">
-    <link rel="icon" type="image/x-icon" sizes="128x128" href="/favicon/micro-128.png">
-    <title>Untitld — About</title>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='initial-scale=1'>
+    <meta content='#ffffff' name='theme-color'>
+    <meta name='HandheldFriendly' content='true'>
+    <meta property='og:title' content='Unathi Skosana'>
+    <meta property='og:type' content='website'>
+    <meta property='og:description' content='Nondescript'>
+    <meta property='og:url' content='https://untitld.xyz'>
+
+    <link rel='stylesheet' href='/static/css/syntax.css'>
+    <link rel='stylesheet' href='/static/css/style.css'>
+    <link rel='stylesheet' href='/static/css/light.css' media='(prefers-color-scheme: light), (prefers-color-scheme: no-preference)'>
+    <link rel='stylesheet' href='/static/css/dark.css' media='(prefers-color-scheme: dark)'>
+    <link rel='icon' type='image/x-icon' sizes='16x16' href='/static/favicon/micro-16.png'>
+    <link rel='icon' type='image/x-icon' sizes='32x32' href='/static/favicon/micro-32.png'>
+    <link rel='icon' type='image/x-icon' sizes='64x64' href='/static/favicon/micro-62.png'>
+    <link rel='icon' type='image/x-icon' sizes='128x128' href='/static/favicon/micro-128.png'>
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css' />
+    <!--[if lt IE 9]>
+      <script src='//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js'></script>
+    <![endif]-->
+
+    <title>Untitld —  About me</title>
   </head>
 
   <body>
-    <header class="nav-header">
-      <h1 class="logo">
-        <a href="/">
-          <img src="/favicon/micro-128.png" width="32" height="32"/>
+    <header class='nav-header'>
+      <h1 class='logo'>
+        <a href='/'  aria-label='mu' target='_blank' rel='noopener noreferrer'>
+          <img src='/static/favicon/micro-128.png' width='32' height='32' alt='mu' />
         </a>
       </h1>
-      <ul class="navigation">
-        <li><a class="active" href="/about/">About</a></li>
-        <li><a href="/projects/">Projects</a></li>
-        <li><a href="/academia/">Academia</a></li>
-        <li><a href="/misc/">Misc</a></li>
+      <ul class='navigation'>
+        <li><a href='/about/'>About</a></li>
+        <li><a href='/projects/'>Projects</a></li>
+        <li><a href='/academia/'>Academia</a></li>
+        <li><a href='/misc/'>Misc</a></li>
         <li>
           <dark-mode-toggle
-            id="dark-mode-toggle-1"
-            dark="Dark"
-            light="Light"
-            permanent="true"
+            id='dark-mode-toggle-1'
+            dark='Dark'
+            light='Light'
+            permanent='true'
             />
         </li>
       </ul>
     </header>
+  
 
-    <div class="content">
-      <div class="s p">
-        <div class="b">
-          <p><img src="/me.jpeg#right" title="me" /></p>
+    <div class='content'>
+      <div class='s p'>
+        <div class='b'>
+          <p><img src="/static/images/me.jpeg#right" title="me" /></p>
 <p>Hi, I am Unathi.</p>
 <p>I’m a Masters physics student with research interests in quantum information science at Stellenbosch University. In 2019, I completed my Honours degree in physics at the aforementioned university.</p>
 <p>My <a href="/academia">primary research interests</a> are centered around quantum optics which involves the study of quantum properties of light and the applications to NISQy quantum computing and quantum communication. I’m currently part of the quantum photonics group in the physics department of Stellenbosch University spearheaded by <a href="http://quantumnanophotonics.org/">Professor Mark Tame</a>.</p>
 <p>Aside from my research, I enjoy learning about topics in mathematics and computer science such as graph theory, statistics and probability theory, group theory and their applications to physics. My free time is well spent actively trying to fit the entirety of <a href="https://www.amazon.co.uk/Quantum-Computation-Information-10th-Anniversary/dp/1107002176/ref=sr_1_1?keywords=nielsen+and+chuang&amp;qid=1565567488&amp;s=books&amp;sr=1-1">Nielsen &amp; Chuang</a>, into my head. Apart from this fruitful exercise I also enjoy <a href="/misc/#booksessays">reading</a>, listening to <a href="/misc/#podcasts">podcasts</a>, skateboarding, occasionally practice playing saxophone and guitar and tutoring freshmen and sophomore physics students.</p>
 <p>If you ever have any concerns, comments, questions, or suggestions please feel free to reach out through any of the methods listed on my <a href="/">home</a> page.</p>
 <p>pronouns: him/he</p>
-<p><a href="https://docs.google.com/viewer?url=https://github.com/Unathi-Skosana/Resume/raw/master/resume.pdf">CV</a> (02/02/20)</p>
-
+<p><a href="https://github.com/Unathi-Skosana/Resume/raw/master/resume.pdf">CV</a> (02/02/20)</p>
         </div>
       </div>
     </div>
+  
 
-    <footer>
-      <div class="separator"></div>
-      <a href="https://github.com/Unathi-Skosana">Github</a>
-      ·
-      <a href="https://twitter.com/UnathiSkosana">Twitter</a>
-      ·
-      <a href="mailto:ukskosana@gmail.com">Mail</a>
-      ·
-      <a href="mailto:ukskosana@gmail.com">RSS</a>
-    </footer>
-  </body>
-</html>
+  <footer>
+    <div class='separator'></div>
+    <a href='https://github.com/Unathi-Skosana'>Github</a>
+    ·
+    <a href='https://twitter.com/UnathiSkosana'>Twitter</a>
+    ·
+    <a href='mailto:ukskosana@gmail.com'>Mail</a>
+    ·
+    <a href='mailto:ukskosana@gmail.com'>RSS</a>
+  </footer>
+  
+
+    </body>
+  </html>

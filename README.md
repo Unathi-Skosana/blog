@@ -1,2 +1,3 @@
-# blog
-Blog
+# Blog
+
+Petite blog built with bash and pandoc.

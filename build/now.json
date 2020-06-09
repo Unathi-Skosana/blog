@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "routes": [
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/about", "dest": "/about/index.html"},
+    { "src": "/academia", "dest": "/academia/index.html"},
+    { "src": "/misc", "dest": "/misc/index.html"},
+    { "src": "/projects", "dest": "/projects/index.html"},
+    { "src": "/posts/", "dest": "/projects/index.html"},
+    {
+      "src": "/posts/.*",
+      "headers": { "Cache-Control": "max-age=3600" },
+      "continue": true
+    },
+    {
+      "src": "/posts/([^/]+)",
+      "dest": "/posts/$1"
+    },
+    {
+      "src": "/static/(.*)/(.*)",
+      "headers": { "cache-control": "s-maxage=604800" },
+      "dest": "/images/$1/$2"
+    }
+  ]
+}

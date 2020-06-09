@@ -1,51 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
+
+  <!DOCTYPE html>
+  <html lang='en'>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1">
-    <meta content="#ffffff" name="theme-color">
-    <meta name="HandheldFriendly" content="true">
-    <meta property="og:title" content="Unathi Skosana">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="Nondescript">
-    <meta property="og:url" content="http://untitld.xyz">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src='https://www.googletagmanager.com/gtag/js?id=UA-167451864-1'></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
-    <link rel="stylesheet" href="/dark.css" media="(prefers-color-scheme: dark)">
-    <script type="module" src="https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs"></script>
+      gtag('config', 'UA-167451864-1');
+    </script>
+    <script type='module' src='https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js'></script>
+    <script>document.addEventListener('DOMContentLoaded', function () {
+    var mathElements = document.getElementsByClassName('math');
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == 'SPAN') {
+      katex.render(texText.data, mathElements[i], {
+        displayMode: mathElements[i].classList.contains('display'),
+        throwOnError: false,
+        fleqn: false
+      });
+    }}});
+    </script>
 
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon/micro-16.png">
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon/micro-32.png">
-    <link rel="icon" type="image/x-icon" sizes="64x64" href="/favicon/micro-62.png">
-    <link rel="icon" type="image/x-icon" sizes="128x128" href="/favicon/micro-128.png">
-    <title>Untitld — Projects</title>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='initial-scale=1'>
+    <meta content='#ffffff' name='theme-color'>
+    <meta name='HandheldFriendly' content='true'>
+    <meta property='og:title' content='Unathi Skosana'>
+    <meta property='og:type' content='website'>
+    <meta property='og:description' content='Nondescript'>
+    <meta property='og:url' content='https://untitld.xyz'>
+
+    <link rel='stylesheet' href='/static/css/syntax.css'>
+    <link rel='stylesheet' href='/static/css/style.css'>
+    <link rel='stylesheet' href='/static/css/light.css' media='(prefers-color-scheme: light), (prefers-color-scheme: no-preference)'>
+    <link rel='stylesheet' href='/static/css/dark.css' media='(prefers-color-scheme: dark)'>
+    <link rel='icon' type='image/x-icon' sizes='16x16' href='/static/favicon/micro-16.png'>
+    <link rel='icon' type='image/x-icon' sizes='32x32' href='/static/favicon/micro-32.png'>
+    <link rel='icon' type='image/x-icon' sizes='64x64' href='/static/favicon/micro-62.png'>
+    <link rel='icon' type='image/x-icon' sizes='128x128' href='/static/favicon/micro-128.png'>
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css' />
+    <!--[if lt IE 9]>
+      <script src='//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js'></script>
+    <![endif]-->
+
+    <title>Untitld —  Projects</title>
   </head>
 
   <body>
-      <header class="nav-header">
-        <h1 class="logo">
-          <a href="/">
-            <img src="/favicon/micro-128.png" width="32" height="32"/>
-          </a>
-        </h1>
-        <ul class="navigation">
-          <li><a href="/about/">About</a></li>
-          <li><a class="active" href="/projects/">Projects</a></li>
-          <li><a href="/academia/">Academia</a></li>
-          <li><a href="/misc/">Misc</a></li>
-          <li>
-            <dark-mode-toggle
-              id="dark-mode-toggle-1"
-              dark="Dark"
-              light="Light"/>
-          </li>
-        </ul>
-      </header>
+    <header class='nav-header'>
+      <h1 class='logo'>
+        <a href='/'  aria-label='mu' target='_blank' rel='noopener noreferrer'>
+          <img src='/static/favicon/micro-128.png' width='32' height='32' alt='mu' />
+        </a>
+      </h1>
+      <ul class='navigation'>
+        <li><a href='/about/'>About</a></li>
+        <li><a href='/projects/'>Projects</a></li>
+        <li><a href='/academia/'>Academia</a></li>
+        <li><a href='/misc/'>Misc</a></li>
+        <li>
+          <dark-mode-toggle
+            id='dark-mode-toggle-1'
+            dark='Dark'
+            light='Light'
+            permanent='true'
+            />
+        </li>
+      </ul>
+    </header>
+  
 
-      <div class="content">
-        <div class="pro">
-            <h1 id="projects">Projects</h1>
+  <div class='content'>
+    <div class='pro'>
+    <h1 id="projects">Projects</h1>
 <p>Some small fun projects I’ve been involved in or contributed in</p>
 <ul>
 <li><a href="https://github.com/Unathi-Skosana/gonetkey">Gonetkey</a> — Golang client to access Stellenbosch University’s internet provider.</li>
@@ -56,19 +89,34 @@
 <li><a href="https://github.com/Unathi-Skosana/NetworkLayout">Network Layout</a> — A graph layout algorithm to minimize the number of edge crossings.</li>
 <li><a href="https://github.com/HuangJunye/QPong">QPong</a> — Quantum Pong</li>
 </ul>
+    </div>
+  </div>
+  
 
-        </div>
-      </div>
+  <footer>
+    <div class='separator'></div>
+    <a href='https://github.com/Unathi-Skosana'>Github</a>
+    ·
+    <a href='https://twitter.com/UnathiSkosana'>Twitter</a>
+    ·
+    <a href='mailto:ukskosana@gmail.com'>Mail</a>
+    ·
+    <a href='mailto:ukskosana@gmail.com'>RSS</a>
+  </footer>
+  
 
-      <footer>
-        <div class="separator"></div>
-        <a href="https://github.com/Unathi-Skosana">Github</a>
-        ·
-        <a href="https://twitter.com/UnathiSkosana">Twitter</a>
-        ·
-        <a href="mailto:ukskosana@gmail.com">Mail</a>
-        ·
-        <a href="mailto:ukskosana@gmail.com">RSS</a>
-      </footer>
-  </body>
-</html>
+    </body>
+  </html>
+</div>
+
+  <footer>
+    <div class='separator'></div>
+    <a href='https://github.com/Unathi-Skosana'>Github</a>
+    ·
+    <a href='https://twitter.com/UnathiSkosana'>Twitter</a>
+    ·
+    <a href='mailto:ukskosana@gmail.com'>Mail</a>
+    ·
+    <a href='mailto:ukskosana@gmail.com'>RSS</a>
+  </footer>
+  

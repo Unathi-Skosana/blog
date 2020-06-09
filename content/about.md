@@ -3,7 +3,7 @@ title: "About me"
 date: 2020-02-07 13:12
 ---
 
-![](/me.jpeg#right "me")
+![](/static/images/me.jpeg#right "me")
 
 Hi, I am Unathi.
 
@@ -25,4 +25,4 @@ If you ever have any concerns, comments, questions, or suggestions please feel f
 
 pronouns: him/he
 
-[CV](https://docs.google.com/viewer?url=https://github.com/Unathi-Skosana/Resume/raw/master/resume.pdf) (02/02/20)
+[CV](https://github.com/Unathi-Skosana/Resume/raw/master/resume.pdf) (02/02/20)

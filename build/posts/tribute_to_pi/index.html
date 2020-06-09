@@ -1,31 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+
+  <!DOCTYPE html>
+  <html lang='en'>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1">
-    <meta content="#ffffff" name="theme-color">
-    <meta name="HandheldFriendly" content="true">
-    <meta property="og:title" content="Unathi Skosana">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="Nondescript">
-    <meta property="og:url" content="http://untitld.xyz">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src='https://www.googletagmanager.com/gtag/js?id=UA-167451864-1'></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    <link rel="stylesheet" href="/syntax.css">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
-    <link rel="stylesheet" href="/dark.css" media="(prefers-color-scheme: dark)">
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon/micro-16.png">
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon/micro-32.png">
-    <link rel="icon" type="image/x-icon" sizes="64x64" href="/favicon/micro-62.png">
-    <link rel="icon" type="image/x-icon" sizes="128x128" href="/favicon/micro-128.png">
-
-    <script type="module" src="https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
-    <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
+      gtag('config', 'UA-167451864-1');
+    </script>
+    <script type='module' src='https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js'></script>
+    <script>document.addEventListener('DOMContentLoaded', function () {
+    var mathElements = document.getElementsByClassName('math');
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == 'SPAN') {
       katex.render(texText.data, mathElements[i], {
         displayMode: mathElements[i].classList.contains('display'),
         throwOnError: false,
@@ -33,83 +25,103 @@
       });
     }}});
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='initial-scale=1'>
+    <meta content='#ffffff' name='theme-color'>
+    <meta name='HandheldFriendly' content='true'>
+    <meta property='og:title' content='Unathi Skosana'>
+    <meta property='og:type' content='website'>
+    <meta property='og:description' content='Nondescript'>
+    <meta property='og:url' content='https://untitld.xyz'>
+
+    <link rel='stylesheet' href='/static/css/syntax.css'>
+    <link rel='stylesheet' href='/static/css/style.css'>
+    <link rel='stylesheet' href='/static/css/light.css' media='(prefers-color-scheme: light), (prefers-color-scheme: no-preference)'>
+    <link rel='stylesheet' href='/static/css/dark.css' media='(prefers-color-scheme: dark)'>
+    <link rel='icon' type='image/x-icon' sizes='16x16' href='/static/favicon/micro-16.png'>
+    <link rel='icon' type='image/x-icon' sizes='32x32' href='/static/favicon/micro-32.png'>
+    <link rel='icon' type='image/x-icon' sizes='64x64' href='/static/favicon/micro-62.png'>
+    <link rel='icon' type='image/x-icon' sizes='128x128' href='/static/favicon/micro-128.png'>
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css' />
     <!--[if lt IE 9]>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+      <script src='//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js'></script>
     <![endif]-->
 
-    <title>Untitld — Tribute to &pi;</title>
+    <title>Untitld —  Tribute to &pi;</title>
   </head>
 
   <body>
-      <header class="nav-header">
-        <h1 class="logo">
-          <a href="/">
-            <img src="/favicon/micro-128.png" width="32" height="32"/>
-          </a>
-        </h1>
-        <ul class="r navigation">
-          <li><a href="/about/">About</a></li>
-          <li><a href="/projects/">Projects</a></li>
-          <li><a href="/academia/">Academia</a></li>
-          <li><a href="/misc/">Misc</a></li>
-          <li>
-            <dark-mode-toggle
-              id="dark-mode-toggle-1"
-              dark="Dark"
-              light="Light"
-              permanent="true"
-              />
-          </li>
-        </ul>
-      </header>
+    <header class='nav-header'>
+      <h1 class='logo'>
+        <a href='/'  aria-label='mu' target='_blank' rel='noopener noreferrer'>
+          <img src='/static/favicon/micro-128.png' width='32' height='32' alt='mu' />
+        </a>
+      </h1>
+      <ul class='navigation'>
+        <li><a href='/about/'>About</a></li>
+        <li><a href='/projects/'>Projects</a></li>
+        <li><a href='/academia/'>Academia</a></li>
+        <li><a href='/misc/'>Misc</a></li>
+        <li>
+          <dark-mode-toggle
+            id='dark-mode-toggle-1'
+            dark='Dark'
+            light='Light'
+            permanent='true'
+            />
+        </li>
+      </ul>
+    </header>
+  
 
-      <div class="content">
-        <div class="s p">
-          <h1>Tribute to &pi;</h1>
-          <div class="b">
-            <div class="time">
-              <span>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M9 7H11V12H16V14H9V7Z" fill="currentColor" />
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z"
-                    fill="currentColor"
-                  />
-                </svg>
-                7.0 min
-              </span>
-              <span>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8 9C7.44772 9 7 9.44771 7 10C7 10.5523 7.44772 11 8 11H16C16.5523 11 17 10.5523 17 10C17 9.44771 16.5523 9 16 9H8Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M6 3C4.34315 3 3 4.34315 3 6V18C3 19.6569 4.34315 21 6 21H18C19.6569 21 21 19.6569 21 18V6C21 4.34315 19.6569 3 18 3H6ZM5 18V7H19V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18Z"
-                    fill="currentColor"
-                  />
-                </svg>
-                03/14/2020
-            </span>
-            </div>
-            <p>Happy 3.14 Day, which also happens to be the day Albert Einstein was born ! So March 14 is irrationally (bad pun, I know) anticipated with much excitement by the science and mathematics communities alike. I will follow tradition, as I did last year and honor <span class="math inline">\pi</span>-day by recreating a visual representation of the digits of <span class="math inline">\pi</span>. The recreation will be a derivative of a 2013 <span class="math inline">\pi</span>-day poster by <a href="https://twitter.com/MKrzywinski">Martin Krzywinski</a> found at <a href="http://mkweb.bcgsc.ca/pi/piday">http://mkweb.bcgsc.ca/pi/piday</a></p>
+  <div class='content'>
+    <div class='s p'>
+      <h1> Tribute to &pi;</h1>
+      <div class='b'>
+        <div class='time'>
+          <span>
+            <svg
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path d='M9 7H11V12H16V14H9V7Z' fill='currentColor' />
+              <path
+                fill-rule='evenodd'
+                clip-rule='evenodd'
+                d='M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z'
+                fill='currentColor'
+              />
+            </svg>
+            5.34 Min
+          </span>
+          <span>
+            <svg
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M8 9C7.44772 9 7 9.44771 7 10C7 10.5523 7.44772 11 8 11H16C16.5523 11 17 10.5523 17 10C17 9.44771 16.5523 9 16 9H8Z'
+                fill='currentColor'
+              />
+              <path
+                fill-rule='evenodd'
+                clip-rule='evenodd'
+                d='M6 3C4.34315 3 3 4.34315 3 6V18C3 19.6569 4.34315 21 6 21H18C19.6569 21 21 19.6569 21 18V6C21 4.34315 19.6569 3 18 3H6ZM5 18V7H19V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18Z'
+                fill='currentColor'
+              />
+            </svg>
+            03/14/2020
+        </span>
+        </div>
+        <p>Happy 3.14 Day, which also happens to be the day Albert Einstein was born ! So March 14 is irrationally (bad pun, I know) anticipated with much excitement by the science and mathematics communities alike. I will follow tradition, as I did last year and honor <span class="math inline">\pi</span>-day by recreating a visual representation of the digits of <span class="math inline">\pi</span>. The recreation will be a derivative of a 2013 <span class="math inline">\pi</span>-day poster by <a href="https://twitter.com/MKrzywinski">Martin Krzywinski</a> found at <a href="http://mkweb.bcgsc.ca/pi/piday">http://mkweb.bcgsc.ca/pi/piday</a></p>
 <p>The digits of <span class="math inline">\pi</span> were computed using the <a href="https://en.wikipedia.org/wiki/Chudnovsky_algorithm">Chudnovsky algorithm</a>. Due to the CPU-intensive nature of such a computation, I precomputed the digits and saved to them a .dat file for reuse. This is less time consuming than computing the digits every time when visualizing them (or if you write buggy programs like I do). Below is the python script that computes the <span class="math inline">n</span> first digits of <span class="math inline">\pi</span> and saves as them to .dat file:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="im">import</span> csv</span>
@@ -237,7 +249,7 @@
 <span id="cb2-65"><a href="#cb2-65" aria-hidden="true"></a>    fig.savefig(<span class="st">&#39;pi_</span><span class="sc">{}</span><span class="st">_by_</span><span class="sc">{}</span><span class="st">.svg&#39;</span>.<span class="bu">format</span>(r, c), <span class="bu">format</span><span class="op">=</span><span class="st">&#39;svg&#39;</span>, dpi<span class="op">=</span><span class="dv">1200</span>,</span>
 <span id="cb2-66"><a href="#cb2-66" aria-hidden="true"></a>                pad_inches<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
 <p>The visualizations below were for <span class="math inline">23\times23</span> and <span class="math inline">31\times31</span> grids (yes, I like primes) respectively.</p>
-<p><img src="./pi_23_by_23.png#center" title="pi 23x23" /> <img src="./pi_31_by_31.png#center" title="pi 31x31" /></p>
+<p><img src="/static/images/pi_23_by_23.png#center" title="pi 23x23" /> <img src="/static/images/pi_31_by_31.png#center" title="pi 31x31" /></p>
 <p>What would be even more visually appealing is if we could connect the same-valued digits that are one point away from each other in either direction with edges as in the original poster. For example, for a 3 by 3 grid</p>
 <p><span class="math display">
 \begin{aligned}
@@ -256,33 +268,21 @@
 \end{aligned}
 </span></p>
 <p>The four <span class="math inline">1</span>s in the grid would deemed as a label/component and we would have only one component in the grid. The <code>SciPy</code> has a high performance C implementation, <code>scipy.ndimage.label</code>, to label the components and subsequently extract their indices. The single downfall of this method is that it also considers isolated groups (<span class="math inline">1</span> surrounded by <span class="math inline">0</span>s in all directions) as connected components. However, one can filter out isolated groups from the original array as done <a href="https://stackoverflow.com/questions/28274091/removing-completely-isolated-cells-from-python-array">here</a>. Putting this all together, we can produce the stunning visuals below. Here are the visualizations for <span class="math inline">23\times23</span> and <span class="math inline">31\times31</span> grids.</p>
-<p><img src="./pi_23_by_23_edges.png#center" title="pi 23x23" /> <img src="./pi_31_by_31_edges.png#center" title="pi 31x31" /></p>
+<p><img src="/static/images/pi_23_by_23_edges.png#center" title="pi 23x23" /> <img src="/static/images/pi_31_by_31_edges.png#center" title="pi 31x31" /></p>
 <p>The updated source code and higher quality images can be found <a href="https://github.com/Unathi-Skosana/numart">here</a>. If you have comments or quarrels, <a href="/">reach out</a>.</p>
 <h2 id="updates-23-by-23-meshgrids-for-eulers-number-and-the-golden-ratio">Updates : 23 by 23 meshgrids for Euler’s number and the golden ratio</h2>
-<p><img src="./e_23_by_23_edges.png#center" title="e 23x23" /> <img src="./phi_23_by_23_edges.png#center" title="phi 23x23" /></p>
+<p><img src="/static/images/e_23_by_23_edges.png#center" title="e 23x23" /> <img src="/static/images/phi_23_by_23_edges.png#center" title="phi 23x23" /></p>
 <h2 id="sources">Sources:</h2>
 <ul>
-<li>[1] : https://stackoverflow.com/questions/46737409/finding-connected-components-in-a-pixel-array</li>
-<li>[2] : https://stackoverflow.com/questions/28274091/removing-completely-isolated-cells-from-python-array</li>
-<li>[3] : https://stackoverflow.com/questions/28284996/python-pi-calculation</li>
-<li>[4] : http://mkweb.bcgsc.ca/pi/piday/</li>
-<li>[5] : https://en.wikipedia.org/wiki/Component_(graph_theory)</li>
-<li>[6] : https://en.wikipedia.org/wiki/Chudnovsky_algorithm</li>
-<li>[7] : https://gist.github.com/jakevdp/91077b0cae40f8f8244a</li>
+<li>[1]: <a href="https://stackoverflow.com/questions/46737409/finding-connected-components-in-a-pixel-array">Finding connected components in a pixel array</a></li>
+<li>[2]: <a href="https://stackoverflow.com/questions/28274091/removing-completely-isolated-cells-from-python-array">Removing completely isolated cells from python array</a></li>
+<li>[3]: <a href="https://stackoverflow.com/questions/28284996/python-pi-calculation">Python pi calculation</a></li>
+<li>[4]: <a href="http://mkweb.bcgsc.ca/pi/piday/">Pi day</a></li>
+<li>[5]: <a href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Connected components (graph theory)</a></li>
+<li>[6]: <a href="https://en.wikipedia.org/wiki/Chudnovsky_algorithm">Chudnovsky algorithm</a></li>
+<li>[7]: <a href="https://gist.github.com/jakevdp/91077b0cae40f8f8244a">Discrete matplotlib colormap</a></li>
 </ul>
-
-          </div>
-        </div>
       </div>
-    <footer>
-      <div class="separator"></div>
-      <a href="https://github.com/Unathi-Skosana">Github</a>
-      ·
-      <a href="https://twitter.com/UnathiSkosana">Twitter</a>
-      ·
-      <a href="mailto:ukskosana@gmail.com">Mail</a>
-      ·
-      <a href="mailto:ukskosana@gmail.com">RSS</a>
-    </footer>
-  </body>
-</html>
+    </div>
+  </div>
+  
