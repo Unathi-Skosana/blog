@@ -2,17 +2,17 @@
 
 function title {
   # $1 - file
-  printf '%s\n' "$(rg "title" -m 1 "$1" | sed -e 's/^[a-z]*:\|\"//g')"
+  printf '%s' "$(rg "title" -m 1 "$1" | sed -e 's/^[a-z]*:\|\"//g')"
 }
 
 function format_date {
   # $1 - date
-  printf '%s\n' "$(date -d "$1" +%m/%d/%Y)"
+  printf '%s' "$(date -d "$1" +%m/%d/%Y)"
 }
 
 function read_time {
   # $1 - number of words (assumption : 200 words per min)
-  printf '%s\n' "$(awk "BEGIN {printf \"%.2f\n\", "$1"/200}") Min"
+  printf '%s' "$(awk "BEGIN {printf \"%.2f\", "$1"/200}")"
 }
 
 function post_link_wrapper {
@@ -25,7 +25,7 @@ function post_link_wrapper {
   <div class='p'>
     <div class='time'>
       <div class='date'>$3</div>
-      <div class='date'>— $4</div>
+      <div class='date'>— $4 Min</div>
     </div>
     <h3 class='t'>
       <a href='/posts/$1'>$2</a>
@@ -197,7 +197,7 @@ function post {
                 fill='currentColor'
               />
             </svg>
-            $2
+            $2 Min
           </span>
           <span>
             <svg

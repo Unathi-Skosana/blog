@@ -116,13 +116,16 @@ div.content {
   justify-content: space-between;
 }
 
+.b .time svg {
+  margin-right: 5px;
+}
+
 .b .time span:first-child {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: .9rem;
   line-height: 24px;
-  width: 80px;
 }
 
 .b .time span:last-child {
@@ -131,7 +134,6 @@ div.content {
   align-items: center;
   font-size: .9rem;
   line-height: 24px;
-  width: 115px;
 }
 
 .s h1 {
