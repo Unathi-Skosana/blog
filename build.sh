@@ -324,6 +324,12 @@ for f in $posts; do
   printf '%s\n' "$(header "$post_title")" > "./build/posts/$id/index.html"
 
   printf '%s\n' "$(post "$post_title" "$r_time" "$post_date" "$f")" >> "./build/posts/$id/index.html"
+
+  printf '%s\n' "$(footer)" >> "./build/posts/$id/index.html"
+
+  printf '%s\n' "
+    </body>
+  </html>" >> "./build/posts/$id/index.html"
 done;
 
 
@@ -349,8 +355,8 @@ for f in $pages; do
 done;
 
 # close off home page
-printf '%s\n' "</div>" >> "./build/$id/index.html"
-printf '%s\n' "$(footer)" >> "./build/$id/index.html"
+printf '%s\n' "</div>" >> "./build/index.html"
+printf '%s\n' "$(footer)" >> "./build/index.html"
 
 printf '%s\n' "
     </div>

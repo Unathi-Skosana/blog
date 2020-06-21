@@ -195,10 +195,56 @@ $$</span><br /></p>
     </item>
     
     <item>
-      <description><p>dsakdjkj</p></description>
-      <link>http://untitld.xyz/posts/qft/</link>
+      <description><p>This post is the first iteration of an <span class="math inline"><em>N</em></span>-part series of blog posts aimed at attempting to understand some of the ideas behind Shor’s quantum algorithm for factoring composite numbers.</p>
+<p>I would recommend familiarity with some basic linear algebra and bra-ket notation. The following lecture notes on <a href="https://ocw.mit.edu/courses/physics/8-05-quantum-physics-ii-fall-2013/lecture-notes/MIT8_05F13_Chap_04.pdf">bra-ket</a> notation are sufficient.</p>
+<h3 id="contents">Contents</h3>
+<ol type="1">
+<li><a href="#classical">Not So Quantum Fourier Transform</a>
+<ol type="1">
+<li><a href="#classical_definitions">Definitions</a></li>
+<li><a href="#classical_examples">Examples</a></li>
+<li><a href="#classical_properties">Properties of interest</a></li>
+</ol></li>
+<li><a href="#quantum">Going Quantum</a>
+<ol type="1">
+<li><a href="#quantum_definitions">Definitions</a></li>
+<li><a href="#quantum_examples">Examples</a></li>
+<li><a href="#quantum_complexity">Complexity</a></li>
+</ol></li>
+<li><a href="#semi">Middle Ground</a>
+<ol type="1">
+<li><a href="#provosional">We shall see</a></li>
+</ol></li>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h3 id="classical">Not So Quantum Fourier Transform</h3>
+<p>dsakdjskldjklaj dsadlklk</p>
+<h4 id="classical_definitions">Definitions</h4>
+<p>djaskjdlkasjd</p>
+<h4 id="classical_examples">Examples</h4>
+<p>dsakldjlkasjd</p>
+<h4 id="classical_properties">Properties of interest</h4>
+<p>dsajkldjakls</p>
+<h4 id="classical_complexity">Complexity</h4>
+<p>dsjakdjklasj</p>
+<h3 id="quantum">Going Quantum</h3>
+<p>djsakdjkl</p>
+<h4 id="quantum_definitions">Definitions</h4>
+<p>dsalkdjk</p>
+<h4 id="quantum_examples">Examples</h4>
+<p>dskadjlkj</p>
+<h4 id="quantum_complexity">Complexity</h4>
+<p>dsjakldjlkasjkdj</p>
+<h3 id="semi">Middle Ground</h3>
+<p>dsjakldjlkasjdkj</p>
+<h3 id="notes">Notes</h3>
+<p>dsjkadjaklsdj</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>dsakdjkklasjdkl</p></description>
+      <link>http://untitld.xyz/posts/quantum_fourier_transform/</link>
       <pubDate>06/19/2020</pubDate>
-      <guid>http://untitld.xyz/posts/qft/</guid>
+      <guid>http://untitld.xyz/posts/quantum_fourier_transform/</guid>
     </item>
     
     </channel>

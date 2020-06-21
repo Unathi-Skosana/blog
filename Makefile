@@ -5,8 +5,8 @@ BUILD=./build/
 
 deploy:
 	vercel --prod
-build:
-	bash ./build.sh
 dev:
-	python -m http.server $(PORT) --directory $(BUILD) &
+	liveserver --port=$(PORT) $(BUILD) &
 	nodemon --watch $(FOLDER) --exec "bash" ./build.sh -e $(EXTS)
+clean:
+	rm -rf ./build/*/**
