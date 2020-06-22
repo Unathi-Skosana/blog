@@ -1,5 +1,6 @@
 PORT=8080
 EXTS=md
+STATIC=./static/*/**
 FOLDER=./content/
 BUILD=./build/
 
@@ -9,6 +10,6 @@ deploy:
 	vercel --prod
 dev:
 	live-server --port=$(PORT) $(BUILD) &
-	nodemon --watch $(FOLDER) --exec "bash ./build.sh --dev" -e $(EXTS)
+	nodemon --watch $(FOLDER) $(STATIC) --exec "bash ./build.sh --dev" -e $(EXTS)
 clean:
 	rm -rf ./build/*/**

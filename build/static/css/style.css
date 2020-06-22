@@ -214,7 +214,7 @@ img[src*='#center'] {
     image-orientation: from-image;
     margin: 4rem auto;
     max-width: 500px;
-    width: 100%;
+    width: 100% !important;
 }
 
 img[title*='me'] {
