@@ -1,6 +1,7 @@
 ---
 title: "Ground Zero"
 date: 2020-02-10 20:30
+draft: false
 ---
 
 Warm welcomes.

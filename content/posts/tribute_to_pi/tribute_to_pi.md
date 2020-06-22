@@ -1,6 +1,7 @@
 ---
 title: "Tribute to &pi;"
 date: 2020-03-14 16:33
+draft: false
 ---
 
 Happy 3.14 Day, which also happens to be the day Albert Einstein was born ! So
@@ -17,65 +18,7 @@ to them a .dat file for reuse. This is less time consuming than computing the
 digits every time when visualizing them (or if you write buggy programs like I do).
 Below is the python script that computes the $n$ first digits of $\pi$ and saves as them to .dat file:
 
-```python
-import numpy as np
-import csv
-
-from decimal import Decimal, getcontext
-from math import factorial
-
-
-def pi_digits(n):
-    """
-    Computes PI using the Chudnovsky algorithm from
-    http://stackoverflow.com/questions/28284996/python-pi-calculation
-    """
-
-    # Set precision
-
-    getcontext().prec = n
-
-    t = Decimal(0)
-    pi = Decimal(0)
-    d = Decimal(0)
-
-    # Chudnovsky algorithm
-
-    for k in range(n):
-        t = ((-1)**k)*(factorial(6*k))*(13591409+545140134*k)
-        d = factorial(3*k)*(factorial(k)**3)*(640320**(3*k))
-
-        pi += Decimal(t) / Decimal(d)
-
-    pi = pi * Decimal(12) / Decimal(640320**(Decimal(1.5)))
-    pi = 1 / pi
-
-    return str(pi)
-
-
-if __name__ == '__main__':
-    import argparse
-
-    # Parse arguments
-    parser = argparse.ArgumentParser(
-        description="Compute Pi digits that fit in an r x c grid.")
-    parser.add_argument("r", nargs=1, type=int, help="Rows of grid")
-    parser.add_argument("c", nargs=1, type=int, help="Columns of grid")
-    args = parser.parse_args()
-
-    rows = args.r[0]
-    cols = args.c[0]
-
-    # Put digits in 2D array
-    digits = pi_digits(rows * cols)
-    digits = digits.replace(".", "")
-    digits = [[digits[r*cols + c] for c in range(cols)] for r in range(rows)]
-
-    # digits to .dat file to reuse
-    with open('pi_{}_by_{}.dat'.format(rows, cols), 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerows(digits)
-```
+![](/static/images/pi_digits.png#center "pi digits")
 
 Since the digits will be displayed on a grid, the python script takes as input
 the dimensions of the grid, the number of rows and number of columns
@@ -91,74 +34,7 @@ The python script used to read the digits from a file and visualize them as
 explained above
 is as follows:
 
-```python
-import numpy as np
-import csv
-import matplotlib.pyplot as plt
-
-from matplotlib import rc
-
-# Aesthetics
-rc('font', **{'family': 'monospace',
-              'serif': ['DejaVu Sans Mono'], 'size': '20'})
-rc('text', usetex=True)
-plt.style.use('dark_background')
-
-
-def read_digits(dat):
-    digits = []
-    with open(dat) as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        for row in csv_reader:
-            digits.append(row)
-    return np.array(digits, dtype="int")
-
-
-# By Jake VanderPlas
-# License: BSD-style
-# https://gist.github.com/jakevdp/91077b0cae40f8f8244a
-def discrete_cmap(N, base_cmap=None):
-    """Create an N-bin discrete colormap from the specified input map"""
-
-    # Note that if base_cmap is a string or None, you can simply do
-    #    return plt.cm.get_cmap(base_cmap, N)
-    # The following works for string, None, or a colormap instance:
-
-    base = plt.cm.get_cmap(base_cmap)
-    color_list = base(np.linspace(0, 1, N))
-    cmap_name = base.name + str(N)
-    return base.from_list(cmap_name, color_list, N)
-
-
-if __name__ == '__main__':
-    import argparse
-
-    # Parse arguments
-    parser = argparse.ArgumentParser(
-        description="Read digits from data file.")
-    parser.add_argument("dat", nargs=1, type=str, help="name of file")
-    args = parser.parse_args()
-
-    dat = args.dat[0]
-    digits = read_digits(dat)
-    r, c = np.shape(digits)
-    x, y = np.meshgrid(np.arange(r), np.arange(c))
-
-    fig, axes = plt.subplots(figsize=(r, c))
-
-    scat = axes.scatter(x, y, c=digits[x, y], s=50,
-                        cmap=discrete_cmap(10, 'rainbow'))
-    axes.axis('off')
-
-    # produce a legend with the unique colors from the scatter
-    legend1 = axes.legend(*scat.legend_elements(),
-                          loc="lower center", ncol=10, frameon=True,
-                          bbox_to_anchor=(0.5, -0.1))
-    axes.add_artist(legend1)
-    plt.tight_layout()
-    fig.savefig('pi_{}_by_{}.svg'.format(r, c), format='svg', dpi=1200,
-                pad_inches=0)
-```
+![](/static/images/meshgrid.png#center "meshgrid")
 
 The visualizations below were for $23\times23$ and $31\times31$
 grids (yes, I like primes) respectively.

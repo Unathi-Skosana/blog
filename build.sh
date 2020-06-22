@@ -2,7 +2,7 @@
 
 function title {
   # $1 - file
-  printf '%s' "$(rg "title" -m 1 "$1" | sed -e 's/^[a-z]*:\|\"//g')"
+  printf '%s' "$(rg "title" -m 1 "$1" | sed -e 's/^[a-z]*:\|\"//g' | xargs)"
 }
 
 function format_date {
@@ -247,9 +247,18 @@ function rss {
   posts=$(find "./content/posts" -mindepth 1 -maxdepth 3 -type f -iname "*.md")
   items=""
   for f in $posts; do
+
+    if [ "$1" = "--prod" ]; then
+      draft=$(rg "draft" -m 1 "$f" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
+      if [ "$draft" = "true" ]; then
+        printf '%s\n' "\$ Skipping draft post $f..."
+        continue
+      fi
+    fi
+
     id="$(basename "${f##*/}" ".md")"
-    post_title="$(rg "title" -m 1 "$f" | sed -e "s/^[a-z]*:\|\'//g")"
-    dt="$(rg "date" -m 1 "$f" | sed -e "s/^[a-z]*:\|\'//g")"
+    post_title="$(rg "title" -m 1 "$f" | sed -e "s/^[a-z]*:\|\'//g" | xargs)"
+    dt="$(rg "date" -m 1 "$f" | sed -e "s/^[a-z]*:\|\'//g" | xargs)"
     post_date="$(format_date "$dt")"
     post_link="http://untitld.xyz/posts/$id/"
     html="$(pandoc -t html "$f")"
@@ -306,12 +315,20 @@ cp -r "./static" "./build"
 posts=$(find "./content/posts" -mindepth 1 -maxdepth 3 -type f -iname "*.md")
 for f in $posts; do
 
+  if [ "$1" = "--prod" ]; then
+    draft=$(rg "draft" -m 1 "$f" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
+    if [ "$draft" = "true" ]; then
+      printf '%s\n' "\$ Skipping draft post $f..."
+      continue
+    fi
+  fi
+
   id=$(basename "${f##*/}" .md)
   stats=$(wc "$f")
   words=$(printf '%s\n' "$stats" | awk '{print $2}')
   r_time=$(read_time "$words")
   post_title=$(title "$f")
-  dt=$(rg "date" -m 1 "$f" | sed -e 's/^[a-z]*:\|\"//g')
+  dt=$(rg "date" -m 1 "$f" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
   post_date=$(format_date "$dt")
   post_link=$(post_link_wrapper "$id" "$post_title" "$post_date" "$r_time")
 
