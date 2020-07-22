@@ -58,7 +58,7 @@ header ul li:last-child:hover {
   filter: invert(.93);
 }
 
-.c p img, .c figure img {
+.c img, .c figure img {
   filter: invert(.93);
 }
 

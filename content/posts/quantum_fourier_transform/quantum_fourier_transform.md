@@ -6,10 +6,8 @@ draft: true
 
 This post is the first iteration of an $N$-part series of blog posts aimed at
 attempting to understand some of the ideas behind Shor's factoring algorithm.
-One such idea is that of the quantum Fourier transform, which will be
-the subject of inquiry here.
-
-I would strongly recommend familiarity with some basic linear algebra and bra-ket notation.
+One such idea is that of the quantum Fourier transform (QFT), which will be
+the subject of inquiry here. I would strongly recommend familiarity with linear algebra and bra-ket notation.
 The following lecture notes on [bra-ket](https://ocw.mit.edu/courses/physics/8-05-quantum-physics-ii-fall-2013/lecture-notes/MIT8_05F13_Chap_04.pdf)
 notation should be sufficient.
 
@@ -28,7 +26,7 @@ notation should be sufficient.
 
 ## Not So Quantum, Fourier Transform {#classical}
 
-The quantum Fourier transform is intimately related (same transform but different sets of notation) to
+The quantum Fourier transform is intimately related (same transform but different notations) to
 the ubiquitous **discrete Fourier transform (DFT)**. The DFT converts a sequence of
 values, usually from some time-dependent function $f(t)$ sampled at equidistant time intervals,
 into another sequence of values, sampled from a frequency-dependent function
@@ -38,13 +36,13 @@ $F(\nu)$ is the Fourier transform.
 
 ### Definitions {#classical_definitions}
 The discrete Fourier transform is a transformation $\mathcal{F} : \{x_k\}_{k=0}^{N-1} \to \{y_k\}_{k=0}^{N-1}$,
-that takes as input a tuple of $N$ complex-valued numbers
+that maps a tuple of $N$ complex-valued numbers
 
 $$
 \underline{\mathbf{x}} = (x_0, x_1, x_2, \ldots, x_{N-1})
 $$
 
-and outputs another tuple
+to another tuple
 
 $$
 \underline{\mathbf{y}} = (y_0, y_1, y_2, \ldots, y_{N-1})
@@ -56,7 +54,7 @@ $$
 y_n \equiv  \displaystyle\sum_{k=0}^{N-1} x_k e^{-2\pi ikn/N}
 $$
 
-For the seek of notational convenience we may denote $\omega_N = e^{-2\pi i/N}$
+For the seek of notational convenience, we may denote $\omega_N = e^{-2\pi i/N}$
 and rewrite the sum as
 
 $$
@@ -147,7 +145,7 @@ $$
 
 ### Properties of interest {#classical_properties}
 
-The discrete Fourier transform has many interesting properties, however I only
+The discrete Fourier transform has many interesting properties, however we'll only
 focus on ones relevant to our inquiry here.
 
 _Linearity_
@@ -162,8 +160,7 @@ $$
 \end{aligned}
 $$
 
-
-_Periodicity_
+_Periodic_
 
 : The discrete Fourier transform is periodic with period $N$
 
@@ -195,8 +192,8 @@ $$
 
 >The coefficient $P(n)$ is associated with power of the frequency $\nu_{n} =
 \frac{2\pi n}{12}$, note the term associated with the frequency $\nu_{0}$ (average of
-all samples) is omitted here. Here since the frequency $\frac{1}{3}$ is
-prevalent, we should expect to see pronounced peaks in $\mathcal{P}$ where
+all samples) is omitted here. Since the frequency $\frac{1}{3}$ is
+prevalent here, we should expect to see pronounced peaks in $\mathcal{P}$ where
 
 $$
 \frac{n-1}{12} = \frac{m}{3}
@@ -208,7 +205,7 @@ $$
 
 
 >This is indeed the case, the plot above shows the expected peaks at
-$n = 5$ and $n=9$ since
+$n=5$ and $n=9$
 
 $$
 \frac{4}{12} = \frac{1}{3}, \frac{8}{12} = \frac{2}{3}
@@ -218,8 +215,8 @@ $\mathcal{P}$ is called a **periodogram**.
 
 _Invertible_
 
-: Times both of sides the original definition by $\displaystyle\sum_{n=0}^{N-1} e^{2\pi i j n / N}$ for some integer
-$j$
+: Multiplying both sides of the original definition by $\displaystyle\sum_{n=0}^{N-1} e^{2\pi i j n / N}$ for some integer
+$j$ yields
 
 $$
 \begin{aligned}
@@ -229,8 +226,8 @@ $$
 \end{aligned}
 $$
 
-> Isolating the inner sum and splitting into two cases, $k = j$ and $k \neq
-j$. The first case is trivial since1
+> Isolating the inner sum, we can consider the two possible scenario, $k = j$ and $k \neq
+j$. The first case is trivial
 
 $$
 \begin{aligned}
@@ -291,9 +288,8 @@ i.e $\frac{1}{\sqrt{N}} U^{*} = \frac{1}{\sqrt{N}}U^{-1}$.
 ### Computational complexity {#classical_complexity}
 
 For a specific transformed coefficient $y_n$, computing the sum requires
-roughly $2$ multiplications for each term in the sum (each for real and imaginary part)
-and adding $2N$ (each for the real and imaginary part) terms requires $2N-1$ additions.
-Thus computing each $y_n$ term requires at least
+at least $2$ multiplications for each term in the sum (one for real part and one for the imaginary part)
+and adding $2N$ terms requires $2N-1$ additions. Thus computing each $y_n$ term requires at least
 
 $$
 \begin{aligned}
@@ -301,7 +297,7 @@ $$
 \end{aligned}
 $$
 
-for which there are $N$ terms, thus
+computing $N$ such terms would require
 
 $$
 \begin{aligned}
@@ -311,17 +307,15 @@ $$
 $$
 
 >> The **fast Fourier transform** can reduce this scaling to
-  $\mathcal{O}(N\log N)$, which is still scales exponentially with
+  $\mathcal{O}(N\log N)$, which still scales exponentially with
   the number of classical bit operations $N=2^n$ (assuming $N$ is even), $\mathcal{O}(n2^n)$
 
 ## Going Quantum {#quantum}
 
-Even with the best classical algorithm for computing the Fourier
-transform, the scaling with respect to the number of bit operations
-is plateaued. In what follows, we'll see how a quantum computer can compute the
-discrete Fourier transform with polynomial scaling $\mathcal{O}(n^2)$ in
-the number of resources (quantum gates) on a quantum state described by $n$
-quantum bits (qubits).
+Improvement in complexity is plateaued, even with the best classical algorithm for computing the Fourier transform.
+In what follows, we'll see how a quantum computer can compute the discrete Fourier transform with polynomial
+scaling $\mathcal{O}(n^2)$ in the number of resources (quantum gates) on a quantum state described by $n$ quantum
+bits (qubits).
 
 ### Definitions {#quantum_definitions}
 
@@ -339,7 +333,7 @@ Thus
 
 $$
 |\psi\rangle = \displaystyle\sum_{x \in \{0,1\}^n} \alpha_x |x\rangle \\
-\forall x : \alpha_x \in \mathbb{C} \text{  and  } \displaystyle\sum_{x \in \{0,1\}^n} |\alpha_x|^2 = 1
+\alpha_x \in \mathbb{C} \text{  and  } \displaystyle\sum_{x \in \{0,1\}^n} |\alpha_x|^2 = 1
 $$
 
 where $|x\rangle  = |x_{1}x_{2}\cdots x_{n-1} x_{n}\rangle =
@@ -376,11 +370,10 @@ $$
 
 Here $N = 2^n$ where $n$ is number of qubits.
 
-
 #### Tensor product states
 
-The quantum Fourier transform lends itself to a tensor product representation
-that allow one to somewhat visual it geometrically. Recall
+The QFT lends itself to a tensor product representation
+that allows one to somewhat visual it geometrically. Recall that
 
 $$
 \begin{aligned}
@@ -401,6 +394,7 @@ y_l 2^{n-l}
 $$
 
 Thus 
+
 $$
 \begin{aligned}
 y / 2^n = \displaystyle\sum_{l = 1}^{n} y_{l}2^{n-l}/2^n =
@@ -409,7 +403,7 @@ y / 2^n = \displaystyle\sum_{l = 1}^{n} y_{l}2^{n-l}/2^n =
 \end{aligned}
 $$
 
-We can rewrite the expression for the 
+Rewriting the expression
 
 $$
 \begin{aligned}
@@ -423,7 +417,7 @@ e^{2\pi i x (\sum_{l=1}^n y_l 2^{-l}) } |y_{1}y_{2}\cdots y_{n-1}y_{n}\rangle
 \end{aligned}
 $$
 
-The last step due to expressing $y$ in binary, for any $j$, $y_j = 0 \text{ or } 1$
+The last step is due to expressing $y$ in binary form. For any $j$, $y_j = 0 \text{ or } 1$
 
 $$
 \begin{aligned}
@@ -440,7 +434,7 @@ e^{2 \pi i x /2^2}|1\rangle)\cdots(|0\rangle + e^{2\pi i x /2^n}|1\rangle)
 $$
 
 The representation above reveals that each of the individual qubits after
-the quantum Fourier transform, acquire a phase that scales up with progressive
+applying $\hat{U}_\text{QFT}$, acquire a phase that scales down with progressive
 powers of two from the leftmost to the rightmost qubit.
 
 #### Sun dial basis states
@@ -467,8 +461,7 @@ called a **Bloch vector**.
 
 ![**Single qubit state depicted on a Bloch sphere**](/static/images/blochsphere.svg#center "Bloch sphere")
 
-
-For purposes understanding the quantum Fourier transform we will confine ourselves to states that
+We shall confine ourselves to states that
 lie on the line of latitude on the Bloch sphere, $\theta = \frac{\pi}{2}$.
 
 $$
@@ -482,8 +475,8 @@ The state above is depicted below
 
 ![**Single qubit state on the line of latitude of a Bloch sphere**](/static/images/sundial.svg#center "Sun dials")
 
-Now let's consider the action of the QFT on the basis states of a three-qubit system;
-being lazy I will omit the normalization of $\frac{1}{\sqrt{2^3}}$.
+Now let's consider the action of $\hat{U}_\text{QFT}$ on the basis states of a three-qubit system;
+being lazy I will omit the normalization factor.
 
 $$
 \begin{aligned}
@@ -505,32 +498,30 @@ $$
 
 Visually
 
-![](/static/images/3q-qft-0.svg)
-![](/static/images/3q-qft-1.svg)
+![](/static/images/3q-qft-0.svg#center){height=80px}
+![](/static/images/3q-qft-1.svg#center){height=80px}
 $$
 \vdots
 $$
-![](/static/images/3q-qft-6.svg)
-![](/static/images/3q-qft-7.svg)
+![](/static/images/3q-qft-6.svg#center){height=80px}
+![](/static/images/3q-qft-7.svg#center){height=80px}
 
-We observe that the action of $\hat{U}_\text{QFT}$ encodes for example
-basis state $|6\rangle$ by rotating the leftmost qubit along the line of
+We see here that the action of $\hat{U}_\text{QFT}$ is to encode the basis states, e.g $|6\rangle$,
+by rotating the leftmost qubit along the line of
 latitude through $\frac{6}{2^3}$ revolutions, the middle qubit
-double the leftmost qubit, $\frac{6}{2^2}$ revolutions and the pattern
-continues. Turns out the states above also form an orthonormal basis states,
-the sundial basis (or more appropriate Fourier basis) states, since the
-quantum Fourier transform is a norm preserving operation.
+double that of the leftmost qubit, $\frac{6}{2^2}$ revolutions and the pattern
+continues. Turns out the states above also form an orthonormal basis,
+the sundial basis (or more appropriate Fourier basis) states, since
+$\hat{U}_\text{QFT}$ is a norm preserving operation.
 
 ### Circuits & Examples {#quantum_examples}
 
-We'll briefly look at a few _quantum logic gates_ (linear & unitary maps) relevant to the quantum
-Fourier transform, and the _quantum circuits_, which consists of input (quantum
-bits) and output classical bits.
+We'll briefly look at a few _quantum logic gates_ (linear & unitary maps) relevant to
+the QFT and _quantum circuits_ that realize $\hat{U}_\text{QFT}$.
 
 #### Prequel : Notational convenience
 
-Before proceeding, it is important we adopt fractional binary notation for expressing the angle $\varphi$.
-For some integer $l$
+Before proceeding, it is important we adopt fractional binary notation for expressing the angle $\varphi$. For some integer $l$
 
 $$
 \frac{x}{2^l} = d + r
@@ -549,9 +540,8 @@ $$
 
 Thus we only need to concern ourselves with the fractional part of $\frac{x}{2^l}$
 when evaluating $e^{2 \pi i x / 2^l}$, for which we'll denote as
-$\text{frac}(x/2^l)$
+$\text{frac}(x/2^l)$. Recall that we can write $x/2^l$ in binary as
 
-Thus 
 $$
 \begin{aligned}
 x / 2^l = \displaystyle\sum_{i = 1}^{n} x_{i}2^{n-i}/2^l =
@@ -576,8 +566,8 @@ $$
 
 ### Gates & Circuits
 
-A quantum logic gate is represented by a norm preserving linear map $U : V \to V$, the
-action of quantum logic gate $U$ on an input state $|\psi\rangle$ is diagrammatically
+A quantum logic gate is represented by a norm preserving linear map $U$. The
+action of a quantum logic gate $U$ on an input state $|\psi\rangle$ is diagrammatically
 represented as:
 
 ![](/static/images/U.png#center){height=120px}
@@ -645,9 +635,9 @@ Special case when $U = R_{\varphi}$ implements a controlled phase shift gate.
 
 #### Circuits for $U_\text{QFT}$
 
-Define unitary map $R_k \equiv R_{2 \pi / 2^k}$ as a special case the phase shift. We'll also denote a single-qubit 
-gate acting on the qubit $i$ as $U^{(i)}$ and a control gate controlled by qubit
-$j$ and targeted to qubit $k$ as $C(U)^{(jk)}$ when there's a possibility of
+Define unitary map $R_k \equiv R_{2 \pi / 2^k}$ as a special case for the phase shift gate.
+We'll also denote a single-qubit  gate acting on the qubit $i$ as $U^{(i)}$ and a two-qubit gate controlled by qubit
+$j$ and targeted to qubit $k$ as $C(U)^{(jk)}$ whenever there's a possibility of
 ambiguity.
 
 $n = 1$
@@ -658,16 +648,20 @@ $n = 1$
 ![](/static/images/qft1_c.png#center){height=80px}
 
 $n= 2$
-: The case is similar to the first, amended only slightly.
+: The case is similar to the first, amended only slightly. Consider the operations
+on a single qubit below
 
 $$
 \begin{aligned}
-R_{2} H |x_1\rangle &= R_2 \left[\frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1 0}|1\rangle)\right] \\
+R_{2} H |x_1\rangle &= R_2 \left[\frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1 0 }|1\rangle)\right] \\
 &= \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1 1}|1\rangle)
 \end{aligned}
 $$
 
-By controlling $R_2$ with qubit $x_2$ and application of the Hadamard gate on the second, we can realize the $U_\text{QFT}$ for
+The action of $R_2$ on $H|x_1\rangle$ is modifies the phase $2\pi 0.x_1 0$ to
+$2\pi0.x_1 1$. Thus by controlling $R_2$ with qubit $|x_2\rangle$ we can encode $2\pi0.x_1x_2$ in the
+phase, since whenever $x_2 = 0$, $R_2$ isn't applied on $|x_1\rangle$ leaving the phase $2\pi 0.x_1 0$ unmodified and
+whenever $x_2 = 1$ we encode $2\pi 0.x_1 1$. Finally by apply a Hadamard gate on the second qubit, we can realize the $U_\text{QFT}$ for
 two qubits.^[Note that this is in reverse order, can be easily remedied by
 swap gates between the relevant qubits. The swap can also happen on the
 classical outcomes i.e $110 \to 011$]
@@ -675,7 +669,7 @@ classical outcomes i.e $110 \to 011$]
 
 $$
 \begin{aligned}
-H^{(2)}C(R_{2})^{(21)}H^{(1)}|x_1x_2\rangle &= \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1 x_2 }|1\rangle)(|0\rangle + e^{2\pi 0.x_2 }|1\rangle)
+H^{(2)}C(R_{2})^{(21)}H^{(1)}|x_1x_2\rangle &= \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1 x_2 }|1\rangle)\otimes(|0\rangle + e^{2\pi 0.x_2 }|1\rangle)
 \end{aligned}
 $$
 
@@ -688,17 +682,19 @@ below realizes $U_\text{QFT}$ for three qubits.
 ![](/static/images/qft3_c.png#center)
 
 General
-: The general case should almost be self-evident
+: The pattern carries on to the general case, each
+qubit will have a Hadamard gate followed by a sequence of controlled phase shift gates,
+controlled by each of the qubits below the line -- i.e
+The line immediately below controls $R_2$, the next one $R_3$ and so on.
 
 ![](/static/images/qftn_c.png#center)
-
-
 
 ### Complexity {#quantum_complexity}
 
 On the $i^{th}$ qubit, there's a Hadamard followed by $n - i$ controlled phase
-shift gates, controlled by the qubits that proceed it. Thus in total
- 
+shift gates, controlled by the qubits that proceed it and there are $n$ qubits
+in total.
+
 $$
 \begin{aligned}
 \displaystyle\sum_{i=1}^{n} n + 1 - i &= \displaystyle\sum_{j=0}^{n-1} n - j \\
@@ -707,31 +703,39 @@ $$
 \end{aligned}
 $$
 
-gates are required. Which scales polynomially as $\mathcal{O}(n^2)$ in the number of gates,
-a great improvement over the exponential scaling $\mathcal{O}(n 2^n)$ of the
-classical analog.
-
+The total number of gates thus scales polynomially $\mathcal{O}(n^2)$, a great improvement over the
+exponential scaling $\mathcal{O}(n 2^n)$ of the classical analog.
 
 ### Conclusion
-The reduction in complexity of some problems, here the Fourier transform, is one of the reasons
-why quantum computers holds such promise
-(well, kinda of).^[Albeit the reduced complexity,
-the quantum Fourier transform is is not very useful (not useful at all) as a direct substitute for the classical analog,
-as quantum mechanics forbids access to the amplitude coefficients] In the next
-iteration, we shall concern ourselves with order-finding, which intimately
-related, to factoring
+
+The reduction in complexity of some problems, here the DFT, is one of the reasons
+why quantum computers hold promise (well, kinda of).^[Albeit the reduced complexity,
+the QFT is not very useful (not useful at all) as a direct substitute for the classical analog,
+as quantum mechanics forbids access to the amplitude coefficients] In the
+iterations that follow, we will concern ourselves with quantum phase estimation and order-finding.
 
 ### Notes
 
 - There is a fun interactive tools for visualizing the [Bloch sphere](https://javafxpert.github.io/grok-bloch/) by [James Weaver](https://github.com/JavaFXpert). Check it out.
-- The inputs to $\hat{U}_\text{QFT}$ are just basis states (no superposition of states), one can classical
+- If the inputs to $\hat{U}_\text{QFT}$ are just basis states (no superposition of states), one can classically
     precompute all the relevant combinations of the phase shift angles and
     avoid controlling the phase shift gates.
-- The innanet dweller who seeks a more well-thought out delve into the
+- The innanet dweller who seeks a more well thought out delve into the
     subject, I cannot recommend [Mike & Ike](https://www.amazon.com/Quantum-Computation-Information-10th-Anniversary/dp/1107002176)
     enough.
 
 
 ### Bibliography
+
 Roberts, S. _Lecture 7-The Discrete Fourier Transform_. pp. 82-96. [https://www.robots.ox.ac.uk/~sjrob/Teaching/SP/l7.pdf](https://www.robots.ox.ac.uk/~sjrob/Teaching/SP/l7.pdf).
 
+Weisstein, E, "Discrete Fourier Transform." From MathWorld--A Wolfram Web
+Resource. [https://mathworld.wolfram.com/DiscreteFourierTransform.html](https://mathworld.wolfram.com/DiscreteFourierTransform.html)
+
+Wikipedia 2020, _Periodogram_, Wikipedia, viewed 22 Jul. 2020, [<https://en.wikipedia.org/wiki/Periodogram>](https://en.wikipedia.org/wiki/Periodogram)
+
+Nielsen, M & Chuang, I 2000, _Quantum Computation and Quantum Information_, Cambridge University Press, Cambridge.
+
+Weinstein, Y, Pravia, M, Fortunato, E, Lloyd, S, Cory,
+D 2001, "Implementation of the Quantum Fourier Transform", _Phys. Rev.
+Lett._, vol. 86, n. 9, pp. 1889-1891
