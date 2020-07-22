@@ -25,7 +25,14 @@
       });
     }}});
     </script>
-
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        var path = location.pathname.split('/')[1]
+        var el = document.querySelector('header ul li a[href=\'/' + path +
+        '/\']');
+        el.classList.add('active');
+      });
+    </script>
     <meta charset='UTF-8'>
     <meta name='viewport' content='initial-scale=1'>
     <meta content='#ffffff' name='theme-color'>
@@ -55,7 +62,7 @@
   <body>
     <header class='nav-header'>
       <h1 class='logo'>
-        <a href='/'  aria-label='mu' target='_blank' rel='noopener noreferrer'>
+        <a href='/'  aria-label='mu'>
           <img src='/static/favicon/micro-128.png' width='32' height='32' alt='mu' />
         </a>
       </h1>
@@ -82,18 +89,20 @@
 <p>Titles or authors highlighted to indicate my strong recommendation or favouritism.</p>
 <h3 id="reading">READING:</h3>
 <ul>
-<li><em>The Black Swam: The Impact of the Highly Improbable</em> by <strong>Nassim Nicholas Taleb</strong></li>
+<li><em>How to Think about God: An ncient Guide for Belivers and Nonbelievers</em> by Marcus Tullius Cicero</li>
+<li><em>How to Be Free: An ancient Guide to the Stoic Life</em> by Epictetus</li>
+<li><em>How to Win an Argument: An ancient Guide to the Art of Persuasion</em> by Marcus Tullius Cicero</li>
+<li><em>The Black Swan: The Impact of the Highly Improbable</em> by <strong>Nassim Nicholas Taleb</strong></li>
 </ul>
 <h3 id="to-read">TO READ:</h3>
 <ul>
 <li><em>Antifragile</em> by <strong>Nassim Nicholas Taleb</strong></li>
 <li><em>Fooled by Randomness</em> by <strong>Nassim Nicholas Taleb</strong></li>
 <li><em>Skin in the Game</em> by <strong>Nassim Nicholas Taleb</strong></li>
-<li><em>Bed of procrustes</em> by <strong>Nassim Nicholas Taleb</strong></li>
+<li><em>Bed of Procrustes</em> by <strong>Nassim Nicholas Taleb</strong></li>
+<li><em>The Book of Why: The New Science of Cause and Effect</em> by Judea Pearl &amp; Dana Mackenzie</li>
 <li><em>Know This: Today’s Most Interesting and Important Scientific Ideas, Discoveries, and Developments</em> by John Brockman</li>
 <li><em>Brief Answers to the Big Questions</em> by Stephen Hawking</li>
-<li><em>The Book of Why: The New Science of Cause and Effect</em> by Judea Pearl &amp; Dana Mackenzie</li>
-<li><em>The Butterfly Effect: How Kendrick Lamar Ignited the Soul of Black America</em> by Marcus J. Moore</li>
 </ul>
 <h3 id="books-read-from-19">BOOKS READ (from 19’):</h3>
 <ul>
@@ -122,11 +131,11 @@
     <div class='separator'></div>
     <a href='https://github.com/Unathi-Skosana'>Github</a>
     ·
-    <a href='https://twitter.com/UnathiSkosana'>Twitter</a>
+    <a href='https://twitter.com/_DeLicht'>Twitter</a>
     ·
     <a href='mailto:ukskosana@gmail.com'>Mail</a>
     ·
-    <a href='mailto:ukskosana@gmail.com'>RSS</a>
+    <a href='https://untitld.xyz/index.xml'>RSS</a>
   </footer>
   
 

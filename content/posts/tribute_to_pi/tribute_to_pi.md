@@ -18,7 +18,9 @@ to them a .dat file for reuse. This is less time consuming than computing the
 digits every time when visualizing them (or if you write buggy programs like I do).
 Below is the python script that computes the $n$ first digits of $\pi$ and saves as them to .dat file:
 
+
 ![](/static/images/pi_digits.png#center "pi digits")
+
 
 Since the digits will be displayed on a grid, the python script takes as input
 the dimensions of the grid, the number of rows and number of columns
@@ -34,7 +36,9 @@ The python script used to read the digits from a file and visualize them as
 explained above
 is as follows:
 
-![](/static/images/meshgrid.png#center "meshgrid")
+
+![](/static/images/meshgrid.png#center "grid")
+
 
 The visualizations below were for $23\times23$ and $31\times31$
 grids (yes, I like primes) respectively.

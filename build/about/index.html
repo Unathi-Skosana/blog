@@ -25,7 +25,14 @@
       });
     }}});
     </script>
-
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        var path = location.pathname.split('/')[1]
+        var el = document.querySelector('header ul li a[href=\'/' + path +
+        '/\']');
+        el.classList.add('active');
+      });
+    </script>
     <meta charset='UTF-8'>
     <meta name='viewport' content='initial-scale=1'>
     <meta content='#ffffff' name='theme-color'>
@@ -55,7 +62,7 @@
   <body>
     <header class='nav-header'>
       <h1 class='logo'>
-        <a href='/'  aria-label='mu' target='_blank' rel='noopener noreferrer'>
+        <a href='/'  aria-label='mu'>
           <img src='/static/favicon/micro-128.png' width='32' height='32' alt='mu' />
         </a>
       </h1>
@@ -96,11 +103,11 @@
     <div class='separator'></div>
     <a href='https://github.com/Unathi-Skosana'>Github</a>
     ·
-    <a href='https://twitter.com/UnathiSkosana'>Twitter</a>
+    <a href='https://twitter.com/_DeLicht'>Twitter</a>
     ·
     <a href='mailto:ukskosana@gmail.com'>Mail</a>
     ·
-    <a href='mailto:ukskosana@gmail.com'>RSS</a>
+    <a href='https://untitld.xyz/index.xml'>RSS</a>
   </footer>
   
 

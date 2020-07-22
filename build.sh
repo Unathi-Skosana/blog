@@ -2,6 +2,7 @@
 
 function title {
   # $1 - file
+  # Extracts title from file metadata
   printf '%s' "$(rg "title" -m 1 "$1" | sed -e 's/^[a-z]*:\|\"//g' | xargs)"
 }
 
@@ -12,8 +13,11 @@ function format_date {
 
 function read_time {
   # $1 - number of words (assumption : 200 words per min)
-  printf '%s' "$(awk "BEGIN {printf \"%.2f\", "$1"/200}")"
+
+  # Rounded to nearest half
+  printf '%s' "$(awk "BEGIN {printf \"%.1f\", int("$1"/100)/2}")"
 }
+
 
 function post_link_wrapper {
   # $1 - id
@@ -64,7 +68,14 @@ function header {
       });
     }}});
     </script>
-
+    <script type=\"text/javascript\">
+      document.addEventListener('DOMContentLoaded', function() {
+        var path = location.pathname.split('/')[1]
+        var el = document.querySelector('header ul li a[href=\'/' + path +
+        '/\']');
+        el.classList.add('active');
+      });
+    </script>
     <meta charset='UTF-8'>
     <meta name='viewport' content='initial-scale=1'>
     <meta content='#ffffff' name='theme-color'>
@@ -94,7 +105,7 @@ function header {
   <body>
     <header class='nav-header'>
       <h1 class='logo'>
-        <a href='/'  aria-label='mu' target='_blank' rel='noopener noreferrer'>
+        <a href='/'  aria-label='mu'>
           <img src='/static/favicon/micro-128.png' width='32' height='32' alt='mu' />
         </a>
       </h1>
@@ -179,48 +190,12 @@ function post {
   <div class='content'>
     <div class='s p'>
       <h1>$1</h1>
-      <div class='b'>
-        <div class='time'>
-          <span>
-            <svg
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path d='M9 7H11V12H16V14H9V7Z' fill='currentColor' />
-              <path
-                fill-rule='evenodd'
-                clip-rule='evenodd'
-                d='M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z'
-                fill='currentColor'
-              />
-            </svg>
-            $2 Min
-          </span>
-          <span>
-            <svg
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M8 9C7.44772 9 7 9.44771 7 10C7 10.5523 7.44772 11 8 11H16C16.5523 11 17 10.5523 17 10C17 9.44771 16.5523 9 16 9H8Z'
-                fill='currentColor'
-              />
-              <path
-                fill-rule='evenodd'
-                clip-rule='evenodd'
-                d='M6 3C4.34315 3 3 4.34315 3 6V18C3 19.6569 4.34315 21 6 21H18C19.6569 21 21 19.6569 21 18V6C21 4.34315 19.6569 3 18 3H6ZM5 18V7H19V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18Z'
-                fill='currentColor'
-              />
-            </svg>
-            $3
-        </span>
-        </div>
+      <div class='m'>
+        <em>$3</em>
+        <span>|</span>
+        <em>$2 minute read</em>
+      </div>
+      <div class='c'>
         $(pandoc --katex --quiet -t html --highlight-style monochrome $4)
       </div>
     </div>
@@ -234,11 +209,11 @@ function footer {
     <div class='separator'></div>
     <a href='https://github.com/Unathi-Skosana'>Github</a>
     ·
-    <a href='https://twitter.com/UnathiSkosana'>Twitter</a>
+    <a href='https://twitter.com/_DeLicht'>Twitter</a>
     ·
     <a href='mailto:ukskosana@gmail.com'>Mail</a>
     ·
-    <a href='mailto:ukskosana@gmail.com'>RSS</a>
+    <a href='https://untitld.xyz/index.xml'>RSS</a>
   </footer>
   "
 }
@@ -304,10 +279,10 @@ printf '%s\n' "
 
 printf '%s\n' "\$ Purging previously built posts..."
 
-rm -rf "./build/static"
-rm -rf "./build/posts/"
-mkdir -p "./build/posts"
-mkdir -p "./build/static"
+#rm -rf "./build/static"
+#rm -rf "./build/posts/"
+#mkdir -p "./build/posts"
+#mkdir -p "./build/static"
 
 cp -r "./static" "./build"
 

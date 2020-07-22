@@ -10,17 +10,21 @@ favouritism.
 
 ### READING:
 
-- _The Black Swam: The Impact of the Highly Improbable_ by **Nassim Nicholas Taleb**
+- _How to Think about God: An ncient Guide for Belivers and Nonbelievers_ by
+    Marcus Tullius Cicero
+- _How to Be Free: An ancient Guide to the Stoic Life_ by Epictetus
+- _How to Win an Argument: An ancient Guide to the Art of Persuasion_ by Marcus
+    Tullius Cicero
+- _The Black Swan: The Impact of the Highly Improbable_ by **Nassim Nicholas Taleb**
 
 ### TO READ:
 - _Antifragile_ by **Nassim Nicholas Taleb**
 - _Fooled by Randomness_ by **Nassim Nicholas Taleb**
 - _Skin in the Game_ by **Nassim Nicholas Taleb**
-- _Bed of procrustes_ by **Nassim Nicholas Taleb**
+- _Bed of Procrustes_ by **Nassim Nicholas Taleb**
+- _The Book of Why: The New Science of Cause and Effect_ by Judea Pearl & Dana Mackenzie
 - _Know This: Today's Most Interesting and Important Scientific Ideas, Discoveries, and Developments_ by John Brockman
 - _Brief Answers to the Big Questions_ by Stephen Hawking
-- _The Book of Why: The New Science of Cause and Effect_ by Judea Pearl & Dana Mackenzie
-- _The Butterfly Effect: How Kendrick Lamar Ignited the Soul of Black America_ by Marcus J. Moore
 
 ### BOOKS READ (from 19'):
 

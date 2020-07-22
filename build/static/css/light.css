@@ -8,8 +8,8 @@
   --blue:#82aaff;
   --dark-blue:#82aaff;
 
-  --magenta:#ae81ff;
-  --dark-magenta:#c792ea;
+  --magenta:#c792ea;
+  --dark-magenta:#ae81ff;
 
   --cyan:#7fdbca;
   --dark-cyan:#7fdbca;
@@ -45,14 +45,22 @@ header ul li a.active {
   color: var(--black) !important;
 }
 
+/* mode toggle */
+header ul li:last-child  {
+  color: var(--light-black);
+}
+
+header ul li:last-child:hover {
+  color: var(--black);
+}
 
 h3.t a {
   text-decoration: none;
-  color: var(--black)
+  color: var(--black);
 }
 
 h3.t a:hover {
-  color: var(--light-black)
+  color: var(--light-black);
 }
 
 .nav-header:hover {
@@ -67,12 +75,20 @@ div.content {
   color: var(--light-black);
 }
 
-/* links */
-footer a[href],p a[href], li a[href] {
-  text-decoration: underline var(--blue);
-  color: var(--blue);
+.p .m {
+  color: var(--black)
 }
 
-p a[href^="#"] {
-  text-decoration-style: dashed;
+/* links */
+footer a[href],p a[href], li a[href] {
+  text-decoration-color: var(--magenta);
+  color: var(--magenta);
+}
+
+li a[href^="#"], p a[href^="#"] {
+  text-decoration-style: dashed !important;
+}
+
+strong {
+  color: var(--dark-blue);
 }

@@ -25,7 +25,14 @@
       });
     }}});
     </script>
-
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        var path = location.pathname.split('/')[1]
+        var el = document.querySelector('header ul li a[href=\'/' + path +
+        '/\']');
+        el.classList.add('active');
+      });
+    </script>
     <meta charset='UTF-8'>
     <meta name='viewport' content='initial-scale=1'>
     <meta content='#ffffff' name='theme-color'>
@@ -55,7 +62,7 @@
   <body>
     <header class='nav-header'>
       <h1 class='logo'>
-        <a href='/'  aria-label='mu' target='_blank' rel='noopener noreferrer'>
+        <a href='/'  aria-label='mu'>
           <img src='/static/favicon/micro-128.png' width='32' height='32' alt='mu' />
         </a>
       </h1>
@@ -79,54 +86,18 @@
   <div class='content'>
     <div class='s p'>
       <h1>Tribute to &pi;</h1>
-      <div class='b'>
-        <div class='time'>
-          <span>
-            <svg
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path d='M9 7H11V12H16V14H9V7Z' fill='currentColor' />
-              <path
-                fill-rule='evenodd'
-                clip-rule='evenodd'
-                d='M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z'
-                fill='currentColor'
-              />
-            </svg>
-            3.54 Min
-          </span>
-          <span>
-            <svg
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M8 9C7.44772 9 7 9.44771 7 10C7 10.5523 7.44772 11 8 11H16C16.5523 11 17 10.5523 17 10C17 9.44771 16.5523 9 16 9H8Z'
-                fill='currentColor'
-              />
-              <path
-                fill-rule='evenodd'
-                clip-rule='evenodd'
-                d='M6 3C4.34315 3 3 4.34315 3 6V18C3 19.6569 4.34315 21 6 21H18C19.6569 21 21 19.6569 21 18V6C21 4.34315 19.6569 3 18 3H6ZM5 18V7H19V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18Z'
-                fill='currentColor'
-              />
-            </svg>
-            03/14/2020
-        </span>
-        </div>
+      <div class='m'>
+        <em>03/14/2020</em>
+        <span>|</span>
+        <em>3.5 minute read</em>
+      </div>
+      <div class='c'>
         <p>Happy 3.14 Day, which also happens to be the day Albert Einstein was born ! So March 14 is irrationally (bad pun, I know) anticipated with much excitement by the science and mathematics communities alike. I will follow tradition, as I did last year and honor <span class="math inline">\pi</span>-day by recreating a visual representation of the digits of <span class="math inline">\pi</span>. The recreation will be a derivative of a 2013 <span class="math inline">\pi</span>-day poster by <a href="https://twitter.com/MKrzywinski">Martin Krzywinski</a> found at <a href="http://mkweb.bcgsc.ca/pi/piday">http://mkweb.bcgsc.ca/pi/piday</a></p>
 <p>The digits of <span class="math inline">\pi</span> were computed using the <a href="https://en.wikipedia.org/wiki/Chudnovsky_algorithm">Chudnovsky algorithm</a>. Due to the CPU-intensive nature of such a computation, I precomputed the digits and saved to them a .dat file for reuse. This is less time consuming than computing the digits every time when visualizing them (or if you write buggy programs like I do). Below is the python script that computes the <span class="math inline">n</span> first digits of <span class="math inline">\pi</span> and saves as them to .dat file:</p>
 <p><img src="/static/images/pi_digits.png#center" title="pi digits" /></p>
 <p>Since the digits will be displayed on a grid, the python script takes as input the dimensions of the grid, the number of rows and number of columns respectively.</p>
 <p>Now that we have computed the <span class="math inline">n = rc</span> digits of <span class="math inline">\pi</span>, we want to visualize them. The visualization was done using <code>scatter</code> from <code>matplotlib</code> where the digits are laid out on a <span class="math inline">r \times c</span> evenly-spaced meshgrid and the values of the digits are used to fill the colors of the points on the grid, these colors are taken from a discrete color map of size <span class="math inline">10</span>. The python script used to read the digits from a file and visualize them as explained above is as follows:</p>
-<p><img src="/static/images/meshgrid.png#center" title="meshgrid" /></p>
+<p><img src="/static/images/meshgrid.png#center" title="grid" /></p>
 <p>The visualizations below were for <span class="math inline">23\times23</span> and <span class="math inline">31\times31</span> grids (yes, I like primes) respectively.</p>
 <p><img src="/static/images/pi_23_by_23.png#center" title="pi 23x23" /> <img src="/static/images/pi_31_by_31.png#center" title="pi 31x31" /></p>
 <p>What would be even more visually appealing is if we could connect the same-valued digits that are one point away from each other in either direction with edges as in the original poster. For example, for a 3 by 3 grid</p>
@@ -170,11 +141,11 @@
     <div class='separator'></div>
     <a href='https://github.com/Unathi-Skosana'>Github</a>
     ·
-    <a href='https://twitter.com/UnathiSkosana'>Twitter</a>
+    <a href='https://twitter.com/_DeLicht'>Twitter</a>
     ·
     <a href='mailto:ukskosana@gmail.com'>Mail</a>
     ·
-    <a href='mailto:ukskosana@gmail.com'>RSS</a>
+    <a href='https://untitld.xyz/index.xml'>RSS</a>
   </footer>
   
 

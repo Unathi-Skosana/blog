@@ -8,14 +8,14 @@
   --blue:#82aaff;
   --dark-blue:#82aaff;
 
-  --magenta:#ae81ff;
-  --dark-magenta:#c792ea;
+  --magenta:#c792ea;
+  --dark-magenta:#ae81ff;
 
   --cyan:#7fdbca;
   --dark-cyan:#7fdbca;
 
   --yellow:#e3d18a;
-  --dark-ellow:#ecc48d;
+  --dark-yellow:#ecc48d;
 
   --black: #111;
   --light-black: #666;
@@ -25,8 +25,8 @@
 }
 
 body {
-    background: var(--black);
-    color: var(--white);
+  background: var(--black);
+  color: var(--white);
 }
 
 header ul li:nth-child(4) {
@@ -45,17 +45,30 @@ header ul li a.active {
   color: var(--light-black) !important;
 }
 
+/* mode toggle */
+header ul li:last-child {
+  color: var(--white);
+}
+
+header ul li:last-child:hover {
+  color: var(--light-black);
+}
+
 .logo a img {
-  filter: invert(1);
+  filter: invert(.93);
+}
+
+.c p img, .c figure img {
+  filter: invert(.93);
 }
 
 h3.t a {
   text-decoration: none;
-  color: var(--white)
+  color: var(--white);
 }
 
 h3.t a:hover {
-  color: var(--light-black)
+  color: var(--light-black) !important;
 }
 
 div.content {
@@ -66,14 +79,20 @@ div.content {
   color: var(--dark-white);
 }
 
+.p .m {
+  color: var(--white);
+}
+
 /* links */
-
 footer a[href],p a[href], li a[href] {
-  text-decoration: underline var(--dark-blue);
-  color: var(--dark-blue);
+  text-decoration-color: var(--cyan);
+  color: var(--cyan);
 }
 
-p a[href^="#"] {
-  text-decoration-style: dashed;
+li a[href^="#"], p a[href^="#"] {
+  text-decoration-style: dashed !important;
 }
 
+strong {
+  color: var(--dark-yellow);
+}
