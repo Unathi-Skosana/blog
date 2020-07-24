@@ -1,6 +1,7 @@
 ---
 title: Quantum Fourier Transform
-date: 2020-06-22 05:04
+description: An attempt at demistifying the quantum Fourier transform
+date: 2020-07-22 05:04
 draft: false
 ---
 
@@ -8,8 +9,7 @@ This post is the first iteration of an $N$-part series of blog posts aimed at
 attempting to understand some of the ideas behind Shor's factoring algorithm.
 One such idea is that of the quantum Fourier transform (QFT), which will be
 the subject of inquiry here. I would strongly recommend familiarity with linear algebra and bra-ket notation.
-The following lecture notes on [bra-ket](https://ocw.mit.edu/courses/physics/8-05-quantum-physics-ii-fall-2013/lecture-notes/MIT8_05F13_Chap_04.pdf)
-notation should be sufficient.
+The following lecture notes on [bra-ket](https://ocw.mit.edu/courses/physics/8-05-quantum-physics-ii-fall-2013/lecture-notes/MIT8_05F13_Chap_04.pdf) notation should be sufficient.
 
 ### Tableau
 
@@ -293,7 +293,7 @@ and adding $2N$ terms requires $2N-1$ additions. Thus computing each $y_n$ term 
 
 $$
 \begin{aligned}
- 2N + 2N - 1 &= 4N -1 \quad \text{arithmetic operations}
+ 2N + 2N - 1 &= 4N -1
 \end{aligned}
 $$
 
@@ -301,10 +301,12 @@ computing $N$ such terms would require
 
 $$
 \begin{aligned}
- N(4N -1) &= 4N^2 - N \quad \text{arithmetic operations} \\
- & \sim \mathcal{O}(N^2) \quad \text{arithmetic operations}
+ N(4N -1) &= 4N^2 - N \\
+ & \sim \mathcal{O}(N^2)
 \end{aligned}
 $$
+
+arithmetic operations.
 
 >> The **fast Fourier transform** can reduce this scaling to
   $\mathcal{O}(N\log N)$, which still scales exponentially with
@@ -324,12 +326,10 @@ basis states for
 $\mathbb{C}^{2^n}$, given by the maximal set $\{|x\rangle\}_{x \in \{0,1\}^n}$ where the elements are $2^n$-dimensional one-hot vectors of the form
 
 $$
-|x\rangle = \begin{pmatrix}0 \\ \vdots \\1 \\ \vdots \\ 0\end{pmatrix} \to
-1 \text{ at some } i^\text{th} \text{ position and the rest of the entries are }
-0
+|x\rangle = \begin{pmatrix}0 \\ \vdots \\1 \\ \vdots \\ 0\end{pmatrix}
 $$
 
-Thus
+The only non-zero entry in above is a $1$ at some $i^\text{th}$ position.
 
 $$
 |\psi\rangle = \displaystyle\sum_{x \in \{0,1\}^n} \alpha_x |x\rangle \\
@@ -407,13 +407,12 @@ Rewriting the expression
 
 $$
 \begin{aligned}
-\hat{U}_\text{QFT}|x\rangle &= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y \in \{0,1\}^n} e^{2\pi i x y /N } |y_{1}y_{2}\cdots
-y_{n-1}y_{n}\rangle \\
+\hat{U}_\text{QFT}|x\rangle &= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y \in \{0,1\}^n} e^{2\pi i x y /N } |y_{1}\cdots
+y_{n}\rangle \\
 &= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y \in \{0,1\}^n} e^{2\pi i x (\sum_{l=1}^n y_l
-2^{-l}) } |y_{1}y_{2}\cdots
-y_{n-1}y_{n}\rangle \\
-&= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y_1 = 0}^{1}\displaystyle\sum_{y_2 = 0}^{1}\cdots\displaystyle\sum_{y_{n} = 0}^{1} 
-e^{2\pi i x (\sum_{l=1}^n y_l 2^{-l}) } |y_{1}y_{2}\cdots y_{n-1}y_{n}\rangle 
+2^{-l}) } |y_{1}\cdots y_{n}\rangle \\
+&= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y_1 = 0}^{1}\cdots\displaystyle\sum_{y_{n} = 0}^{1} 
+e^{2\pi i x (\sum_{l=1}^n y_l 2^{-l}) } |y_{1}\cdots y_{n}\rangle 
 \end{aligned}
 $$
 
@@ -421,8 +420,8 @@ The last step is due to expressing $y$ in binary form. For any $j$, $y_j = 0 \te
 
 $$
 \begin{aligned}
-&= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y_1 = 0}^{1}\displaystyle\sum_{y_2 = 0}^{1}\cdots\displaystyle\sum_{y_{n} = 0}^{1} 
-\displaystyle\prod_{l=1}^{n}e^{2\pi i x (y_l 2^{-l}) } |y_{1}y_{2}\cdots y_{n-1}y_{n}\rangle  \\
+&= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y_1 = 0}^{1}\cdots\displaystyle\sum_{y_{n} = 0}^{1} 
+\displaystyle\prod_{l=1}^{n}e^{2\pi i x (y_l 2^{-l}) } |y_{1}\cdots y_{n}\rangle  \\
 &= \frac{1}{\sqrt{2^n}}\displaystyle\prod_{l=1}^{n}\displaystyle\sum_{y_l
 =0}^{1}e^{2\pi i x (y_l2^{-l})}|y_l\rangle \\
 &= \frac{1}{\sqrt{2^n}}\displaystyle\prod_{l=1}^{n}(e^{2\pi i x (0\cdot 2^{-l})}|0\rangle + 
@@ -444,7 +443,8 @@ geometrically as a unit vector on the surface of a unit sphere in $3$-space. For
 real numbers $\theta$ and $\varphi$, any single qubit state can be expressed as
 
 $$
-|\psi\rangle = \cos{\left(\frac{\theta}{2}\right)}|0\rangle + e^{i\varphi}\sin{\left(\frac{\theta}{2}\right)}|1\rangle, \quad 0 \leq \theta \leq \pi, 0 \leq \varphi \lt 2\pi
+|\psi\rangle = \cos{\left(\frac{\theta}{2}\right)}|0\rangle + e^{i\varphi}\sin{\left(\frac{\theta}{2}\right)}|1\rangle \\
+0 \leq \theta \leq \pi, 0 \leq \varphi \lt 2\pi
 $$
 
 >>*Ex: Check that the state above is normalized.*
@@ -498,13 +498,13 @@ $$
 
 Visually
 
-![](/static/images/3q-qft-0.svg#center){height=80px}
-![](/static/images/3q-qft-1.svg#center){height=80px}
+![](/static/images/3q-qft-0.svg#center "Sundial 0"){height=80px}
+![](/static/images/3q-qft-1.svg#center "Sundial 1"){height=80px}
 $$
 \vdots
 $$
-![](/static/images/3q-qft-6.svg#center){height=80px}
-![](/static/images/3q-qft-7.svg#center){height=80px}
+![](/static/images/3q-qft-6.svg#center "Sundial 6"){height=80px}
+![](/static/images/3q-qft-7.svg#center "Sundial 7"){height=80px}
 
 We see here that the action of $\hat{U}_\text{QFT}$ is to encode the basis states, e.g $|6\rangle$,
 by rotating the leftmost qubit along the line of
@@ -570,14 +570,14 @@ A quantum logic gate is represented by a norm preserving linear map $U$. The
 action of a quantum logic gate $U$ on an input state $|\psi\rangle$ is diagrammatically
 represented as:
 
-![](/static/images/U.png#center){height=120px}
+![](/static/images/U.png#center "Arbitrary quantum logic gate"){height=120px}
 
 
 #### Examples of quantum logic gates
 
 *Hadamard*
 
-![](/static/images/H.png#center){height=120px}
+![](/static/images/H.png#center "Hadamard gate"){height=120px}
 
 : The Hadamard gate $H$ acts on the basis states like
 
@@ -591,7 +591,7 @@ Bloch sphere to line of latitude.
 
 *NOT*
 
-![](/static/images/X.png#center){height=120px}
+![](/static/images/X.png#center "NOT gate"){height=120px}
 
 : The NOT gate $X$ flips the basis states
 
@@ -602,7 +602,7 @@ $$
 
 *Phase shift*
 
-![](/static/images/phase.png#center){height=120px}
+![](/static/images/phase.png#center "Phase gate"){height=120px}
 
 : The Phase shift gate $R_{\varphi}$ modifies the phase of the basis states 
 
@@ -616,7 +616,7 @@ $$
 
 *Controlled-U*
 
-![](/static/images/Cu.png#center){height=120px}
+![](/static/images/Cu.png#center "Controlled U gate"){height=120px}
 
 :  A controlled-$U$ for an arbitrary $U$, is a two-qubit gate, which has the action of
 applying $U$ to the target qubit $|t\rangle$ if the control qubit $|c\rangle$ is in the state
@@ -629,7 +629,7 @@ $$
 A controlled-$U$ can written as a block diagonal matrix, where first block is the
 $2\times2$ identity matrix and the second block is $U$.
 
-![](/static/images/CCU.png#center)
+![](/static/images/CCU.png#center "Action of controlled U gate")
 
 Special case when $U = R_{\varphi}$ implements a controlled phase shift gate.
 
@@ -645,7 +645,7 @@ $n = 1$
 \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1}|1\rangle)$, for which $e^{2\pi
 0.x_1}$ is either $-1$ or $+1$ for $x_1 = 1$ or $x_1 = 0$ respectively.
 
-![](/static/images/qft1_c.png#center){height=80px}
+![](/static/images/qft1_c.png#center "QFT of 1 qubit"){height=80px}
 
 $n= 2$
 : The case is similar to the first, amended only slightly. Consider the operations
@@ -673,13 +673,13 @@ H^{(2)}C(R_{2})^{(21)}H^{(1)}|x_1x_2\rangle &= \frac{1}{\sqrt{2}} (|0\rangle + e
 \end{aligned}
 $$
 
-![](/static/images/qft2_c.png#center){height=150px}
+![](/static/images/qft2_c.png#center "QFT of 2 qubits"){height=150px}
 
 $n = 3$
 : I challenge the keen innanet dweller to convince themselves that the circuit
 below realizes $U_\text{QFT}$ for three qubits.
 
-![](/static/images/qft3_c.png#center)
+![](/static/images/qft3_c.png#center "QFT of 3 qubits")
 
 General
 : The pattern carries on to the general case, each
@@ -687,7 +687,7 @@ qubit will have a Hadamard gate followed by a sequence of controlled phase shift
 controlled by each of the qubits below the line -- i.e
 The line immediately below controls $R_2$, the next one $R_3$ and so on.
 
-![](/static/images/qftn_c.png#center)
+![](/static/images/qftn_c.png#center "QFT of n qubits")
 
 ### Complexity {#quantum_complexity}
 

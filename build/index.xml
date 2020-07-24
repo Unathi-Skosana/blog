@@ -316,16 +316,17 @@ $$</span><br /></p>
 <p>For a specific transformed coefficient <span class="math inline"><em>y</em><sub><em>n</em></sub></span>, computing the sum requires at least <span class="math inline">2</span> multiplications for each term in the sum (one for real part and one for the imaginary part) and adding <span class="math inline">2<em>N</em></span> terms requires <span class="math inline">2<em>N</em> − 1</span> additions. Thus computing each <span class="math inline"><em>y</em><sub><em>n</em></sub></span> term requires at least</p>
 <p><br /><span class="math display">$$
 \begin{aligned}
- 2N + 2N - 1 &amp;= 4N -1 \quad \text{arithmetic operations}
+ 2N + 2N - 1 &amp;= 4N -1
 \end{aligned}
 $$</span><br /></p>
 <p>computing <span class="math inline"><em>N</em></span> such terms would require</p>
 <p><br /><span class="math display">$$
 \begin{aligned}
- N(4N -1) &amp;= 4N^2 - N \quad \text{arithmetic operations} \\
- &amp; \sim \mathcal{O}(N^2) \quad \text{arithmetic operations}
+ N(4N -1) &amp;= 4N^2 - N \\
+ &amp; \sim \mathcal{O}(N^2)
 \end{aligned}
 $$</span><br /></p>
+<p>arithmetic operations.</p>
 <blockquote>
 <blockquote>
 <p>The <strong>fast Fourier transform</strong> can reduce this scaling to <span class="math inline">𝒪(<em>N</em>log <em>N</em>)</span>, which still scales exponentially with the number of classical bit operations <span class="math inline"><em>N</em> = 2<sup><em>n</em></sup></span> (assuming <span class="math inline"><em>N</em></span> is even), <span class="math inline">𝒪(<em>n</em>2<sup><em>n</em></sup>)</span></p>
@@ -336,11 +337,9 @@ $$</span><br /></p>
 <h3 id="quantum_definitions">Definitions</h3>
 <p>Any <span class="math inline"><em>n</em></span>-qubit state <span class="math inline">|<em>ψ</em>⟩</span> can be expressed as a linear combination of orthonormal basis states for <span class="math inline">ℂ<sup>2<sup><em>n</em></sup></sup></span>, given by the maximal set <span class="math inline">{|<em>x</em>⟩}<sub><em>x</em> ∈ {0, 1}<sup><em>n</em></sup></sub></span> where the elements are <span class="math inline">2<sup><em>n</em></sup></span>-dimensional one-hot vectors of the form</p>
 <p><br /><span class="math display">$$
-|x\rangle = \begin{pmatrix}0 \\ \vdots \\1 \\ \vdots \\ 0\end{pmatrix} \to
-1 \text{ at some } i^\text{th} \text{ position and the rest of the entries are }
-0
+|x\rangle = \begin{pmatrix}0 \\ \vdots \\1 \\ \vdots \\ 0\end{pmatrix}
 $$</span><br /></p>
-<p>Thus</p>
+<p>The only non-zero entry in above is a <span class="math inline">1</span> at some <span class="math inline"><em>i</em><sup>th</sup></span> position.</p>
 <p><br /><span class="math display">$$
 |\psi\rangle = \displaystyle\sum_{x \in \{0,1\}^n} \alpha_x |x\rangle \\
 \alpha_x \in \mathbb{C} \text{  and  } \displaystyle\sum_{x \in \{0,1\}^n} |\alpha_x|^2 = 1
@@ -393,20 +392,19 @@ $$</span><br /></p>
 <p>Rewriting the expression</p>
 <p><br /><span class="math display">$$
 \begin{aligned}
-\hat{U}_\text{QFT}|x\rangle &amp;= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y \in \{0,1\}^n} e^{2\pi i x y /N } |y_{1}y_{2}\cdots
-y_{n-1}y_{n}\rangle \\
+\hat{U}_\text{QFT}|x\rangle &amp;= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y \in \{0,1\}^n} e^{2\pi i x y /N } |y_{1}\cdots
+y_{n}\rangle \\
 &amp;= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y \in \{0,1\}^n} e^{2\pi i x (\sum_{l=1}^n y_l
-2^{-l}) } |y_{1}y_{2}\cdots
-y_{n-1}y_{n}\rangle \\
-&amp;= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y_1 = 0}^{1}\displaystyle\sum_{y_2 = 0}^{1}\cdots\displaystyle\sum_{y_{n} = 0}^{1} 
-e^{2\pi i x (\sum_{l=1}^n y_l 2^{-l}) } |y_{1}y_{2}\cdots y_{n-1}y_{n}\rangle 
+2^{-l}) } |y_{1}\cdots y_{n}\rangle \\
+&amp;= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y_1 = 0}^{1}\cdots\displaystyle\sum_{y_{n} = 0}^{1} 
+e^{2\pi i x (\sum_{l=1}^n y_l 2^{-l}) } |y_{1}\cdots y_{n}\rangle 
 \end{aligned}
 $$</span><br /></p>
 <p>The last step is due to expressing <span class="math inline"><em>y</em></span> in binary form. For any <span class="math inline"><em>j</em></span>, <span class="math inline"><em>y</em><sub><em>j</em></sub> = 0 or 1</span></p>
 <p><br /><span class="math display">$$
 \begin{aligned}
-&amp;= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y_1 = 0}^{1}\displaystyle\sum_{y_2 = 0}^{1}\cdots\displaystyle\sum_{y_{n} = 0}^{1} 
-\displaystyle\prod_{l=1}^{n}e^{2\pi i x (y_l 2^{-l}) } |y_{1}y_{2}\cdots y_{n-1}y_{n}\rangle  \\
+&amp;= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y_1 = 0}^{1}\cdots\displaystyle\sum_{y_{n} = 0}^{1} 
+\displaystyle\prod_{l=1}^{n}e^{2\pi i x (y_l 2^{-l}) } |y_{1}\cdots y_{n}\rangle  \\
 &amp;= \frac{1}{\sqrt{2^n}}\displaystyle\prod_{l=1}^{n}\displaystyle\sum_{y_l
 =0}^{1}e^{2\pi i x (y_l2^{-l})}|y_l\rangle \\
 &amp;= \frac{1}{\sqrt{2^n}}\displaystyle\prod_{l=1}^{n}(e^{2\pi i x (0\cdot 2^{-l})}|0\rangle + 
@@ -420,7 +418,8 @@ $$</span><br /></p>
 <h4 id="sun-dial-basis-states">Sun dial basis states</h4>
 <p>Due to the normalization constraint, a single qubit state be represented geometrically as a unit vector on the surface of a unit sphere in <span class="math inline">3</span>-space. For real numbers <span class="math inline"><em>θ</em></span> and <span class="math inline"><em>φ</em></span>, any single qubit state can be expressed as</p>
 <p><br /><span class="math display">$$
-|\psi\rangle = \cos{\left(\frac{\theta}{2}\right)}|0\rangle + e^{i\varphi}\sin{\left(\frac{\theta}{2}\right)}|1\rangle, \quad 0 \leq \theta \leq \pi, 0 \leq \varphi \lt 2\pi
+|\psi\rangle = \cos{\left(\frac{\theta}{2}\right)}|0\rangle + e^{i\varphi}\sin{\left(\frac{\theta}{2}\right)}|1\rangle \\
+0 \leq \theta \leq \pi, 0 \leq \varphi \lt 2\pi
 $$</span><br /></p>
 <blockquote>
 <blockquote>
@@ -463,7 +462,7 @@ $$</span><br /></p>
 \end{aligned}
 $$</span><br /></p>
 <p>Visually</p>
-<p><img src="/static/images/3q-qft-0.svg#center" height="80" /> <img src="/static/images/3q-qft-1.svg#center" height="80" /> <br /><span class="math display">⋮</span><br /> <img src="/static/images/3q-qft-6.svg#center" height="80" /> <img src="/static/images/3q-qft-7.svg#center" height="80" /></p>
+<p><img src="/static/images/3q-qft-0.svg#center" title="Sundial 0" height="80" /> <img src="/static/images/3q-qft-1.svg#center" title="Sundial 1" height="80" /> <br /><span class="math display">⋮</span><br /> <img src="/static/images/3q-qft-6.svg#center" title="Sundial 6" height="80" /> <img src="/static/images/3q-qft-7.svg#center" title="Sundial 7" height="80" /></p>
 <p>We see here that the action of <span class="math inline"><em>Û</em><sub>QFT</sub></span> is to encode the basis states, e.g <span class="math inline">|6⟩</span>, by rotating the leftmost qubit along the line of latitude through <span class="math inline">$\frac{6}{2^3}$</span> revolutions, the middle qubit double that of the leftmost qubit, <span class="math inline">$\frac{6}{2^2}$</span> revolutions and the pattern continues. Turns out the states above also form an orthonormal basis, the sundial basis (or more appropriate Fourier basis) states, since <span class="math inline"><em>Û</em><sub>QFT</sub></span> is a norm preserving operation.</p>
 <h3 id="quantum_examples">Circuits &amp; Examples</h3>
 <p>We’ll briefly look at a few <em>quantum logic gates</em> (linear &amp; unitary maps) relevant to the QFT and <em>quantum circuits</em> that realize <span class="math inline"><em>Û</em><sub>QFT</sub></span>.</p>
@@ -500,11 +499,11 @@ e^{2 \pi i 0. x_{n-1} x_{n}} |1\rangle)\cdots(|0\rangle + e^{2\pi i 0. x_1 x_2 \
 $$</span><br /></p>
 <h3 id="gates-circuits">Gates &amp; Circuits</h3>
 <p>A quantum logic gate is represented by a norm preserving linear map <span class="math inline"><em>U</em></span>. The action of a quantum logic gate <span class="math inline"><em>U</em></span> on an input state <span class="math inline">|<em>ψ</em>⟩</span> is diagrammatically represented as:</p>
-<p><img src="/static/images/U.png#center" height="120" /></p>
+<p><img src="/static/images/U.png#center" title="Arbitrary quantum logic gate" height="120" /></p>
 <h4 id="examples-of-quantum-logic-gates">Examples of quantum logic gates</h4>
 <p><em>Hadamard</em></p>
 <dl>
-<dt><img src="/static/images/H.png#center" height="120" /></dt>
+<dt><img src="/static/images/H.png#center" title="Hadamard gate" height="120" /></dt>
 <dd><p>The Hadamard gate <span class="math inline"><em>H</em></span> acts on the basis states like</p>
 </dd>
 </dl>
@@ -515,7 +514,7 @@ $$</span><br /></p>
 <p>Visually this gate as the effect of moving a state at one of the poles of the Bloch sphere to line of latitude.</p>
 <p><em>NOT</em></p>
 <dl>
-<dt><img src="/static/images/X.png#center" height="120" /></dt>
+<dt><img src="/static/images/X.png#center" title="NOT gate" height="120" /></dt>
 <dd><p>The NOT gate <span class="math inline"><em>X</em></span> flips the basis states</p>
 </dd>
 </dl>
@@ -525,7 +524,7 @@ X|1\rangle \to |0\rangle
 $$</span><br /></p>
 <p><em>Phase shift</em></p>
 <dl>
-<dt><img src="/static/images/phase.png#center" height="120" /></dt>
+<dt><img src="/static/images/phase.png#center" title="Phase gate" height="120" /></dt>
 <dd><p>The Phase shift gate <span class="math inline"><em>R</em><sub><em>φ</em></sub></span> modifies the phase of the basis states</p>
 </dd>
 </dl>
@@ -537,13 +536,13 @@ R_{\varphi}|1\rangle &amp;\to e^{i\varphi}|1\rangle
 $$</span><br /></p>
 <p><em>Controlled-U</em></p>
 <dl>
-<dt><img src="/static/images/Cu.png#center" height="120" /></dt>
+<dt><img src="/static/images/Cu.png#center" title="Controlled U gate" height="120" /></dt>
 <dd><p>A controlled-<span class="math inline"><em>U</em></span> for an arbitrary <span class="math inline"><em>U</em></span>, is a two-qubit gate, which has the action of applying <span class="math inline"><em>U</em></span> to the target qubit <span class="math inline">|<em>t</em>⟩</span> if the control qubit <span class="math inline">|<em>c</em>⟩</span> is in the state <span class="math inline">|1⟩</span>.</p>
 </dd>
 </dl>
 <p><br /><span class="math display"><em>C</em>(<em>U</em>)|<em>c</em>⟩|<em>t</em>⟩ → |<em>c</em>⟩<em>U</em><sup><em>c</em></sup>|<em>t</em>⟩</span><br /></p>
 <p>A controlled-<span class="math inline"><em>U</em></span> can written as a block diagonal matrix, where first block is the <span class="math inline">2 × 2</span> identity matrix and the second block is <span class="math inline"><em>U</em></span>.</p>
-<p><img src="/static/images/CCU.png#center" /></p>
+<p><img src="/static/images/CCU.png#center" title="Action of controlled U gate" /></p>
 <p>Special case when <span class="math inline"><em>U</em> = <em>R</em><sub><em>φ</em></sub></span> implements a controlled phase shift gate.</p>
 <h4 id="circuits-for-u_textqft">Circuits for <span class="math inline"><em>U</em><sub>QFT</sub></span></h4>
 <p>Define unitary map <span class="math inline"><em>R</em><sub><em>k</em></sub> ≡ <em>R</em><sub>2<em>π</em>/2<sup><em>k</em></sup></sub></span> as a special case for the phase shift gate. We’ll also denote a single-qubit gate acting on the qubit <span class="math inline"><em>i</em></span> as <span class="math inline"><em>U</em><sup>(<em>i</em>)</sup></span> and a two-qubit gate controlled by qubit <span class="math inline"><em>j</em></span> and targeted to qubit <span class="math inline"><em>k</em></span> as <span class="math inline"><em>C</em>(<em>U</em>)<sup>(<em>j</em><em>k</em>)</sup></span> whenever there’s a possibility of ambiguity.</p>
@@ -552,7 +551,7 @@ $$</span><br /></p>
 <dd>This case above is trivial is equivalent to the <span class="math inline"><em>H</em></span>, since <span class="math inline">$H|x_1\rangle = \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1}|1\rangle)$</span>, for which <span class="math inline"><em>e</em><sup>2<em>π</em>0.<em>x</em><sub>1</sub></sup></span> is either <span class="math inline"> − 1</span> or <span class="math inline"> + 1</span> for <span class="math inline"><em>x</em><sub>1</sub> = 1</span> or <span class="math inline"><em>x</em><sub>1</sub> = 0</span> respectively.
 </dd>
 </dl>
-<p><img src="/static/images/qft1_c.png#center" height="80" /></p>
+<p><img src="/static/images/qft1_c.png#center" title="QFT of 1 qubit" height="80" /></p>
 <dl>
 <dt><span class="math inline"><em>n</em> = 2</span></dt>
 <dd>The case is similar to the first, amended only slightly. Consider the operations on a single qubit below
@@ -570,19 +569,19 @@ $$</span><br /></p>
 H^{(2)}C(R_{2})^{(21)}H^{(1)}|x_1x_2\rangle &amp;= \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1 x_2 }|1\rangle)\otimes(|0\rangle + e^{2\pi 0.x_2 }|1\rangle)
 \end{aligned}
 $$</span><br /></p>
-<p><img src="/static/images/qft2_c.png#center" height="150" /></p>
+<p><img src="/static/images/qft2_c.png#center" title="QFT of 2 qubits" height="150" /></p>
 <dl>
 <dt><span class="math inline"><em>n</em> = 3</span></dt>
 <dd>I challenge the keen innanet dweller to convince themselves that the circuit below realizes <span class="math inline"><em>U</em><sub>QFT</sub></span> for three qubits.
 </dd>
 </dl>
-<p><img src="/static/images/qft3_c.png#center" /></p>
+<p><img src="/static/images/qft3_c.png#center" title="QFT of 3 qubits" /></p>
 <dl>
 <dt>General</dt>
 <dd>The pattern carries on to the general case, each qubit will have a Hadamard gate followed by a sequence of controlled phase shift gates, controlled by each of the qubits below the line – i.e The line immediately below controls <span class="math inline"><em>R</em><sub>2</sub></span>, the next one <span class="math inline"><em>R</em><sub>3</sub></span> and so on.
 </dd>
 </dl>
-<p><img src="/static/images/qftn_c.png#center" /></p>
+<p><img src="/static/images/qftn_c.png#center" title="QFT of n qubits" /></p>
 <h3 id="quantum_complexity">Complexity</h3>
 <p>On the <span class="math inline"><em>i</em><sup><em>t</em><em>h</em></sup></span> qubit, there’s a Hadamard followed by <span class="math inline"><em>n</em> − <em>i</em></span> controlled phase shift gates, controlled by the qubits that proceed it and there are <span class="math inline"><em>n</em></span> qubits in total.</p>
 <p><br /><span class="math display">$$
@@ -616,7 +615,7 @@ $$</span><br /></p>
 </ol>
 </section></description>
       <link>http://untitld.xyz/posts/quantum_fourier_transform/</link>
-      <pubDate>06/22/2020</pubDate>
+      <pubDate>07/22/2020</pubDate>
       <guid>http://untitld.xyz/posts/quantum_fourier_transform/</guid>
     </item>
     

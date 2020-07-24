@@ -169,9 +169,40 @@ footer {
   text-align: center;
 }
 
-.separator {
-  height: .5em;
-  border-top: 2px solid #eee;
+.social {
+  margin-top: .6em;
+}
+
+.social a {
+  text-decoration: none !important;
+  margin-right: .7em;
+  padding: .8em;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 var(--h-margins);
+}
+
+.pagination a {
+  text-decoration: none !important;
+  width: 275px;
+  padding: 15px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pagination a span:first-of-type {
+  margin-top: 0;
+  font-size: .8em;
+}
+
+.pagination a span:last-of-type {
+  white-space: nowrap;
+  font-weight: 700;
+  margin-top: .25em;
 }
 
 /* images */
@@ -204,10 +235,17 @@ figure, img[src*='#center'] {
   margin: 1em auto !important;
 }
 
-img[title*='me'] {
-  width: 130px;
+header, div.content {
+  margin: 0 var(--h-margins);
 }
 
-header, div.content, footer {
-  margin: 0 var(--h-margins);
+.katex-display > .katex {
+    max-width: 100%;
+}
+.katex-display > .katex > .katex-html {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-left: 2px;
+    padding-right: 2px;
 }

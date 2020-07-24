@@ -92,3 +92,17 @@ li a[href^="#"], p a[href^="#"] {
 strong {
   color: var(--dark-blue);
 }
+
+
+.pagination a:hover {
+  background-color: var(--dark-white);
+}
+
+.pagination a span:first-of-type {
+  color: var(--light-black);
+}
+
+.pagination a span:last-of-type {
+  color: var(--black);
+}
+

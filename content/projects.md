@@ -1,8 +1,9 @@
 ---
 title: Projects
+description: Side quests
 date: 2020-05-10 23:29
+draft: false
 ---
-
 
 # Projects
 

@@ -1,9 +1,11 @@
 ---
-title: "About me"
+title: About me
+description: About
 date: 2020-02-07 13:12
+draft: false
 ---
 
-![](/static/images/me.jpeg#right "me")
+![](/static/images/me.jpeg#right "me"){width=130px}
 
 Hi, I am Unathi.
 

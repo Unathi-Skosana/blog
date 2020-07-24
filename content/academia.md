@@ -1,6 +1,8 @@
 ---
 title: Academia
+description: An academic track record of some sort
 date: 2020-05-10 23:25
+draft: false
 ---
 
 # Talks&Presentations

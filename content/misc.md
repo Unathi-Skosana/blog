@@ -1,6 +1,8 @@
 ---
 title: Misc
+description: Miscellaneous
 date: 2020-05-10 23:27
+draft: false
 ---
 
 ## Books&Essays
@@ -10,12 +12,12 @@ favouritism.
 
 ### READING:
 
+- [_The Complete Essays_](https://hyperessays.net/) by **Michel De Montaigne**.
 - _How to Think about God: An ncient Guide for Belivers and Nonbelievers_ by
     Marcus Tullius Cicero
 - _How to Be Free: An ancient Guide to the Stoic Life_ by Epictetus
 - _How to Win an Argument: An ancient Guide to the Art of Persuasion_ by Marcus
     Tullius Cicero
-- _The Black Swan: The Impact of the Highly Improbable_ by **Nassim Nicholas Taleb**
 
 ### TO READ:
 - _Antifragile_ by **Nassim Nicholas Taleb**
@@ -28,6 +30,7 @@ favouritism.
 
 ### BOOKS READ (from 19'):
 
+- _The Black Swan: The Impact of the Highly Improbable_ by **Nassim Nicholas Taleb**
 - _The Grand Design_ by Stephen Hawking & Leonard Mlodinow
 - _Algorithms to Live By: The Computer Sicnece of Human Decisions_ by Brian Christian & Tom Griffiths
 - _The Elegant Universe: Superstrings, Hidden Dimensions and the Quest for the Ultimate Theory_ by Brian Greene

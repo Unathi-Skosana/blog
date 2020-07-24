@@ -6,7 +6,6 @@
     { "src": "/academia", "dest": "/academia/index.html"},
     { "src": "/misc", "dest": "/misc/index.html"},
     { "src": "/projects", "dest": "/projects/index.html"},
-    { "src": "/posts/", "dest": "/projects/index.html"},
     {
       "src": "/posts/.*",
       "headers": { "Cache-Control": "max-age=3600" },

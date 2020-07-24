@@ -6,6 +6,12 @@ function title {
   printf '%s' "$(rg "title" -m 1 "$1" | sed -e 's/^[a-z]*:\|\"//g' | xargs)"
 }
 
+function description {
+  # $1 - file
+  # Extracts description from file metadata
+  printf '%s' "$(rg "description" -m 1 "$1" | sed -e 's/^[a-z]*:\|\"//g' | xargs)"
+}
+
 function format_date {
   # $1 - date
   printf '%s' "$(date -d "$1" +%m/%d/%Y)"
@@ -32,7 +38,7 @@ function post_link_wrapper {
       <div class='date'>— $4 Min</div>
     </div>
     <h3 class='t'>
-      <a href='/posts/$1'>$2</a>
+      <a href='/posts/$1' title='$2'>$2</a>
     </h3>
   </div>
   "
@@ -40,6 +46,7 @@ function post_link_wrapper {
 
 function header {
   # 1 - page title
+  # 2 - page description
 
   printf '%s\n' "
   <!DOCTYPE html>
@@ -80,10 +87,11 @@ function header {
     <meta name='viewport' content='initial-scale=1'>
     <meta content='#ffffff' name='theme-color'>
     <meta name='HandheldFriendly' content='true'>
-    <meta property='og:title' content='Unathi Skosana'>
-    <meta property='og:type' content='website'>
-    <meta property='og:description' content='Nondescript'>
+    <meta property='og:title' content='$1'>
+    <meta property='og:description' content='$2'>
     <meta property='og:url' content='https://untitld.xyz'>
+    <meta property='og:type' content='website'>
+    <meta property='og:image' content='/static/favicon/micro-128.png'>
 
     <link rel='stylesheet' href='/static/css/syntax.css'>
     <link rel='stylesheet' href='/static/css/style.css'>
@@ -110,10 +118,10 @@ function header {
         </a>
       </h1>
       <ul class='navigation'>
-        <li><a href='/about/'>About</a></li>
-        <li><a href='/projects/'>Projects</a></li>
-        <li><a href='/academia/'>Academia</a></li>
-        <li><a href='/misc/'>Misc</a></li>
+        <li><a href='/about/' title='about me'>About</a></li>
+        <li><a href='/projects/' title='side quests'>Projects</a></li>
+        <li><a href='/academia/' title='academia'>Academia</a></li>
+        <li><a href='/misc/' title='miscellaneous'>Misc</a></li>
         <li>
           <dark-mode-toggle
             id='dark-mode-toggle-1'
@@ -180,6 +188,51 @@ function projects {
   "
 }
 
+function pagination {
+  # $1 - prev
+  # $2 - next
+  # $3 - state ~ dev/prod
+
+  if [ "$3" = "--prod" ]; then
+    draft=$(rg "draft" -m 1 "$1" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
+    if [ "$draft" = "true" ]; then
+      unset $1
+    fi
+  fi
+
+  if [ "$3" = "--prod" ]; then
+    draft=$(rg "draft" -m 1 "$2" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
+    if [ "$draft" = "true" ]; then
+      unset $2
+    fi
+  fi
+
+  printf '%s\n' "<div class='pagination'>"
+
+  if  [[ ! -z "$1" ]]
+  then
+    prev_link=$(basename "${1##*/}" .md)
+    prev_title=$(title "$1")
+    printf '%s\n' "<a href='/posts/$prev_link' title='$prev_title'>
+      <span>Prev</span>
+      <span>$prev_title</span>
+    </a>"
+  fi
+
+  if  [[ ! -z "$2" ]]
+  then
+    next_link=$(basename "${2##*/}" .md)
+    next_title=$(title "$2")
+    printf '%s\n' "<a href='/posts/$next_link' title='$next_title'>
+      <span>Next</span>
+      <span>$next_title</span>
+    </a>"
+  fi
+
+  printf '%s\n' "</div>"
+
+}
+
 function post {
   # $1 - title
   # $2 - read time
@@ -206,14 +259,23 @@ function post {
 function footer {
   printf '%s\n' "
   <footer>
-    <div class='separator'></div>
-    <a href='https://github.com/Unathi-Skosana'>Github</a>
-    ·
-    <a href='https://twitter.com/_DeLicht'>Twitter</a>
-    ·
-    <a href='mailto:ukskosana@gmail.com'>Mail</a>
-    ·
-    <a href='https://untitld.xyz/index.xml'>RSS</a>
+    <hr/>
+    <div class='social'>
+      <a href='https://github.com/Unathi-Skosana' aria-label='github'
+      title='github'>
+        <img src='/static/images/github.svg' />
+      </a>
+      <a href='https://twitter.com/_DeLicht' aria-label='twitter'
+      title='twitter'>
+        <img src='/static/images/twitter.svg' />
+      </a>
+      <a href='mailto:ukskosana@gmail.com' aria-label='mail' title='mail'>
+        <img src='/static/images/mail.svg' />
+      </a>
+      <a href='https://untitld.xyz/index.xml' aria-label='rss' title='rss'>
+        <img src='/static/images/rss.svg' />
+      </a>
+    </div>
   </footer>
   "
 }
@@ -287,8 +349,11 @@ printf '%s\n' "\$ Purging previously built posts..."
 cp -r "./static" "./build"
 
 # posts
-posts=$(find "./content/posts" -mindepth 1 -maxdepth 3 -type f -iname "*.md")
-for f in $posts; do
+mapfile -d $'\0' posts < <(find "./content/posts" -mindepth 1 -maxdepth 3 -type f -iname "*.md" -print0)
+for (( i = 0; i < ${#posts[*]}; ++i )); do
+  f=${posts[$i]}
+  next=${posts[$i+1]}
+  prev=${posts[$i-1]}
 
   if [ "$1" = "--prod" ]; then
     draft=$(rg "draft" -m 1 "$f" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
@@ -303,6 +368,7 @@ for f in $posts; do
   words=$(printf '%s\n' "$stats" | awk '{print $2}')
   r_time=$(read_time "$words")
   post_title=$(title "$f")
+  post_description=$(description "$f")
   dt=$(rg "date" -m 1 "$f" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
   post_date=$(format_date "$dt")
   post_link=$(post_link_wrapper "$id" "$post_title" "$post_date" "$r_time")
@@ -313,9 +379,11 @@ for f in $posts; do
 
   printf '%s\n' "\$ Building post $id ..."
 
-  printf '%s\n' "$(header "$post_title")" > "./build/posts/$id/index.html"
+  printf '%s\n' "$(header "$post_title" "$post_description")" > "./build/posts/$id/index.html"
 
   printf '%s\n' "$(post "$post_title" "$r_time" "$post_date" "$f")" >> "./build/posts/$id/index.html"
+
+  printf '%s\n' "$(pagination "$prev" "$next" "$1")" >> "./build/posts/$id/index.html"
 
   printf '%s\n' "$(footer)" >> "./build/posts/$id/index.html"
 
@@ -330,12 +398,13 @@ pages=$(find "./content" -mindepth 1 -maxdepth 1 -type f -iname "*.md")
 for f in $pages; do
   id=$(basename "${f##*/}" .md)
   page_title=$(title "$f")
+  page_description=$(description "$f")
 
   printf '%s\n' "\$ Building page $id ..."
 
   mkdir -p "./build/$id"
 
-  printf '%s\n' "$(header "$page_title")" > "./build/$id/index.html"
+  printf '%s\n' "$(header "$page_title" "$page_description")" > "./build/$id/index.html"
 
   printf '%s\n' "$($id "$f")" >> "./build/$id/index.html"
 
