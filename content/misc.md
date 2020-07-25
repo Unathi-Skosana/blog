@@ -20,6 +20,7 @@ favouritism.
     Tullius Cicero
 
 ### TO READ:
+
 - _Antifragile_ by **Nassim Nicholas Taleb**
 - _Fooled by Randomness_ by **Nassim Nicholas Taleb**
 - _Skin in the Game_ by **Nassim Nicholas Taleb**
