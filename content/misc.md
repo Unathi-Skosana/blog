@@ -13,7 +13,7 @@ favouritism.
 ### READING:
 
 - [_The Complete Essays_](https://hyperessays.net/) by **Michel de Montaigne**.
-- _How to Think about God: An ncient Guide for Belivers and Nonbelievers_ by
+- _How to Think about God: An ancient Guide for Believers and Nonbelievers_ by
     Marcus Tullius Cicero
 - _How to Be Free: An ancient Guide to the Stoic Life_ by Epictetus
 - _How to Win an Argument: An ancient Guide to the Art of Persuasion_ by Marcus
