@@ -3,7 +3,7 @@
     <channel>
       <title>untitld</title>
       <link>http://untitld.xyz</link>
-      <description>physics, writing, programming, design</description>
+      <description>interludic</description>
       <atom:link href='http://untitld.xyz/index.xml' rel='self' type='application/rss+xml' />
       <image>
         <title>untitld</title>
@@ -22,9 +22,29 @@
 <p>Thank you for being here. Until the next blog post.</p>
 <p>Yours truly,</p>
 <p>Unathi</p></description>
-      <link>http://untitld.xyz/posts/ground_zero/</link>
+      <link>
+  <div class='p'>
+    <div class='time'>
+      <div class='date'>02/10/2020</div>
+      <div class='date'>— 0.0 Min</div>
+    </div>
+    <h3 class='t'>
+      <a href='/posts/ground_zero' title='Ground Zero'>Ground Zero</a>
+    </h3>
+  </div>
+  </link>
       <pubDate>02/10/2020</pubDate>
-      <guid>http://untitld.xyz/posts/ground_zero/</guid>
+      <guid>
+  <div class='p'>
+    <div class='time'>
+      <div class='date'>02/10/2020</div>
+      <div class='date'>— 0.0 Min</div>
+    </div>
+    <h3 class='t'>
+      <a href='/posts/ground_zero' title='Ground Zero'>Ground Zero</a>
+    </h3>
+  </div>
+  </guid>
     </item>
     
     <item>
@@ -68,9 +88,29 @@ $$</span><br /></p>
 <li>[6]: <a href="https://en.wikipedia.org/wiki/Chudnovsky_algorithm">Chudnovsky algorithm</a></li>
 <li>[7]: <a href="https://gist.github.com/jakevdp/91077b0cae40f8f8244a">Discrete matplotlib colormap</a></li>
 </ul></description>
-      <link>http://untitld.xyz/posts/tribute_to_pi/</link>
+      <link>
+  <div class='p'>
+    <div class='time'>
+      <div class='date'>03/14/2020</div>
+      <div class='date'>— 0.0 Min</div>
+    </div>
+    <h3 class='t'>
+      <a href='/posts/tribute_to_pi' title='Tribute to &pi;'>Tribute to &pi;</a>
+    </h3>
+  </div>
+  </link>
       <pubDate>03/14/2020</pubDate>
-      <guid>http://untitld.xyz/posts/tribute_to_pi/</guid>
+      <guid>
+  <div class='p'>
+    <div class='time'>
+      <div class='date'>03/14/2020</div>
+      <div class='date'>— 0.0 Min</div>
+    </div>
+    <h3 class='t'>
+      <a href='/posts/tribute_to_pi' title='Tribute to &pi;'>Tribute to &pi;</a>
+    </h3>
+  </div>
+  </guid>
     </item>
     
     <item>
@@ -614,9 +654,56 @@ $$</span><br /></p>
 <li id="fn3" role="doc-endnote"><p>Albeit the reduced complexity, the QFT is not very useful (not useful at all) as a direct substitute for the classical analog, as quantum mechanics forbids access to the amplitude coefficients<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></description>
-      <link>http://untitld.xyz/posts/quantum_fourier_transform/</link>
+      <link>
+  <div class='p'>
+    <div class='time'>
+      <div class='date'>07/22/2020</div>
+      <div class='date'>— 0.0 Min</div>
+    </div>
+    <h3 class='t'>
+      <a href='/posts/quantum_fourier_transform' title='Quantum Fourier Transform'>Quantum Fourier Transform</a>
+    </h3>
+  </div>
+  </link>
       <pubDate>07/22/2020</pubDate>
-      <guid>http://untitld.xyz/posts/quantum_fourier_transform/</guid>
+      <guid>
+  <div class='p'>
+    <div class='time'>
+      <div class='date'>07/22/2020</div>
+      <div class='date'>— 0.0 Min</div>
+    </div>
+    <h3 class='t'>
+      <a href='/posts/quantum_fourier_transform' title='Quantum Fourier Transform'>Quantum Fourier Transform</a>
+    </h3>
+  </div>
+  </guid>
+    </item>
+    
+    <item>
+      <description></description>
+      <link>
+  <div class='p'>
+    <div class='time'>
+      <div class='date'>09/05/2020</div>
+      <div class='date'>— 0.0 Min</div>
+    </div>
+    <h3 class='t'>
+      <a href='/posts/interlude' title='Interlude'>Interlude</a>
+    </h3>
+  </div>
+  </link>
+      <pubDate>09/05/2020</pubDate>
+      <guid>
+  <div class='p'>
+    <div class='time'>
+      <div class='date'>09/05/2020</div>
+      <div class='date'>— 0.0 Min</div>
+    </div>
+    <h3 class='t'>
+      <a href='/posts/interlude' title='Interlude'>Interlude</a>
+    </h3>
+  </div>
+  </guid>
     </item>
     
     </channel>

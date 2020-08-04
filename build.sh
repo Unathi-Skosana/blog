@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+function getposts {
+  rg -m 1 -N "date: " ./content/posts | sed 's/:date://g' | \
+    awk '{print $2","$3","$1}' | sort -n | awk -F ',' '{printf "%s\0",$3}'
+}
+
 function title {
   # $1 - file
   # Extracts title from file metadata
@@ -282,57 +287,6 @@ function footer {
   "
 }
 
-function rss {
-  posts=$(find "./content/posts" -mindepth 1 -maxdepth 3 -type f -iname "*.md")
-  items=""
-  for f in $posts; do
-
-    if [ "$1" = "--prod" ]; then
-      draft=$(rg "draft" -m 1 "$f" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
-      if [ "$draft" = "true" ]; then
-        printf '%s\n' "\$ Skipping draft post $f..."
-        continue
-      fi
-    fi
-
-    id="$(basename "${f##*/}" ".md")"
-    post_title="$(rg "title" -m 1 "$f" | sed -e "s/^[a-z]*:\|\'//g" | xargs)"
-    dt="$(rg "date" -m 1 "$f" | sed -e "s/^[a-z]*:\|\'//g" | xargs)"
-    post_date="$(format_date "$dt")"
-    post_link="http://untitld.xyz/posts/$id/"
-    html="$(pandoc -t html "$f")"
-
-    items+="$(printf '%s\n' "
-    <item>
-      <description>$html</description>
-      <link>$post_link</link>
-      <pubDate>$post_date</pubDate>
-      <guid>$post_link</guid>
-    </item>
-    ")"
-  done
-
-
-  printf '%s\n' "
-  <rss version='2.0' xmlns:atom='http://www.w3.org/2005/Atom'>
-    <channel>
-      <title>untitld</title>
-      <link>http://untitld.xyz</link>
-      <description>physics, writing, programming, design</description>
-      <atom:link href='http://untitld.xyz/index.xml' rel='self' type='application/rss+xml' />
-      <image>
-        <title>untitld</title>
-        <url>http://untitld.xyz/static/favicon/micro-128.png</url>
-        <link>http://untitld.xyz.sh</link>
-      </image>
-      <language>en-us</language>
-      <copyright>Creative Commons BY-NC-SA 4.0</copyright>
-      $items
-    </channel>
-  </rss>
-  "
-}
-
 printf '%s\n' "$(header Home)"  >  "./build/index.html"
 
 printf '%s\n' "
@@ -351,7 +305,7 @@ printf '%s\n' "\$ Purging previously built posts..."
 cp -r "./static" "./build"
 
 # posts
-mapfile -d $'\0' posts < <(find "./content/posts" -mindepth 1 -maxdepth 3 -type f -iname "*.md" -print0)
+mapfile -d $'\0' posts < <(getposts)
 for (( i = 0; i < ${#posts[*]}; ++i )); do
   f=${posts[$i]}
   next=${posts[$i+1]}
@@ -429,4 +383,52 @@ printf '%s\n' "
 
 # building rss feeds
 printf '%s\n' "\$ building RSS feeds ..."
-printf '%s\n' "$(rss)" > "./build/index.xml"
+
+for (( i = 0; i < ${#posts[*]}; ++i )); do
+  f=${posts[$i]}
+
+  if [ "$1" = "--prod" ]; then
+    draft=$(rg "draft" -m 1 "$f" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
+    if [ "$draft" = "true" ]; then
+      printf '%s\n' "\$ Skipping draft post $f..."
+      continue
+    fi
+  fi
+
+  id=$(basename "${f##*/}" .md)
+  words=$(printf '%s\n' "$stats" | awk '{print $2}')
+  post_title=$(title "$f")
+  post_description=$(description "$f")
+  dt=$(rg "date" -m 1 "$f" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
+  post_date=$(format_date "$dt")
+  post_link=$(post_link_wrapper "$id" "$post_title" "$post_date" "$r_time")
+  html="$(pandoc -t html "$f")"
+
+  items+="$(printf '%s\n' "
+    <item>
+      <description>$html</description>
+      <link>$post_link</link>
+      <pubDate>$post_date</pubDate>
+      <guid>$post_link</guid>
+    </item>
+    ")"
+  done
+
+  printf '%s\n' "
+  <rss version='2.0' xmlns:atom='http://www.w3.org/2005/Atom'>
+    <channel>
+      <title>untitld</title>
+      <link>http://untitld.xyz</link>
+      <description>$post_description</description>
+      <atom:link href='http://untitld.xyz/index.xml' rel='self' type='application/rss+xml' />
+      <image>
+        <title>untitld</title>
+        <url>http://untitld.xyz/static/favicon/micro-128.png</url>
+        <link>http://untitld.xyz.sh</link>
+      </image>
+      <language>en-us</language>
+      <copyright>Creative Commons BY-NC-SA 4.0</copyright>
+      $items
+    </channel>
+  </rss>
+  " > "./build/index.xml"
