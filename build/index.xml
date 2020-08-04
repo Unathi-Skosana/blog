@@ -3,7 +3,7 @@
     <channel>
       <title>untitld</title>
       <link>http://untitld.xyz</link>
-      <description>interludic</description>
+      <description>An attempt at demistifying the quantum Fourier transform</description>
       <atom:link href='http://untitld.xyz/index.xml' rel='self' type='application/rss+xml' />
       <image>
         <title>untitld</title>
@@ -26,7 +26,7 @@
   <div class='p'>
     <div class='time'>
       <div class='date'>02/10/2020</div>
-      <div class='date'>— 0.0 Min</div>
+      <div class='date'>— 16.5 Min</div>
     </div>
     <h3 class='t'>
       <a href='/posts/ground_zero' title='Ground Zero'>Ground Zero</a>
@@ -38,7 +38,7 @@
   <div class='p'>
     <div class='time'>
       <div class='date'>02/10/2020</div>
-      <div class='date'>— 0.0 Min</div>
+      <div class='date'>— 16.5 Min</div>
     </div>
     <h3 class='t'>
       <a href='/posts/ground_zero' title='Ground Zero'>Ground Zero</a>
@@ -92,7 +92,7 @@ $$</span><br /></p>
   <div class='p'>
     <div class='time'>
       <div class='date'>03/14/2020</div>
-      <div class='date'>— 0.0 Min</div>
+      <div class='date'>— 16.5 Min</div>
     </div>
     <h3 class='t'>
       <a href='/posts/tribute_to_pi' title='Tribute to &pi;'>Tribute to &pi;</a>
@@ -104,7 +104,7 @@ $$</span><br /></p>
   <div class='p'>
     <div class='time'>
       <div class='date'>03/14/2020</div>
-      <div class='date'>— 0.0 Min</div>
+      <div class='date'>— 16.5 Min</div>
     </div>
     <h3 class='t'>
       <a href='/posts/tribute_to_pi' title='Tribute to &pi;'>Tribute to &pi;</a>
@@ -658,7 +658,7 @@ $$</span><br /></p>
   <div class='p'>
     <div class='time'>
       <div class='date'>07/22/2020</div>
-      <div class='date'>— 0.0 Min</div>
+      <div class='date'>— 16.5 Min</div>
     </div>
     <h3 class='t'>
       <a href='/posts/quantum_fourier_transform' title='Quantum Fourier Transform'>Quantum Fourier Transform</a>
@@ -670,37 +670,10 @@ $$</span><br /></p>
   <div class='p'>
     <div class='time'>
       <div class='date'>07/22/2020</div>
-      <div class='date'>— 0.0 Min</div>
+      <div class='date'>— 16.5 Min</div>
     </div>
     <h3 class='t'>
       <a href='/posts/quantum_fourier_transform' title='Quantum Fourier Transform'>Quantum Fourier Transform</a>
-    </h3>
-  </div>
-  </guid>
-    </item>
-    
-    <item>
-      <description></description>
-      <link>
-  <div class='p'>
-    <div class='time'>
-      <div class='date'>09/05/2020</div>
-      <div class='date'>— 0.0 Min</div>
-    </div>
-    <h3 class='t'>
-      <a href='/posts/interlude' title='Interlude'>Interlude</a>
-    </h3>
-  </div>
-  </link>
-      <pubDate>09/05/2020</pubDate>
-      <guid>
-  <div class='p'>
-    <div class='time'>
-      <div class='date'>09/05/2020</div>
-      <div class='date'>— 0.0 Min</div>
-    </div>
-    <h3 class='t'>
-      <a href='/posts/interlude' title='Interlude'>Interlude</a>
     </h3>
   </div>
   </guid>

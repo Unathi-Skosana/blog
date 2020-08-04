@@ -201,20 +201,18 @@ function pagination {
   if [ "$3" = "--prod" ]; then
     draft=$(rg "draft" -m 1 "$1" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
     if [ "$draft" = "true" ]; then
-      unset $1
+      set -- "" $2
     fi
-  fi
 
-  if [ "$3" = "--prod" ]; then
     draft=$(rg "draft" -m 1 "$2" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
     if [ "$draft" = "true" ]; then
-      unset $2
+      set -- $1 ""
     fi
   fi
 
   printf '%s\n' "<div class='pagination'>"
 
-  if  [[ ! -z "$1" ]]
+  if  [[ ! -z $1 ]]
   then
     prev_link=$(basename "${1##*/}" .md)
     prev_title=$(title "$1")
@@ -224,11 +222,11 @@ function pagination {
     </a>"
   fi
 
-  if  [[ ! -z "$2" ]]
+  if  [[ ! -z $2 ]]
   then
     next_link=$(basename "${2##*/}" .md)
     next_title=$(title "$2")
-    printf '%s\n' "<a href='/posts/$next_link' title='$next_title'>
+    printf '%s\n' "<a href='/posts/$next_link' title='$next_title' style='margin-left:auto;'>
       <span>Next</span>
       <span>$next_title</span>
     </a>"

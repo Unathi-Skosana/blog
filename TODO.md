@@ -1,2 +1,4 @@
 # TODO
-[] Fix prev & next functionality for drafts.
+- [x] Fix prev & next functionality for drafts.
+- [ ] Prevent prev & next wrapping
+
