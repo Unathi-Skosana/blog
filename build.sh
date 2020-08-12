@@ -264,7 +264,7 @@ function pagination {
 
   printf '%s\n' "<div class='pagination'>"
 
-  if  [[ ! -z $1 ]]
+  if  [[ ! -z $1 ]];
   then
     prev_link=$(basename "${1##*/}" .md)
     prev_title=$(title "$1")
@@ -274,7 +274,7 @@ function pagination {
     </a>"
   fi
 
-  if  [[ ! -z $2 ]]
+  if  [[ ! -z $2 ]];
   then
     next_link=$(basename "${2##*/}" .md)
     next_title=$(title "$2")
