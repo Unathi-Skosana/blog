@@ -9,6 +9,11 @@ draft: false
 
 Some small fun projects I've been involved in or contributed in
 
+
+- [Vwc](https://github.com/Unathi-Skosana/vwc) — Compiler for vimwiki notes into
+    aesthetically-pleasing HTML/PDF
+- [Fshta](https://github.com/Unathi-Skosana/fshta) — Minimalist fish shell
+    prompt
 - [Gonetkey](https://github.com/Unathi-Skosana/gonetkey) — Golang client to access Stellenbosch University's internet provider.
 - [Numart](https://github.com/Unathi-Skosana/Numart) — The art of special numbers.
 - [Gothello](https://github.com/Unathi-Skosana/Gothello) — Monte Carlo Tree Search Othello player.
