@@ -1,70 +1,67 @@
 
+      
   <!DOCTYPE html>
   <html lang='en'>
-  <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src='https://www.googletagmanager.com/gtag/js?id=UA-167451864-1'></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    <head>
+      <!--- dark/light mode switch --->
 
-      gtag('config', 'UA-167451864-1');
-    </script>
-    <script type='module' src='https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js'></script>
-    <script>document.addEventListener('DOMContentLoaded', function () {
-    var mathElements = document.getElementsByClassName('math');
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == 'SPAN') {
-      katex.render(texText.data, mathElements[i], {
-        displayMode: mathElements[i].classList.contains('display'),
-        throwOnError: false,
-        fleqn: false
-      });
-    }}});
-    </script>
-    <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function() {
-        var path = location.pathname.split('/')[1]
-        var el = document.querySelector('header ul li a[href=\'/' + path +
-        '/\']');
-        el.classList.add('active');
-      });
-    </script>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='initial-scale=1'>
-    <meta content='#ffffff' name='theme-color'>
-    <meta name='HandheldFriendly' content='true'>
-    <meta property='og:title' content='Misc'>
-    <meta property='og:description' content='Miscellaneous'>
-    <meta property='og:url' content='https://untitld.xyz'>
-    <meta property='og:type' content='website'>
-    <meta property='og:image' content='/static/favicon/micro-128.png'>
+      <script type='module' src='https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs'></script>
 
-    <link rel='stylesheet' href='/static/css/syntax.css'>
-    <link rel='stylesheet' href='/static/css/style.css'>
-    <link rel='stylesheet' href='/static/css/light.css' media='(prefers-color-scheme: light), (prefers-color-scheme: no-preference)'>
-    <link rel='stylesheet' href='/static/css/dark.css' media='(prefers-color-scheme: dark)'>
-    <link rel='icon' type='image/x-icon' sizes='16x16' href='/static/favicon/micro-16.png'>
-    <link rel='icon' type='image/x-icon' sizes='32x32' href='/static/favicon/micro-32.png'>
-    <link rel='icon' type='image/x-icon' sizes='64x64' href='/static/favicon/micro-62.png'>
-    <link rel='icon' type='image/x-icon' sizes='128x128' href='/static/favicon/micro-128.png'>
+      <!--- highlight current nav item --->
 
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css' />
-    <!--[if lt IE 9]>
-      <script src='//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js'></script>
-    <![endif]-->
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var path = location.pathname.split('/')[1]
+          var el = document.querySelector('header ul li a[href=\'/' + path +
+          '/\']');
+          if (el) el.classList.add('active');
+        });
+      </script>
 
-    <title>Untitld — Misc</title>
-  </head>
+      <!--- Global site tag (gtag.js) - Google Analytics --->
 
-  <body>
-    <header class='nav-header'>
+      <script async src='https://www.googletagmanager.com/gtag/js?id=UA-167451864-1'></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-167451864-1');
+      </script>
+
+      
+
+      <!--- meta --->
+
+      <meta charset='UTF-8'>
+      <meta name='viewport' content='initial-scale=1'>
+      <meta content='#ffffff' name='theme-color'>
+      <meta name='HandheldFriendly' content='true'>
+      <meta property='og:title' content='Misc'>
+      <meta property='og:description' content='Miscellaneous'>
+      <meta property='og:url' content='https://untitld.xyz'>
+      <meta property='og:type' content='website'>
+      <meta property='og:image' content='/static/favicon/micro-128.webp'>
+
+      <!--- favicon --->
+
+      <link rel='icon' type='image/x-icon' sizes='16x16' href='/static/favicon/micro-16.webp'>
+      <link rel='icon' type='image/x-icon' sizes='32x32' href='/static/favicon/micro-32.webp'>
+      <link rel='icon' type='image/x-icon' sizes='64x64' href='/static/favicon/micro-62.webp'>
+      <link rel='icon' type='image/x-icon' sizes='128x128' href='/static/favicon/micro-128.webp'>
+
+      <!--- user styles --->
+
+      <link rel='stylesheet' href='/static/css/style.css'>
+      <link rel='stylesheet' href='/static/css/light.css' media='(prefers-color-scheme: light), (prefers-color-scheme: no-preference)'>
+      <link rel='stylesheet' href='/static/css/dark.css' media='(prefers-color-scheme: dark)'>
+      
+
+    </head>
+    <body>
+      <header class='nav-header'>
       <h1 class='logo'>
         <a href='/'  aria-label='mu'>
-          <img src='/static/favicon/micro-128.png' width='32' height='32' alt='mu' />
+          <img src='/static/favicon/micro-128.webp' width='32' height='32' alt='mu' />
         </a>
       </h1>
       <ul class='navigation'>
@@ -83,7 +80,7 @@
       </ul>
     </header>
   
-
+      
   <div class='content'>
     <div class='misc'>
     <h2 id="booksessays">Books&amp;Essays</h2>
@@ -128,7 +125,7 @@
     </div>
   </div>
   
-
+      
   <footer>
     <hr/>
     <div class='social'>
@@ -151,6 +148,5 @@
     </div>
   </footer>
   
-
     </body>
   </html>

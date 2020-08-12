@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+function optimize {
+  find "./build/static/" -type f \
+      \( -name '*.png' -or -name '*.jpg' -or -name '*.jpeg' \) \
+      -exec echo {} \; \
+      -exec cwebp -q 80 {} -o {}.webp \; \
+      -exec rm {} \; \
+      -exec sh -c "echo {}.webp | sed 's/\.[^.]*\.[^.]*$/.webp/' | xargs mv {}.webp" \; \
+
+  find "./build/static/" -type f \
+      -name "*.css" ! -name "*.min.*" \
+      -exec echo {} \; \
+      -exec uglifycss --output {}.min {} \; \
+      -exec rm {} \; \
+      -exec mv {}.min {} \;
+}
+
 function getposts {
   rg -m 1 -N "date: " ./content/posts | sed 's/:date://g' | \
     awk '{print $2","$3","$1}' | sort -n | awk -F ',' '{printf "%s\0",$3}'
@@ -52,71 +68,107 @@ function post_link_wrapper {
 function header {
   # 1 - page title
   # 2 - page description
+  # 3 - katex switch
+  # 4 - syntax switch
+
+  katex_assets=""
+  syntax_assets=""
+  if [ "$3" -eq "1" ]; then
+    katex_assets=$(printf '%s\n'  "
+    <! --- katex --->
+      <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css'>
+      <script defer src='https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js'></script>
+      <script defer src='https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js'></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var mathElements = document.getElementsByClassName('math');
+          for (var i = 0; i < mathElements.length; i++) {
+            var texText = mathElements[i].firstChild;
+            if (mathElements[i].tagName == 'SPAN') {
+              katex.render(texText.data, mathElements[i], {
+                displayMode: mathElements[i].classList.contains('display'),
+                throwOnError: false,
+                fleqn: false
+            });
+          }
+        }});
+        window.WebFontConfig = {
+          custom: {
+            families: ['KaTeX_AMS', 'KaTeX_Caligraphic:n4,n7', 'KaTeX_Fraktur:n4,n7',
+              'KaTeX_Main:n4,n7,i4,i7', 'KaTeX_Math:i4,i7', 'KaTeX_Script',
+              'KaTeX_SansSerif:n4,n7,i4', 'KaTeX_Size1', 'KaTeX_Size2', 'KaTeX_Size3',
+              'KaTeX_Size4', 'KaTeX_Typewriter'],
+          },
+        };
+      </script>
+      "
+    )
+  fi
+
+  if [ "$4" -eq "1" ]; then
+    syntax_assets=$(printf '%s\n' "<link rel='stylesheet' href='/static/css/syntax.css'>")
+  fi
 
   printf '%s\n' "
   <!DOCTYPE html>
   <html lang='en'>
-  <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src='https://www.googletagmanager.com/gtag/js?id=UA-167451864-1'></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    <head>
+      <!--- dark/light mode switch --->
 
-      gtag('config', 'UA-167451864-1');
-    </script>
-    <script type='module' src='https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js'></script>
-    <script>document.addEventListener('DOMContentLoaded', function () {
-    var mathElements = document.getElementsByClassName('math');
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == 'SPAN') {
-      katex.render(texText.data, mathElements[i], {
-        displayMode: mathElements[i].classList.contains('display'),
-        throwOnError: false,
-        fleqn: false
-      });
-    }}});
-    </script>
-    <script type=\"text/javascript\">
-      document.addEventListener('DOMContentLoaded', function() {
-        var path = location.pathname.split('/')[1]
-        var el = document.querySelector('header ul li a[href=\'/' + path +
-        '/\']');
-        el.classList.add('active');
-      });
-    </script>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='initial-scale=1'>
-    <meta content='#ffffff' name='theme-color'>
-    <meta name='HandheldFriendly' content='true'>
-    <meta property='og:title' content='$1'>
-    <meta property='og:description' content='$2'>
-    <meta property='og:url' content='https://untitld.xyz'>
-    <meta property='og:type' content='website'>
-    <meta property='og:image' content='/static/favicon/micro-128.png'>
+      <script type='module' src='https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs'></script>
 
-    <link rel='stylesheet' href='/static/css/syntax.css'>
-    <link rel='stylesheet' href='/static/css/style.css'>
-    <link rel='stylesheet' href='/static/css/light.css' media='(prefers-color-scheme: light), (prefers-color-scheme: no-preference)'>
-    <link rel='stylesheet' href='/static/css/dark.css' media='(prefers-color-scheme: dark)'>
-    <link rel='icon' type='image/x-icon' sizes='16x16' href='/static/favicon/micro-16.png'>
-    <link rel='icon' type='image/x-icon' sizes='32x32' href='/static/favicon/micro-32.png'>
-    <link rel='icon' type='image/x-icon' sizes='64x64' href='/static/favicon/micro-62.png'>
-    <link rel='icon' type='image/x-icon' sizes='128x128' href='/static/favicon/micro-128.png'>
+      <!--- highlight current nav item --->
 
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css' />
-    <!--[if lt IE 9]>
-      <script src='//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js'></script>
-    <![endif]-->
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var path = location.pathname.split('/')[1]
+          var el = document.querySelector('header ul li a[href=\'/' + path +
+          '/\']');
+          if (el) el.classList.add('active');
+        });
+      </script>
 
-    <title>Untitld — $1</title>
-  </head>
+      <!--- Global site tag (gtag.js) - Google Analytics --->
 
-  <body>
-    <header class='nav-header'>
+      <script async src='https://www.googletagmanager.com/gtag/js?id=UA-167451864-1'></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-167451864-1');
+      </script>
+
+      $katex_assets
+
+      <!--- meta --->
+
+      <meta charset='UTF-8'>
+      <meta name='viewport' content='initial-scale=1'>
+      <meta content='#ffffff' name='theme-color'>
+      <meta name='HandheldFriendly' content='true'>
+      <meta property='og:title' content='$1'>
+      <meta property='og:description' content='$2'>
+      <meta property='og:url' content='https://untitld.xyz'>
+      <meta property='og:type' content='website'>
+      <meta property='og:image' content='/static/favicon/micro-128.png'>
+
+      <!--- favicon --->
+
+      <link rel='icon' type='image/x-icon' sizes='16x16' href='/static/favicon/micro-16.png'>
+      <link rel='icon' type='image/x-icon' sizes='32x32' href='/static/favicon/micro-32.png'>
+      <link rel='icon' type='image/x-icon' sizes='64x64' href='/static/favicon/micro-62.png'>
+      <link rel='icon' type='image/x-icon' sizes='128x128' href='/static/favicon/micro-128.png'>
+
+      <!--- user styles --->
+
+      <link rel='stylesheet' href='/static/css/style.css'>
+      <link rel='stylesheet' href='/static/css/light.css' media='(prefers-color-scheme: light), (prefers-color-scheme: no-preference)'>
+      <link rel='stylesheet' href='/static/css/dark.css' media='(prefers-color-scheme: dark)'>
+      $syntax_assets
+
+    </head>
+    <body>
+      <header class='nav-header'>
       <h1 class='logo'>
         <a href='/'  aria-label='mu'>
           <img src='/static/favicon/micro-128.png' width='32' height='32' alt='mu' />
@@ -148,7 +200,7 @@ function about {
     <div class='content'>
       <div class='s p'>
         <div class='b'>
-          $(pandoc --quiet -t html --highlight-style monochrome $1)
+          $(pandoc --quiet -t html $1)
         </div>
       </div>
     </div>
@@ -162,7 +214,7 @@ function academia {
   printf '%s\n' "
   <div class='content'>
     <div class='misc'>
-    $(pandoc --quiet -t html --highlight-style monochrome $1)
+    $(pandoc --quiet -t html $1)
     </div>
   </div>
   "
@@ -175,7 +227,7 @@ function misc {
   printf '%s\n' "
   <div class='content'>
     <div class='misc'>
-    $(pandoc --quiet -t html --highlight-style monochrome $1)
+    $(pandoc --quiet -t html $1)
     </div>
   </div>
   "
@@ -187,7 +239,7 @@ function projects {
   printf '%s\n' "
   <div class='content'>
     <div class='pro'>
-    $(pandoc --quiet -t html --highlight-style monochrome $1)
+    $(pandoc --quiet -t html $1)
     </div>
   </div>
   "
@@ -252,7 +304,7 @@ function post {
         <em>$2 minute read</em>
       </div>
       <div class='c'>
-        $(pandoc --katex --quiet -t html --highlight-style monochrome $4)
+        $(pandoc --katex --quiet -t html $4)
       </div>
     </div>
   </div>
@@ -285,30 +337,39 @@ function footer {
   "
 }
 
-printf '%s\n' "$(header Home)"  >  "./build/index.html"
+#################################
+########                #########
+########    BUILD       #########
+########                #########
+#################################
 
+# header and container div for post links
 printf '%s\n' "
+  $(header "Home" "Homepage" 0 0)
   <!-- posts --!>
   <div class='content'>
     <div class='posts'>
-" >> "./build/index.html"
+" > "./build/index.html"
 
-printf '%s\n' "\$ Purging previously built posts..."
+if [ "$1" = "--prod" ]; then
+  cp -r "./static" "./build" && optimize
+else
+  cp -r "./static" "./build"
+fi;
 
-#rm -rf "./build/static"
-#rm -rf "./build/posts/"
-#mkdir -p "./build/posts"
-#mkdir -p "./build/static"
-
-cp -r "./static" "./build"
-
-# posts
+# iterate over posts
 mapfile -d $'\0' posts < <(getposts)
 for (( i = 0; i < ${#posts[*]}; ++i )); do
   f=${posts[$i]}
   next=${posts[$i+1]}
   prev=${posts[$i-1]}
 
+  # prevent left-wrapping
+  if [ "$i" -eq "0" ]; then
+    unset prev
+  fi
+
+  # skip draft posts in production
   if [ "$1" = "--prod" ]; then
     draft=$(rg "draft" -m 1 "$f" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
     if [ "$draft" = "true" ]; then
@@ -317,6 +378,7 @@ for (( i = 0; i < ${#posts[*]}; ++i )); do
     fi
   fi
 
+  # some useful vars
   id=$(basename "${f##*/}" .md)
   stats=$(wc "$f")
   words=$(printf '%s\n' "$stats" | awk '{print $2}')
@@ -327,27 +389,31 @@ for (( i = 0; i < ${#posts[*]}; ++i )); do
   post_date=$(format_date "$dt")
   post_link=$(post_link_wrapper "$id" "$post_title" "$post_date" "$r_time")
 
+  # post links for home page
   printf '%s\n' "$post_link" >> "./build/index.html"
 
+  # build posts
   mkdir -p "./build/posts/$id"
 
   printf '%s\n' "\$ Building post $id ..."
 
-  printf '%s\n' "$(header "$post_title" "$post_description")" > "./build/posts/$id/index.html"
-
-  printf '%s\n' "$(post "$post_title" "$r_time" "$post_date" "$f")" >> "./build/posts/$id/index.html"
-
-  printf '%s\n' "$(pagination "$prev" "$next" "$1")" >> "./build/posts/$id/index.html"
-
-  printf '%s\n' "$(footer)" >> "./build/posts/$id/index.html"
-
   printf '%s\n' "
+      $(header "$post_title" "$post_description" 1 1)
+      $(post "$post_title" "$r_time" "$post_date" "$f")
+      $(pagination "$prev" "$next" "$1")
+      $(footer)
     </body>
-  </html>" >> "./build/posts/$id/index.html"
+  </html>" > "./build/posts/$id/index.html"
+
+  # use webp in production in place for png/jpg/jpg
+  if [ "$1" = "--prod" ]; then
+    sed -i 's/\(png\|jpg\|jpeg\)/webp/g' "./build/posts/$id/index.html"
+  fi
 done;
 
 
-# pages
+# build other pages
+
 pages=$(find "./content" -mindepth 1 -maxdepth 1 -type f -iname "*.md")
 for f in $pages; do
   id=$(basename "${f##*/}" .md)
@@ -358,28 +424,34 @@ for f in $pages; do
 
   mkdir -p "./build/$id"
 
-  printf '%s\n' "$(header "$page_title" "$page_description")" > "./build/$id/index.html"
-
-  printf '%s\n' "$($id "$f")" >> "./build/$id/index.html"
-
-  printf '%s\n' "$(footer)" >> "./build/$id/index.html"
-
   printf '%s\n' "
+      $(header "$page_title" "$page_description" 0 0)
+      $($id "$f")
+      $(footer)
     </body>
-  </html>" >> "./build/$id/index.html"
+  </html>" > "./build/$id/index.html"
+
+
+  # use webp in production in place for png/jpg/jpg
+  if [ "$1" = "--prod" ]; then
+    sed -i 's/\(png\|jpg\|jpeg\)/webp/g' "./build/$id/index.html"
+  fi
 done;
 
 # close off home page
-printf '%s\n' "</div>" >> "./build/index.html"
-printf '%s\n' "$(footer)" >> "./build/index.html"
-
 printf '%s\n' "
+    </div>
+    $(footer)
     </div>
   </body>
 </html>" >> "./build/index.html"
 
 
-# building rss feeds
+if [ "$1" = "--prod" ]; then
+  sed -i 's/\(png\|jpg\|jpeg\)/webp/g' "./build/index.html"
+fi
+
+# building RSS feed
 printf '%s\n' "\$ building RSS feeds ..."
 
 for (( i = 0; i < ${#posts[*]}; ++i )); do
@@ -409,24 +481,30 @@ for (( i = 0; i < ${#posts[*]}; ++i )); do
       <pubDate>$post_date</pubDate>
       <guid>$post_link</guid>
     </item>
-    ")"
-  done
+  ")"
+done
 
-  printf '%s\n' "
-  <rss version='2.0' xmlns:atom='http://www.w3.org/2005/Atom'>
-    <channel>
+printf '%s\n' "
+<rss version='2.0' xmlns:atom='http://www.w3.org/2005/Atom'>
+  <channel>
+    <title>untitld</title>
+    <link>http://untitld.xyz</link>
+    <description>$post_description</description>
+    <atom:link href='http://untitld.xyz/index.xml' rel='self' type='application/rss+xml' />
+    <image>
       <title>untitld</title>
-      <link>http://untitld.xyz</link>
-      <description>$post_description</description>
-      <atom:link href='http://untitld.xyz/index.xml' rel='self' type='application/rss+xml' />
-      <image>
-        <title>untitld</title>
-        <url>http://untitld.xyz/static/favicon/micro-128.png</url>
-        <link>http://untitld.xyz.sh</link>
-      </image>
-      <language>en-us</language>
-      <copyright>Creative Commons BY-NC-SA 4.0</copyright>
-      $items
-    </channel>
-  </rss>
-  " > "./build/index.xml"
+      <url>http://untitld.xyz/static/favicon/micro-128.png</url>
+      <link>http://untitld.xyz.sh</link>
+    </image>
+    <language>en-us</language>
+    <copyright>Creative Commons BY-NC-SA 4.0</copyright>
+    $items
+  </channel>
+</rss>
+" > "./build/index.xml"
+
+
+# use webp in production in place for png/jpg/jpg
+if [ "$1" = "--prod" ]; then
+  sed -i 's/\(png\|jpg\|jpeg\)/webp/g' "./build/index.xml"
+fi
