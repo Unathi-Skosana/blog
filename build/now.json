@@ -16,9 +16,9 @@
       "dest": "/posts/$1"
     },
     {
-      "src": "/static/(.*)/(.*)",
+      "src": "/static/images/(.*)",
       "headers": { "cache-control": "public, max-age=31536000" },
-      "dest": "/images/$1/$2"
+      "dest": "/static/images/$1"
     }
   ]
 }
