@@ -3,6 +3,7 @@
 
 :root {
   --h-margins: 20px;
+  --banner-height: 3em;
 }
 
 html {
@@ -44,6 +45,25 @@ pre:not(.sourceCode),div.sourceCode {
   border-radius: 0.5em;
 }
 
+/* nav bar */
+
+#banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--banner-height);
+  padding: 6em 1em 0 1em;
+  z-index: 999;
+  transform: translate(0, -6em);
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
 /* header */
 
 header.nav-header {
@@ -52,7 +72,8 @@ header.nav-header {
   height: 5em;
   font-size: .9em;
   cursor: default;
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
+  margin-top: var(--banner-height);
 }
 
 header h1 {
@@ -92,8 +113,8 @@ h1,h2,h3,h4,h5 {
   line-height: 1.1;
 }
 
-h3.t a {
-  font-size: 1.0em;
+h2.t a {
+  font-size: .75em;
   font-weight: 600;
 }
 

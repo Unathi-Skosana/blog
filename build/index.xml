@@ -28,9 +28,9 @@
       <div class='date'>02/10/2020</div>
       <div class='date'>— 16.5 Min</div>
     </div>
-    <h3 class='t'>
+    <h2 class='t'>
       <a href='/posts/ground_zero' title='Ground Zero'>Ground Zero</a>
-    </h3>
+    </h2>
   </div>
   </link>
       <pubDate>02/10/2020</pubDate>
@@ -40,9 +40,9 @@
       <div class='date'>02/10/2020</div>
       <div class='date'>— 16.5 Min</div>
     </div>
-    <h3 class='t'>
+    <h2 class='t'>
       <a href='/posts/ground_zero' title='Ground Zero'>Ground Zero</a>
-    </h3>
+    </h2>
   </div>
   </guid>
     </item>
@@ -94,9 +94,9 @@ $$</span></p>
       <div class='date'>03/14/2020</div>
       <div class='date'>— 16.5 Min</div>
     </div>
-    <h3 class='t'>
+    <h2 class='t'>
       <a href='/posts/tribute_to_pi' title='Tribute to &pi;'>Tribute to &pi;</a>
-    </h3>
+    </h2>
   </div>
   </link>
       <pubDate>03/14/2020</pubDate>
@@ -106,9 +106,9 @@ $$</span></p>
       <div class='date'>03/14/2020</div>
       <div class='date'>— 16.5 Min</div>
     </div>
-    <h3 class='t'>
+    <h2 class='t'>
       <a href='/posts/tribute_to_pi' title='Tribute to &pi;'>Tribute to &pi;</a>
-    </h3>
+    </h2>
   </div>
   </guid>
     </item>
@@ -272,7 +272,7 @@ $$</span></p>
 <p>for some integer <span class="math inline">1 ≤ <em>m</em> ≤ 11</span>.</p>
 </blockquote>
 <figure>
-<img src="/static/images/plot.svg#center" title="Plot" alt="" /><figcaption>Plot of <span class="math inline">𝒫</span></figcaption>
+<img src="/static/images/plot.svg#center" title="Plot" alt="Plot of \mathcal{P}" /><figcaption aria-hidden="true">Plot of <span class="math inline">𝒫</span></figcaption>
 </figure>
 <blockquote>
 <p>This is indeed the case, the plot above shows the expected peaks at <span class="math inline"><em>n</em> = 5</span> and <span class="math inline"><em>n</em> = 9</span></p>
@@ -470,7 +470,7 @@ $$</span></p>
 <p><span class="math display"><em>r⃗</em> = (sin <em>θ</em>cos <em>φ</em>, sin <em>θ</em>sin <em>φ</em>, cos <em>θ</em>)</span></p>
 <p>This <span class="math inline">ℝ<sup>3</sup></span> sphere is called a <strong>Bloch sphere</strong> and the vector above is called a <strong>Bloch vector</strong>.</p>
 <figure>
-<img src="/static/images/blochsphere.svg#center" title="Bloch sphere" alt="" /><figcaption><strong>Single qubit state depicted on a Bloch sphere</strong></figcaption>
+<img src="/static/images/blochsphere.svg#center" title="Bloch sphere" alt="Single qubit state depicted on a Bloch sphere" /><figcaption aria-hidden="true"><strong>Single qubit state depicted on a Bloch sphere</strong></figcaption>
 </figure>
 <p>We shall confine ourselves to states that lie on the line of latitude on the Bloch sphere, <span class="math inline">$\theta = \frac{\pi}{2}$</span>.</p>
 <p><span class="math display">$$
@@ -481,7 +481,7 @@ $$</span></p>
 $$</span></p>
 <p>The state above is depicted below</p>
 <figure>
-<img src="/static/images/sundial.svg#center" title="Sun dials" alt="" /><figcaption><strong>Single qubit state on the line of latitude of a Bloch sphere</strong></figcaption>
+<img src="/static/images/sundial.svg#center" title="Sun dials" alt="Single qubit state on the line of latitude of a Bloch sphere" /><figcaption aria-hidden="true"><strong>Single qubit state on the line of latitude of a Bloch sphere</strong></figcaption>
 </figure>
 <p>Now let’s consider the action of <span class="math inline"><em>Û</em><sub>QFT</sub></span> on the basis states of a three-qubit system; being lazy I will omit the normalization factor.</p>
 <p><span class="math display">$$
@@ -660,9 +660,9 @@ $$</span></p>
       <div class='date'>07/22/2020</div>
       <div class='date'>— 16.5 Min</div>
     </div>
-    <h3 class='t'>
+    <h2 class='t'>
       <a href='/posts/quantum_fourier_transform' title='Quantum Fourier Transform'>Quantum Fourier Transform</a>
-    </h3>
+    </h2>
   </div>
   </link>
       <pubDate>07/22/2020</pubDate>
@@ -672,9 +672,9 @@ $$</span></p>
       <div class='date'>07/22/2020</div>
       <div class='date'>— 16.5 Min</div>
     </div>
-    <h3 class='t'>
+    <h2 class='t'>
       <a href='/posts/quantum_fourier_transform' title='Quantum Fourier Transform'>Quantum Fourier Transform</a>
-    </h3>
+    </h2>
   </div>
   </guid>
     </item>

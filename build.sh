@@ -58,9 +58,9 @@ function post_link_wrapper {
       <div class='date'>$3</div>
       <div class='date'>— $4 Min</div>
     </div>
-    <h3 class='t'>
+    <h2 class='t'>
       <a href='/posts/$1' title='$2'>$2</a>
-    </h3>
+    </h2>
   </div>
   "
 }
@@ -166,8 +166,12 @@ function header {
       <link rel='stylesheet' href='/static/css/dark.css' media='(prefers-color-scheme: dark)'>
       $syntax_assets
 
+    <title>Untitld — $1</title>
+
     </head>
     <body>
+      <a id='banner' title='stop gbv' target='_blank' rel='noopener noreferrer' href='https://twitter.com/ZoLekkaa/status/1298705551497535488?s=20'>
+      No more silence. End the genocide against womxn and LGBTQI+.</a>
       <header class='nav-header'>
       <h1 class='logo'>
         <a href='/'  aria-label='mu'>

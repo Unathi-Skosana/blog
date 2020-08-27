@@ -1,4 +1,5 @@
 # TODO
 - [x] Fix prev & next functionality for drafts.
-- [ ] Prevent prev & next wrapping
-
+- [x] Prevent prev & next wrapping
+- [x] Better cache policy for assets
+- [x] Convert images in build to .webp format

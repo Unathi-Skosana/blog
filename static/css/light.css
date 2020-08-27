@@ -29,6 +29,16 @@ body {
     color: var(--black);
 }
 
+#banner {
+  background: var(--black);
+  color: var(--dark-white);
+  text-decoration: none;
+}
+
+#banner:hover {
+  text-decoration: underline;
+}
+
 header ul li:nth-child(4) {
   border-right: .1rem solid var(--black);
 }
@@ -54,12 +64,12 @@ header ul li:last-child:hover {
   color: var(--black);
 }
 
-h3.t a {
+h2.t a {
   text-decoration: none;
   color: var(--black);
 }
 
-h3.t a:hover {
+h2.t a:hover {
   color: var(--light-black);
 }
 
