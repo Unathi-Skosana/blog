@@ -1,5 +1,5 @@
-@import url('https://rsms.me/inter/inter.css');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap');
 
 :root {
   --h-margins: 20px;
@@ -14,24 +14,16 @@ html {
 /* light mode by default */
 
 body {
-    position: relative;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.0em;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-size: 1.1em;
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
     min-height: 100%;
     padding-bottom: 3em;
     line-height: 1.45em;
-    background: hsl(210, 20%, 98%);
-}
-
-
-@supports (font-variation-settings: normal) {
-  body {
-    font-family: 'Inter var', sans-serif;
-    font-feature-settings: 'ss01' 1, 'kern' 1, 'liga' 1, 'cv05' 1, 'tnum' 1;
-  }
+    word-spacing: 0.053em;
+    position: relative;
 }
 
 pre, code {

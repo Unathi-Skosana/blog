@@ -29,6 +29,33 @@
       </script>
 
       
+    <! --- katex --->
+      <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css'>
+      <script defer src='https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js'></script>
+      <script defer src='https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js'></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var mathElements = document.getElementsByClassName('math');
+          for (var i = 0; i < mathElements.length; i++) {
+            var texText = mathElements[i].firstChild;
+            if (mathElements[i].tagName == 'SPAN') {
+              katex.render(texText.data, mathElements[i], {
+                displayMode: mathElements[i].classList.contains('display'),
+                throwOnError: false,
+                fleqn: false
+            });
+          }
+        }});
+        window.WebFontConfig = {
+          custom: {
+            families: ['KaTeX_AMS', 'KaTeX_Caligraphic:n4,n7', 'KaTeX_Fraktur:n4,n7',
+              'KaTeX_Main:n4,n7,i4,i7', 'KaTeX_Math:i4,i7', 'KaTeX_Script',
+              'KaTeX_SansSerif:n4,n7,i4', 'KaTeX_Size1', 'KaTeX_Size2', 'KaTeX_Size3',
+              'KaTeX_Size4', 'KaTeX_Typewriter'],
+          },
+        };
+      </script>
+      
 
       <!--- meta --->
 
@@ -36,8 +63,8 @@
       <meta name='viewport' content='initial-scale=1'>
       <meta content='#ffffff' name='theme-color'>
       <meta name='HandheldFriendly' content='true'>
-      <meta property='og:title' content='Academia'>
-      <meta property='og:description' content='An academic track record of some sort'>
+      <meta property='og:title' content='Interlude'>
+      <meta property='og:description' content='interludic'>
       <meta property='og:url' content='https://untitld.xyz'>
       <meta property='og:type' content='website'>
       <meta property='og:image' content='/static/favicon/micro-128.png'>
@@ -54,9 +81,9 @@
       <link rel='stylesheet' href='/static/css/style.css'>
       <link rel='stylesheet' href='/static/css/light.css' media='(prefers-color-scheme: light), (prefers-color-scheme: no-preference)'>
       <link rel='stylesheet' href='/static/css/dark.css' media='(prefers-color-scheme: dark)'>
-      
+      <link rel='stylesheet' href='/static/css/syntax.css'>
 
-    <title>Untitld — Academia</title>
+    <title>Untitld — Interlude</title>
 
     </head>
     <body>
@@ -86,18 +113,25 @@
   
       
   <div class='content'>
-    <div class='misc'>
-    <h1 id="talkspresentations">Talks&amp;Presentations</h1>
-<ul>
-<li><a href="https://docs.google.com/viewer?url=https://github.com/Unathi-Skosana/witsq-summer-school-poster/raw/master/poster.pdf">Quantum Africa V Poster</a> — Modeling of Measurement-Based Quantum Computing on IBMQ Experience Devices.</li>
-</ul>
-<h1 id="publications">Publications</h1>
-<ul>
-<li>ZLITCH</li>
-</ul>
+    <div class='s p'>
+      <h1>Interlude</h1>
+      <div class='m'>
+        <em>09/15/2020</em>
+        <span>|</span>
+        <em>0.0 minute read</em>
+      </div>
+      <div class='c'>
+        
+      </div>
     </div>
   </div>
   
+      <div class='pagination'>
+<a href='/posts/quantum_fourier_transform' title='Quantum Fourier Transform'>
+      <span>Prev</span>
+      <span>Quantum Fourier Transform</span>
+    </a>
+</div>
       
   <footer>
     <hr/>

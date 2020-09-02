@@ -85,10 +85,6 @@ h2.t a:hover {
   color: var(--light-black) !important;
 }
 
-div.content {
-  background: var(--black);
-}
-
 .date {
   color: var(--dark-white);
 }
@@ -112,7 +108,7 @@ strong {
 }
 
 .pagination a:hover {
-  background-color: var(--light-black);
+  background: var(--light-black);
 }
 
 .pagination a span:first-of-type {

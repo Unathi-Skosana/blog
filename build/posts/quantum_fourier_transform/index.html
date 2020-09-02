@@ -67,14 +67,14 @@
       <meta property='og:description' content='An attempt at demistifying the quantum Fourier transform'>
       <meta property='og:url' content='https://untitld.xyz'>
       <meta property='og:type' content='website'>
-      <meta property='og:image' content='/static/favicon/micro-128.webp'>
+      <meta property='og:image' content='/static/favicon/micro-128.png'>
 
       <!--- favicon --->
 
-      <link rel='icon' type='image/x-icon' sizes='16x16' href='/static/favicon/micro-16.webp'>
-      <link rel='icon' type='image/x-icon' sizes='32x32' href='/static/favicon/micro-32.webp'>
-      <link rel='icon' type='image/x-icon' sizes='64x64' href='/static/favicon/micro-62.webp'>
-      <link rel='icon' type='image/x-icon' sizes='128x128' href='/static/favicon/micro-128.webp'>
+      <link rel='icon' type='image/x-icon' sizes='16x16' href='/static/favicon/micro-16.png'>
+      <link rel='icon' type='image/x-icon' sizes='32x32' href='/static/favicon/micro-32.png'>
+      <link rel='icon' type='image/x-icon' sizes='64x64' href='/static/favicon/micro-62.png'>
+      <link rel='icon' type='image/x-icon' sizes='128x128' href='/static/favicon/micro-128.png'>
 
       <!--- user styles --->
 
@@ -92,7 +92,7 @@
       <header class='nav-header'>
       <h1 class='logo'>
         <a href='/'  aria-label='mu'>
-          <img src='/static/favicon/micro-128.webp' width='32' height='32' alt='mu' />
+          <img src='/static/favicon/micro-128.png' width='32' height='32' alt='mu' />
         </a>
       </h1>
       <ul class='navigation'>
@@ -552,11 +552,11 @@ e^{2 \pi i 0. x_{n-1} x_{n}} |1\rangle)\cdots(|0\rangle + e^{2\pi i 0. x_1 x_2 \
 </span></p>
 <h3 id="gates-circuits">Gates &amp; Circuits</h3>
 <p>A quantum logic gate is represented by a norm preserving linear map <span class="math inline">U</span>. The action of a quantum logic gate <span class="math inline">U</span> on an input state <span class="math inline">|\psi\rangle</span> is diagrammatically represented as:</p>
-<p><img src="/static/images/U.webp#center" title="Arbitrary quantum logic gate" height="120" /></p>
+<p><img src="/static/images/U.png#center" title="Arbitrary quantum logic gate" height="120" /></p>
 <h4 id="examples-of-quantum-logic-gates">Examples of quantum logic gates</h4>
 <p><em>Hadamard</em></p>
 <dl>
-<dt><img src="/static/images/H.webp#center" title="Hadamard gate" height="120" /></dt>
+<dt><img src="/static/images/H.png#center" title="Hadamard gate" height="120" /></dt>
 <dd><p>The Hadamard gate <span class="math inline">H</span> acts on the basis states like</p>
 </dd>
 </dl>
@@ -567,7 +567,7 @@ H|1\rangle \to |-\rangle = \frac{1}{\sqrt{2}}(|0\rangle + e^{i \pi}|1\rangle)
 <p>Visually this gate as the effect of moving a state at one of the poles of the Bloch sphere to line of latitude.</p>
 <p><em>NOT</em></p>
 <dl>
-<dt><img src="/static/images/X.webp#center" title="NOT gate" height="120" /></dt>
+<dt><img src="/static/images/X.png#center" title="NOT gate" height="120" /></dt>
 <dd><p>The NOT gate <span class="math inline">X</span> flips the basis states</p>
 </dd>
 </dl>
@@ -577,7 +577,7 @@ X|1\rangle \to |0\rangle
 </span></p>
 <p><em>Phase shift</em></p>
 <dl>
-<dt><img src="/static/images/phase.webp#center" title="Phase gate" height="120" /></dt>
+<dt><img src="/static/images/phase.png#center" title="Phase gate" height="120" /></dt>
 <dd><p>The Phase shift gate <span class="math inline">R_{\varphi}</span> modifies the phase of the basis states</p>
 </dd>
 </dl>
@@ -589,7 +589,7 @@ R_{\varphi}|1\rangle &amp;\to e^{i\varphi}|1\rangle
 </span></p>
 <p><em>Controlled-U</em></p>
 <dl>
-<dt><img src="/static/images/Cu.webp#center" title="Controlled U gate" height="120" /></dt>
+<dt><img src="/static/images/Cu.png#center" title="Controlled U gate" height="120" /></dt>
 <dd><p>A controlled-<span class="math inline">U</span> for an arbitrary <span class="math inline">U</span>, is a two-qubit gate, which has the action of applying <span class="math inline">U</span> to the target qubit <span class="math inline">|t\rangle</span> if the control qubit <span class="math inline">|c\rangle</span> is in the state <span class="math inline">|1\rangle</span>.</p>
 </dd>
 </dl>
@@ -597,7 +597,7 @@ R_{\varphi}|1\rangle &amp;\to e^{i\varphi}|1\rangle
 C(U)|c\rangle|t\rangle \to |c\rangle U^c |t\rangle
 </span></p>
 <p>A controlled-<span class="math inline">U</span> can written as a block diagonal matrix, where first block is the <span class="math inline">2\times2</span> identity matrix and the second block is <span class="math inline">U</span>.</p>
-<p><img src="/static/images/CCU.webp#center" title="Action of controlled U gate" /></p>
+<p><img src="/static/images/CCU.png#center" title="Action of controlled U gate" /></p>
 <p>Special case when <span class="math inline">U = R_{\varphi}</span> implements a controlled phase shift gate.</p>
 <h4 id="circuits-for-u_textqft">Circuits for <span class="math inline">U_\text{QFT}</span></h4>
 <p>Define unitary map <span class="math inline">R_k \equiv R_{2 \pi / 2^k}</span> as a special case for the phase shift gate. We’ll also denote a single-qubit gate acting on the qubit <span class="math inline">i</span> as <span class="math inline">U^{(i)}</span> and a two-qubit gate controlled by qubit <span class="math inline">j</span> and targeted to qubit <span class="math inline">k</span> as <span class="math inline">C(U)^{(jk)}</span> whenever there’s a possibility of ambiguity.</p>
@@ -606,7 +606,7 @@ C(U)|c\rangle|t\rangle \to |c\rangle U^c |t\rangle
 <dd>This case above is trivial is equivalent to the <span class="math inline">H</span>, since <span class="math inline">H|x_1\rangle = \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1}|1\rangle)</span>, for which <span class="math inline">e^{2\pi 0.x_1}</span> is either <span class="math inline">-1</span> or <span class="math inline">+1</span> for <span class="math inline">x_1 = 1</span> or <span class="math inline">x_1 = 0</span> respectively.
 </dd>
 </dl>
-<p><img src="/static/images/qft1_c.webp#center" title="QFT of 1 qubit" height="80" /></p>
+<p><img src="/static/images/qft1_c.png#center" title="QFT of 1 qubit" height="80" /></p>
 <dl>
 <dt><span class="math inline">n= 2</span></dt>
 <dd>The case is similar to the first, amended only slightly. Consider the operations on a single qubit below
@@ -624,19 +624,19 @@ R_{2} H |x_1\rangle &amp;= R_2 \left[\frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x
 H^{(2)}C(R_{2})^{(21)}H^{(1)}|x_1x_2\rangle &amp;= \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1 x_2 }|1\rangle)\otimes(|0\rangle + e^{2\pi 0.x_2 }|1\rangle)
 \end{aligned}
 </span></p>
-<p><img src="/static/images/qft2_c.webp#center" title="QFT of 2 qubits" height="150" /></p>
+<p><img src="/static/images/qft2_c.png#center" title="QFT of 2 qubits" height="150" /></p>
 <dl>
 <dt><span class="math inline">n = 3</span></dt>
 <dd>I challenge the keen innanet dweller to convince themselves that the circuit below realizes <span class="math inline">U_\text{QFT}</span> for three qubits.
 </dd>
 </dl>
-<p><img src="/static/images/qft3_c.webp#center" title="QFT of 3 qubits" /></p>
+<p><img src="/static/images/qft3_c.png#center" title="QFT of 3 qubits" /></p>
 <dl>
 <dt>General</dt>
 <dd>The pattern carries on to the general case, each qubit will have a Hadamard gate followed by a sequence of controlled phase shift gates, controlled by each of the qubits below the line – i.e The line immediately below controls <span class="math inline">R_2</span>, the next one <span class="math inline">R_3</span> and so on.
 </dd>
 </dl>
-<p><img src="/static/images/qftn_c.webp#center" title="QFT of n qubits" /></p>
+<p><img src="/static/images/qftn_c.png#center" title="QFT of n qubits" /></p>
 <h3 id="quantum_complexity">Complexity</h3>
 <p>On the <span class="math inline">i^{th}</span> qubit, there’s a Hadamard followed by <span class="math inline">n - i</span> controlled phase shift gates, controlled by the qubits that proceed it and there are <span class="math inline">n</span> qubits in total.</p>
 <p><span class="math display">
@@ -677,6 +677,10 @@ H^{(2)}C(R_{2})^{(21)}H^{(1)}|x_1x_2\rangle &amp;= \frac{1}{\sqrt{2}} (|0\rangle
 <a href='/posts/tribute_to_pi' title='Tribute to &pi;'>
       <span>Prev</span>
       <span>Tribute to &pi;</span>
+    </a>
+<a href='/posts/interlude' title='Interlude' style='margin-left:auto;'>
+      <span>Next</span>
+      <span>Interlude</span>
     </a>
 </div>
       
