@@ -171,7 +171,7 @@ function header {
     </head>
     <body>
       <a id='banner' title='stop gbv' target='_blank' rel='noopener noreferrer' href='https://twitter.com/ZoLekkaa/status/1298705551497535488?s=20'>
-      No more silence. End the genocide against womxn and LGBTQI+.</a>
+      No more silence. End the genocide against women and LGBTQI+.</a>
       <header class='nav-header'>
       <h1 class='logo'>
         <a href='/'  aria-label='mu'>

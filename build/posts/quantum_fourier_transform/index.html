@@ -1,0 +1,710 @@
+
+      
+  <!DOCTYPE html>
+  <html lang='en'>
+    <head>
+      <!--- dark/light mode switch --->
+
+      <script type='module' src='https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs'></script>
+
+      <!--- highlight current nav item --->
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var path = location.pathname.split('/')[1]
+          var el = document.querySelector('header ul li a[href=\'/' + path +
+          '/\']');
+          if (el) el.classList.add('active');
+        });
+      </script>
+
+      <!--- Global site tag (gtag.js) - Google Analytics --->
+
+      <script async src='https://www.googletagmanager.com/gtag/js?id=UA-167451864-1'></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-167451864-1');
+      </script>
+
+      
+    <! --- katex --->
+      <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css'>
+      <script defer src='https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js'></script>
+      <script defer src='https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js'></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var mathElements = document.getElementsByClassName('math');
+          for (var i = 0; i < mathElements.length; i++) {
+            var texText = mathElements[i].firstChild;
+            if (mathElements[i].tagName == 'SPAN') {
+              katex.render(texText.data, mathElements[i], {
+                displayMode: mathElements[i].classList.contains('display'),
+                throwOnError: false,
+                fleqn: false
+            });
+          }
+        }});
+        window.WebFontConfig = {
+          custom: {
+            families: ['KaTeX_AMS', 'KaTeX_Caligraphic:n4,n7', 'KaTeX_Fraktur:n4,n7',
+              'KaTeX_Main:n4,n7,i4,i7', 'KaTeX_Math:i4,i7', 'KaTeX_Script',
+              'KaTeX_SansSerif:n4,n7,i4', 'KaTeX_Size1', 'KaTeX_Size2', 'KaTeX_Size3',
+              'KaTeX_Size4', 'KaTeX_Typewriter'],
+          },
+        };
+      </script>
+      
+
+      <!--- meta --->
+
+      <meta charset='UTF-8'>
+      <meta name='viewport' content='initial-scale=1'>
+      <meta content='#ffffff' name='theme-color'>
+      <meta name='HandheldFriendly' content='true'>
+      <meta property='og:title' content='Quantum Fourier Transform'>
+      <meta property='og:description' content='An attempt at demistifying the quantum Fourier transform'>
+      <meta property='og:url' content='https://untitld.xyz'>
+      <meta property='og:type' content='website'>
+      <meta property='og:image' content='/static/favicon/micro-128.png'>
+
+      <!--- favicon --->
+
+      <link rel='icon' type='image/x-icon' sizes='16x16' href='/static/favicon/micro-16.png'>
+      <link rel='icon' type='image/x-icon' sizes='32x32' href='/static/favicon/micro-32.png'>
+      <link rel='icon' type='image/x-icon' sizes='64x64' href='/static/favicon/micro-62.png'>
+      <link rel='icon' type='image/x-icon' sizes='128x128' href='/static/favicon/micro-128.png'>
+
+      <!--- user styles --->
+
+      <link rel='stylesheet' href='/static/css/style.css'>
+      <link rel='stylesheet' href='/static/css/light.css' media='(prefers-color-scheme: light), (prefers-color-scheme: no-preference)'>
+      <link rel='stylesheet' href='/static/css/dark.css' media='(prefers-color-scheme: dark)'>
+      <link rel='stylesheet' href='/static/css/syntax.css'>
+
+    <title>Untitld — Quantum Fourier Transform</title>
+
+    </head>
+    <body>
+      <a id='banner' title='stop gbv' target='_blank' rel='noopener noreferrer' href='https://twitter.com/ZoLekkaa/status/1298705551497535488?s=20'>
+      No more silence. End the genocide against women and LGBTQI+.</a>
+      <header class='nav-header'>
+      <h1 class='logo'>
+        <a href='/'  aria-label='mu'>
+          <img src='/static/favicon/micro-128.png' width='32' height='32' alt='mu' />
+        </a>
+      </h1>
+      <ul class='navigation'>
+        <li><a href='/about/' title='about me'>About</a></li>
+        <li><a href='/projects/' title='side quests'>Projects</a></li>
+        <li><a href='/academia/' title='academia'>Academia</a></li>
+        <li><a href='/misc/' title='miscellaneous'>Misc</a></li>
+        <li>
+          <dark-mode-toggle
+            id='dark-mode-toggle-1'
+            dark='Dark'
+            light='Light'
+            permanent='true'
+            />
+        </li>
+      </ul>
+    </header>
+  
+      
+  <div class='content'>
+    <div class='s p'>
+      <h1>Quantum Fourier Transform</h1>
+      <div class='m'>
+        <em>07/22/2020</em>
+        <span>|</span>
+        <em>16.5 minute read</em>
+      </div>
+      <div class='c'>
+        <p>This post is the first iteration of an <span class="math inline">N</span>-part series of blog posts aimed at attempting to understand some of the ideas behind Shor’s factoring algorithm. One such idea is that of the quantum Fourier transform (QFT), which will be the subject of inquiry here. I would strongly recommend familiarity with linear algebra and bra-ket notation. The following lecture notes on <a href="https://ocw.mit.edu/courses/physics/8-05-quantum-physics-ii-fall-2013/lecture-notes/MIT8_05F13_Chap_04.pdf">bra-ket</a> notation should be sufficient.</p>
+<h3 id="tableau">Tableau</h3>
+<ol type="1">
+<li><a href="#classical">Not So Quantum Fourier Transform</a>
+<ol type="i">
+<li><a href="#classical_definitions">Definitions</a></li>
+<li><a href="#classical_examples">Examples</a></li>
+<li><a href="#classical_properties">Properties of interest</a></li>
+</ol></li>
+<li><a href="#quantum">Going Quantum</a>
+<ol type="i">
+<li><a href="#quantum_definitions">Definitions</a></li>
+<li><a href="#quantum_examples">Circuits &amp; Examples</a></li>
+<li><a href="#quantum_complexity">Complexity</a></li>
+</ol></li>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="classical">Not So Quantum, Fourier Transform</h2>
+<p>The quantum Fourier transform is intimately related (same transform but different notations) to the ubiquitous <strong>discrete Fourier transform (DFT)</strong>. The DFT converts a sequence of values, usually from some time-dependent function <span class="math inline">f(t)</span> sampled at equidistant time intervals, into another sequence of values, sampled from a frequency-dependent function <span class="math inline">F(\nu)</span> at equidistant frequency intervals. The transformation from <span class="math inline">f(t)</span> to <span class="math inline">F(\nu)</span> is the Fourier transform.</p>
+<h3 id="classical_definitions">Definitions</h3>
+<p>The discrete Fourier transform is a transformation <span class="math inline">\mathcal{F} : \{x_k\}_{k=0}^{N-1} \to \{y_k\}_{k=0}^{N-1}</span>, that maps a tuple of <span class="math inline">N</span> complex-valued numbers</p>
+<p><span class="math display">
+\underline{\mathbf{x}} = (x_0, x_1, x_2, \ldots, x_{N-1})
+</span></p>
+<p>to another tuple</p>
+<p><span class="math display">
+\underline{\mathbf{y}} = (y_0, y_1, y_2, \ldots, y_{N-1})
+</span></p>
+<p>The relation between the two tuples is given by</p>
+<p><span class="math display">
+y_n \equiv  \displaystyle\sum_{k=0}^{N-1} x_k e^{-2\pi ikn/N}
+</span></p>
+<p>For the seek of notational convenience, we may denote <span class="math inline">\omega_N = e^{-2\pi i/N}</span> and rewrite the sum as</p>
+<p><span class="math display">
+y_n \equiv  \displaystyle\sum_{k=0}^{N-1} x_k \omega_N^{kn} \\
+</span></p>
+<p>which lends itself to the following linear expression i.e <span class="math inline">\underline{\mathbf{y}} = \hat{U}\underline{\mathbf{x}}</span>, with the matrix elements of <span class="math inline">U</span>, given by <span class="math inline">U_{nk} = \omega_N^{kn}</span>.</p>
+<p><span class="math display">
+\begin{aligned}
+  \begin{pmatrix}
+    y_0 \\ y_1 \\ y_2 \\ \vdots \\ y_{N-1} 
+  \end{pmatrix} &amp;=
+  \begin{pmatrix}
+    1 &amp; 1 &amp; 1 &amp; \ldots &amp; 1 \\
+    1 &amp; \omega_N &amp; \omega_N^2 &amp; \ldots  &amp; \omega_N^{(N-1)} \\
+    1 &amp; \omega_N^2 &amp; \omega_N^4 &amp; \ldots &amp; \omega_N^{2(N-1)} \\
+    \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    1 &amp; \omega_N^{(N-1)} &amp; \omega_N^{2(N-1)} &amp; \ldots &amp; \omega_N^{(N-1)^2}
+  \end{pmatrix}
+  \begin{pmatrix}
+      x_0 \\ x_1 \\ x_2 \\ \vdots \\ x_{N-1}
+  \end{pmatrix}
+\end{aligned}
+</span></p>
+<p>If the input values <span class="math inline">x_k</span> are real-valued, the discrete Fourier transform can be thought of as encoding of a discretized signal in amplitude and phase of a sin wave with frequencies <span class="math inline">\nu_k = \frac{2\pi k}{N}</span>.</p>
+<h3 id="classical_examples">Examples</h3>
+<dl>
+<dt>Example 1</dt>
+<dd><p>Consider <span class="math inline">\underline{\mathbf{x}} = (x_0, x_1, x_2, x_3) = (0, 0, 0, 1)</span> with <span class="math inline">\omega_4 = e^{-2\pi i/4}</span></p>
+</dd>
+</dl>
+<p><span class="math display">
+\begin{aligned}
+  \begin{pmatrix}
+    y_0 \\ y_1 \\ y_2 \\ y_3
+  \end{pmatrix}
+  &amp;=
+  \begin{pmatrix}
+    1 \\
+    \omega_4^{3} \\
+    \omega_4^{6} \\
+    \omega_4^{9}
+  \end{pmatrix}
+  &amp;=
+  \begin{pmatrix}
+     1 \\
+     i \\
+     -1 \\
+     -i
+  \end{pmatrix}
+\end{aligned}
+</span></p>
+<dl>
+<dt>Example 2</dt>
+<dd><p>Consider <span class="math inline">\underline{\mathbf{x}} = (x_0, x_1, x_2, x_3) = (-1, 0, -1, 0)</span> with <span class="math inline">\omega_4 = e^{-2\pi i/4}</span></p>
+</dd>
+</dl>
+<p><span class="math display">
+\begin{aligned}
+  \begin{pmatrix}
+    y_0 \\ y_1 \\ y_2 \\ y_3
+  \end{pmatrix}
+  &amp;=
+  \begin{pmatrix}
+    -2 \\
+    -1 - \omega_4^{2} \\
+    -1 - \omega_4^{4} \\
+    -1 - \omega_4^{6}
+  \end{pmatrix}
+  &amp;=
+  \begin{pmatrix}
+    -2 \\
+     0 \\
+     -2 \\
+     0
+  \end{pmatrix}
+\end{aligned}
+</span></p>
+<h3 id="classical_properties">Properties of interest</h3>
+<p>The discrete Fourier transform has many interesting properties, however we’ll only focus on ones relevant to our inquiry here.</p>
+<dl>
+<dt><em>Linearity</em></dt>
+<dd><p>We saw earlier that can represent the transformation as a matrix.</p>
+</dd>
+</dl>
+<p><span class="math display">
+\begin{aligned}
+  \hat{U}(\alpha \underline{\mathbf{x}}_0 + \beta\underline{\mathbf{x}}_1) &amp;= \hat{U}(a\underline{x}_0) + \hat{U}(b\underline{x}_1) \\
+  &amp;= a\hat{U}\underline{\mathbf{x}}_0 + b\hat{U}\underline{\mathbf{x}}_1 \\
+  &amp;= a\underline{\mathbf{y}}_0 + b \underline{\mathbf{y}}_1
+\end{aligned}
+</span></p>
+<dl>
+<dt><em>Periodic</em></dt>
+<dd><p>The discrete Fourier transform is periodic with period <span class="math inline">N</span></p>
+</dd>
+</dl>
+<p><span class="math display">
+\begin{aligned}
+  y_{n+N} &amp;= \displaystyle\sum_{k=0}^{N-1} x_k e^{-2\pi ik(n+N)/N} \\
+  &amp;= \displaystyle\sum_{k=0}^{N-1} x_k e^{-2\pi ik n/N}e^{-2\pi ik} \\
+  &amp;=  \displaystyle\sum_{k=0}^{N-1} x_k e^{-2\pi ik n/N} \\
+  &amp;= y_n
+\end{aligned}
+</span></p>
+<dl>
+<dt><em>Revealing frequent/periodic patterns (very hand-wavey)</em></dt>
+<dd><p>Consider the input tuple below</p>
+</dd>
+</dl>
+<p><span class="math display">
+  \mathbf{x} = (1,2,3,1,2,3,1,2,3,1,2,3)
+</span></p>
+<blockquote>
+<p>The above tuple has a repeating sub-tuple <span class="math inline">(1,2,3)</span>, each element of this sub-tuple has a period of <span class="math inline">3</span> or equivalently a frequency of <span class="math inline">\frac{1}{3}</span>. Computing <span class="math inline">\underline{\mathbf{y}} = (y_0, y_1, \ldots, y_{11})</span> and <span class="math inline">\mathcal{P}(n)</span> given by the square modulus of the <span class="math inline">n^\text{th}</span> term of <span class="math inline">\mathbf{y}</span>.</p>
+</blockquote>
+<p><span class="math display">
+\mathcal{P}(n) = \frac{|y_n|^2}{\sqrt{\sum_{k=1}^{11} |y_k|^2}} \quad 1 \leq n \leq 11
+</span></p>
+<blockquote>
+<p>The coefficient <span class="math inline">P(n)</span> is associated with power of the frequency <span class="math inline">\nu_{n} = \frac{2\pi n}{12}</span>, note the term associated with the frequency <span class="math inline">\nu_{0}</span> (average of all samples) is omitted here. Since the frequency <span class="math inline">\frac{1}{3}</span> is prevalent here, we should expect to see pronounced peaks in <span class="math inline">\mathcal{P}</span> where</p>
+</blockquote>
+<p><span class="math display">
+\frac{n-1}{12} = \frac{m}{3}
+</span></p>
+<blockquote>
+<p>for some integer <span class="math inline">1 \leq m \leq 11</span>.</p>
+</blockquote>
+<figure>
+<img src="/static/images/plot.svg#center" title="Plot" alt="Plot of \mathcal{P}" /><figcaption aria-hidden="true">Plot of <span class="math inline">\mathcal{P}</span></figcaption>
+</figure>
+<blockquote>
+<p>This is indeed the case, the plot above shows the expected peaks at <span class="math inline">n=5</span> and <span class="math inline">n=9</span></p>
+</blockquote>
+<p><span class="math display">
+\frac{4}{12} = \frac{1}{3}, \frac{8}{12} = \frac{2}{3}
+</span></p>
+<p><span class="math inline">\mathcal{P}</span> is called a <strong>periodogram</strong>.</p>
+<dl>
+<dt><em>Invertible</em></dt>
+<dd><p>Multiplying both sides of the original definition by <span class="math inline">\displaystyle\sum_{n=0}^{N-1} e^{2\pi i j n / N}</span> for some integer <span class="math inline">j</span> yields</p>
+</dd>
+</dl>
+<p><span class="math display">
+\begin{aligned}
+\displaystyle\sum_{n=0}^{N-1}y_{n} e^{2\pi i j n / N} &amp;= \displaystyle\sum_{n=0}^{N - 1}\displaystyle\sum_{k=0}^{N-1} x_k e^{-2\pi ikn/N}e^{2\pi i j n  / N}  \\
+&amp;=  \displaystyle\sum_{n=0}^{N - 1}\displaystyle\sum_{k=0}^{N-1} x_k e^{-2\pi in(k-j)/N} \\
+&amp;=  \displaystyle\sum_{k=0}^{N - 1}x_k\displaystyle\sum_{n=0}^{N-1} e^{-2\pi in(k-j)/N}  \\
+\end{aligned}
+</span></p>
+<blockquote>
+<p>Isolating the inner sum, we can consider the two possible scenario, <span class="math inline">k = j</span> and <span class="math inline">k \neq j</span>. The first case is trivial</p>
+</blockquote>
+<p><span class="math display">
+\begin{aligned}
+\displaystyle\sum_{n=0}^{N-1} e^{-2\pi i n(k - k)/N} = \displaystyle\sum_{n=0}^{N-1} 1 = N
+\end{aligned}
+</span></p>
+<blockquote>
+<p>The second case, not so</p>
+</blockquote>
+<p><span class="math display">
+\begin{aligned}
+\displaystyle\sum_{n=0}^{N-1} \left(e^{-2\pi i (k - j)/N}\right)^n =  \displaystyle\sum_{n=0}^{N-1} r^n
+\end{aligned}
+</span></p>
+<blockquote>
+<p>where <span class="math inline">r = e^{-2\pi i (k - j)/N}</span>. The summation above is a geometric progression, which has an explicit formula</p>
+</blockquote>
+<p><span class="math display">
+\begin{aligned}
+\displaystyle\sum_{n=0}^{N-1} r^n &amp;= \frac{1 - r^N}{1 - r} , \quad |r| \lt 1 \\
+&amp;= \frac{1 - e^{-2\pi i (k - j)}}{1 - e^{-2\pi i (k - j)/N}} \\
+&amp;= \frac{1 - 1}{1 - e^{-2\pi i (k - j)/N}} \\
+= 0
+\end{aligned}
+</span></p>
+<blockquote>
+<p>since <span class="math inline">e^{-2\pi i m} = 0</span> for any integer <span class="math inline">m</span>. Thus</p>
+</blockquote>
+<p><span class="math display">
+\begin{aligned}
+  \displaystyle\sum_{n=0}^{N-1} e^{-2\pi i n(k - j)/N}
+  &amp;= \begin{cases}
+  N  &amp; k = j \\
+  0  &amp; k \neq j \\
+  \end{cases}
+  \\
+  &amp;= N\delta_{kj}
+\end{aligned}
+</span></p>
+<blockquote>
+<p>where <span class="math inline">\delta_{kj}</span> is the delta Kronecker function. We can now show that</p>
+</blockquote>
+<p><span class="math display">
+\begin{aligned}
+\displaystyle\sum_{n=0}^{N-1}y_{n} e^{2\pi i j n / N}  &amp;= \displaystyle\sum_{k=0}^{N - 1} x_k N\delta_{kj} \\
+&amp;= N x_j \\
+x_j &amp;= \frac{1}{N} \displaystyle\sum_{n=0}^{N-1}y_{n} e^{2\pi i j n / N} 
+\end{aligned}
+</span></p>
+<blockquote>
+<p>The above linear map is called the <strong>discrete inverse Fourier transform</strong>.</p>
+</blockquote>
+<dl>
+<dt><em>Unitary</em></dt>
+<dd><p>See <a href="https://en.wikipedia.org/wiki/Parseval&#39;s_theorem">Parseval’s theorem</a>. The theorem’s results is that <span class="math inline">\frac{1}{N} U^{*}U = I</span>, which implies unitarity, i.e <span class="math inline">\frac{1}{\sqrt{N}} U^{*} = \frac{1}{\sqrt{N}}U^{-1}</span>.</p>
+</dd>
+</dl>
+<h3 id="classical_complexity">Computational complexity</h3>
+<p>For a specific transformed coefficient <span class="math inline">y_n</span>, computing the sum requires at least <span class="math inline">2</span> multiplications for each term in the sum (one for real part and one for the imaginary part) and adding <span class="math inline">2N</span> terms requires <span class="math inline">2N-1</span> additions. Thus computing each <span class="math inline">y_n</span> term requires at least</p>
+<p><span class="math display">
+\begin{aligned}
+ 2N + 2N - 1 &amp;= 4N -1
+\end{aligned}
+</span></p>
+<p>computing <span class="math inline">N</span> such terms would require</p>
+<p><span class="math display">
+\begin{aligned}
+ N(4N -1) &amp;= 4N^2 - N \\
+ &amp; \sim \mathcal{O}(N^2)
+\end{aligned}
+</span></p>
+<p>arithmetic operations.</p>
+<blockquote>
+<blockquote>
+<p>The <strong>fast Fourier transform</strong> can reduce this scaling to <span class="math inline">\mathcal{O}(N\log N)</span>, which still scales exponentially with the number of classical bit operations <span class="math inline">N=2^n</span> (assuming <span class="math inline">N</span> is even), <span class="math inline">\mathcal{O}(n2^n)</span></p>
+</blockquote>
+</blockquote>
+<h2 id="quantum">Going Quantum</h2>
+<p>Improvement in complexity is plateaued, even with the best classical algorithm for computing the Fourier transform. In what follows, we’ll see how a quantum computer can compute the discrete Fourier transform with polynomial scaling <span class="math inline">\mathcal{O}(n^2)</span> in the number of resources (quantum gates) on a quantum state described by <span class="math inline">n</span> quantum bits (qubits).</p>
+<h3 id="quantum_definitions">Definitions</h3>
+<p>Any <span class="math inline">n</span>-qubit state <span class="math inline">|\psi\rangle</span> can be expressed as a linear combination of orthonormal basis states for <span class="math inline">\mathbb{C}^{2^n}</span>, given by the maximal set <span class="math inline">\{|x\rangle\}_{x \in \{0,1\}^n}</span> where the elements are <span class="math inline">2^n</span>-dimensional one-hot vectors of the form</p>
+<p><span class="math display">
+|x\rangle = \begin{pmatrix}0 \\ \vdots \\1 \\ \vdots \\ 0\end{pmatrix}
+</span></p>
+<p>The only non-zero entry in above is a <span class="math inline">1</span> at some <span class="math inline">i^\text{th}</span> position.</p>
+<p><span class="math display">
+|\psi\rangle = \displaystyle\sum_{x \in \{0,1\}^n} \alpha_x |x\rangle \\
+\alpha_x \in \mathbb{C} \text{  and  } \displaystyle\sum_{x \in \{0,1\}^n} |\alpha_x|^2 = 1
+</span></p>
+<p>where <span class="math inline">|x\rangle = |x_{1}x_{2}\cdots x_{n-1} x_{n}\rangle = |x_{1}\rangle\otimes|x_{2}\rangle\cdots |x_{n-1}\rangle\otimes|x_{n}\rangle</span></p>
+<p>Alternatively, since the elements of the maximal set <span class="math inline">\{x\}_{x \in \{0,1\}^n}</span> are the numbers from <span class="math inline">0</span> in <span class="math inline">2^n -1</span> expressed in binary notation, one can write</p>
+<p><span class="math display">
+|\psi\rangle = \displaystyle\sum_{x = 0}^{2^n - 1} \alpha_x |x\rangle \quad, ...
+</span></p>
+<p>The <strong>quantum Fourier transform</strong> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is defined as a linear and unitary (norm preserving) map that acts on the basis states as follows</p>
+<p><span class="math display">
+\hat{U}_\text{QFT}|x\rangle =  \frac{1}{\sqrt{N}} \displaystyle\sum_{y=0}^{N
+-1}e^{2\pi i x y / N } |y\rangle
+</span></p>
+<p>Like before</p>
+<p><span class="math display">
+\hat{U}_\text{QFT} = \frac{1}{\sqrt{N}} \begin{pmatrix}
+    1 &amp; 1 &amp; 1 &amp; \ldots &amp; 1 \\
+    1 &amp; \omega_N &amp; \omega_N^2 &amp; \ldots  &amp; \omega_N^{(N-1)} \\
+    1 &amp; \omega_N^2 &amp; \omega_N^4 &amp; \ldots &amp; \omega_N^{2(N-1)} \\
+    \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    1 &amp; \omega_N^{(N-1)} &amp; \omega_N^{2(N-1)} &amp; \ldots &amp; \omega_N^{(N-1)^2}
+  \end{pmatrix}
+</span></p>
+<p>Here <span class="math inline">N = 2^n</span> where <span class="math inline">n</span> is number of qubits.</p>
+<h4 id="tensor-product-states">Tensor product states</h4>
+<p>The QFT lends itself to a tensor product representation that allows one to somewhat visual it geometrically. Recall that</p>
+<p><span class="math display">
+\begin{aligned}
+\hat{U}_\text{QFT}|x\rangle &amp;=  \frac{1}{\sqrt{2^n}} \displaystyle\sum_{y=0}^{2^n-1}e^{2\pi i x y /N } |y\rangle \\
+&amp;= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y \in \{0,1\}^n} e^{2\pi i x y /2^n } |y_{1}y_{2}\cdots
+y_{n-1}y_{n}\rangle
+\end{aligned}
+</span></p>
+<p>Since <span class="math inline">y \leq 2^n -1 \implies y / 2^n \lt 1</span>. If we express <span class="math inline">y</span> in binary as <span class="math inline">y = y_0 y_{1} \cdots y_{n-2} y_{n-1}</span></p>
+<p><span class="math display">
+\begin{aligned}
+y = y_1 2^{n-1} + y_2 2^{n-2} + \cdots + y_{n}2^0 = \displaystyle\sum_{l=1}^{n}
+y_l 2^{n-l}
+\end{aligned}
+</span></p>
+<p>Thus</p>
+<p><span class="math display">
+\begin{aligned}
+y / 2^n = \displaystyle\sum_{l = 1}^{n} y_{l}2^{n-l}/2^n =
+\displaystyle\sum_{l=1}^{n} y_l2^{n - n - l} = \displaystyle\sum_{l=1}^n y_l
+2^{-l}
+\end{aligned}
+</span></p>
+<p>Rewriting the expression</p>
+<p><span class="math display">
+\begin{aligned}
+\hat{U}_\text{QFT}|x\rangle &amp;= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y \in \{0,1\}^n} e^{2\pi i x y /N } |y_{1}\cdots
+y_{n}\rangle \\
+&amp;= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y \in \{0,1\}^n} e^{2\pi i x (\sum_{l=1}^n y_l
+2^{-l}) } |y_{1}\cdots y_{n}\rangle \\
+&amp;= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y_1 = 0}^{1}\cdots\displaystyle\sum_{y_{n} = 0}^{1} 
+e^{2\pi i x (\sum_{l=1}^n y_l 2^{-l}) } |y_{1}\cdots y_{n}\rangle 
+\end{aligned}
+</span></p>
+<p>The last step is due to expressing <span class="math inline">y</span> in binary form. For any <span class="math inline">j</span>, <span class="math inline">y_j = 0 \text{ or } 1</span></p>
+<p><span class="math display">
+\begin{aligned}
+&amp;= \frac{1}{\sqrt{2^n}}\displaystyle\sum_{y_1 = 0}^{1}\cdots\displaystyle\sum_{y_{n} = 0}^{1} 
+\displaystyle\prod_{l=1}^{n}e^{2\pi i x (y_l 2^{-l}) } |y_{1}\cdots y_{n}\rangle  \\
+&amp;= \frac{1}{\sqrt{2^n}}\displaystyle\prod_{l=1}^{n}\displaystyle\sum_{y_l
+=0}^{1}e^{2\pi i x (y_l2^{-l})}|y_l\rangle \\
+&amp;= \frac{1}{\sqrt{2^n}}\displaystyle\prod_{l=1}^{n}(e^{2\pi i x (0\cdot 2^{-l})}|0\rangle + 
+e^{2\pi i x (1\cdot 2^{-l})}|1\rangle ) \\
+&amp;= \frac{1}{\sqrt{2^n}}\displaystyle\prod_{l=1}^{n}(|0\rangle + e^{2\pi i x / 2^l}|1\rangle) \\
+&amp;= \frac{1}{\sqrt{2^n}} (|0\rangle + e^{2\pi i x / 2^1}|1\rangle) \otimes (|0\rangle +
+e^{2 \pi i x /2^2}|1\rangle)\cdots(|0\rangle + e^{2\pi i x /2^n}|1\rangle)
+\end{aligned}
+</span></p>
+<p>The representation above reveals that each of the individual qubits after applying <span class="math inline">\hat{U}_\text{QFT}</span>, acquire a phase that scales down with progressive powers of two from the leftmost to the rightmost qubit.</p>
+<h4 id="sun-dial-basis-states">Sun dial basis states</h4>
+<p>Due to the normalization constraint, a single qubit state be represented geometrically as a unit vector on the surface of a unit sphere in <span class="math inline">3</span>-space. For real numbers <span class="math inline">\theta</span> and <span class="math inline">\varphi</span>, any single qubit state can be expressed as</p>
+<p><span class="math display">
+|\psi\rangle = \cos{\left(\frac{\theta}{2}\right)}|0\rangle + e^{i\varphi}\sin{\left(\frac{\theta}{2}\right)}|1\rangle \\
+0 \leq \theta \leq \pi, 0 \leq \varphi \lt 2\pi
+</span></p>
+<blockquote>
+<blockquote>
+<p><em>Ex: Check that the state above is normalized.</em></p>
+</blockquote>
+</blockquote>
+<p><span class="math inline">\theta</span> and <span class="math inline">\varphi</span> parametrize a point on a unit sphere in <span class="math inline">\mathbb{R}^3</span></p>
+<p><span class="math display">
+\vec{r} = (\sin{\theta}\cos{\varphi}, \sin{\theta}\sin{\varphi},\cos{\theta})
+</span></p>
+<p>This <span class="math inline">\mathbb{R}^3</span> sphere is called a <strong>Bloch sphere</strong> and the vector above is called a <strong>Bloch vector</strong>.</p>
+<figure>
+<img src="/static/images/blochsphere.svg#center" title="Bloch sphere" alt="Single qubit state depicted on a Bloch sphere" /><figcaption aria-hidden="true"><strong>Single qubit state depicted on a Bloch sphere</strong></figcaption>
+</figure>
+<p>We shall confine ourselves to states that lie on the line of latitude on the Bloch sphere, <span class="math inline">\theta = \frac{\pi}{2}</span>.</p>
+<p><span class="math display">
+\begin{aligned}
+|\phi\rangle &amp;= \cos{\left(\frac{\pi}{4}\right)}|0\rangle + e^{i\varphi}\sin{\left(\frac{\pi}{4}\right)}|1\rangle \\
+&amp;= \frac{1}{\sqrt{2}}\left(|0\rangle + e^{i\varphi}|1\rangle\right)
+\end{aligned}
+</span></p>
+<p>The state above is depicted below</p>
+<figure>
+<img src="/static/images/sundial.svg#center" title="Sun dials" alt="Single qubit state on the line of latitude of a Bloch sphere" /><figcaption aria-hidden="true"><strong>Single qubit state on the line of latitude of a Bloch sphere</strong></figcaption>
+</figure>
+<p>Now let’s consider the action of <span class="math inline">\hat{U}_\text{QFT}</span> on the basis states of a three-qubit system; being lazy I will omit the normalization factor.</p>
+<p><span class="math display">
+\begin{aligned}
+\hat{U}_\text{QFT}|000\rangle &amp;= \hat{U}_\text{QFT}|0\rangle = (|0\rangle
++ e^{2\pi i 0 /2 ^1}|1\rangle)\otimes(|0\rangle + e^{2\pi i 0  /
+    2^2}|1\rangle)\otimes(|0\rangle + e^{2\pi i 0 / 2^3}|1\rangle) \\
+\hat{U}_\text{QFT}|100\rangle &amp;= \hat{U}_\text{QFT}|1\rangle = (|0\rangle
++ e^{2\pi i 1 /2 ^1}|1\rangle)\otimes(|0\rangle + e^{2\pi i 1 /
+    2^2}|1\rangle)\otimes(|0\rangle + e^{2\pi i 1 / 2^3}|1\rangle) \\
+ &amp; \phantom{\;=}\vdots \\
+\hat{U}_\text{QFT}|011\rangle &amp;= \hat{U}_\text{QFT}|6\rangle = (|0\rangle
++ e^{2\pi i 6 /2 ^1}|1\rangle)\otimes(|0\rangle + e^{2\pi i 6 /
+    2^2}|1\rangle)\otimes(|0\rangle + e^{2\pi i 6 / 2^3}|1\rangle) \\
+\hat{U}_\text{QFT}|111\rangle &amp;= \hat{U}_\text{QFT}|7\rangle = (|0\rangle
++ e^{2\pi i 7 /2 ^1}|1\rangle)\otimes(|0\rangle + e^{2\pi i 7 /
+    2^2}|1\rangle)\otimes(|0\rangle + e^{2\pi i 7 / 2^3}|1\rangle)
+\end{aligned}
+</span></p>
+<p>Visually</p>
+<p><img src="/static/images/3q-qft-0.svg#center" title="Sundial 0" height="80" /> <img src="/static/images/3q-qft-1.svg#center" title="Sundial 1" height="80" /> <span class="math display">
+\vdots
+</span> <img src="/static/images/3q-qft-6.svg#center" title="Sundial 6" height="80" /> <img src="/static/images/3q-qft-7.svg#center" title="Sundial 7" height="80" /></p>
+<p>We see here that the action of <span class="math inline">\hat{U}_\text{QFT}</span> is to encode the basis states, e.g <span class="math inline">|6\rangle</span>, by rotating the leftmost qubit along the line of latitude through <span class="math inline">\frac{6}{2^3}</span> revolutions, the middle qubit double that of the leftmost qubit, <span class="math inline">\frac{6}{2^2}</span> revolutions and the pattern continues. Turns out the states above also form an orthonormal basis, the sundial basis (or more appropriate Fourier basis) states, since <span class="math inline">\hat{U}_\text{QFT}</span> is a norm preserving operation.</p>
+<h3 id="quantum_examples">Circuits &amp; Examples</h3>
+<p>We’ll briefly look at a few <em>quantum logic gates</em> (linear &amp; unitary maps) relevant to the QFT and <em>quantum circuits</em> that realize <span class="math inline">\hat{U}_\text{QFT}</span>.</p>
+<h4 id="prequel-notational-convenience">Prequel : Notational convenience</h4>
+<p>Before proceeding, it is important we adopt fractional binary notation for expressing the angle <span class="math inline">\varphi</span>. For some integer <span class="math inline">l</span></p>
+<p><span class="math display">
+\frac{x}{2^l} = d + r
+</span></p>
+<p>where <span class="math inline">0 \leq d \leq \left\lfloor\frac{x}{2^l}\right\rfloor</span> is an integer and <span class="math inline">0 \leq r \lt 1</span> is a rational.</p>
+<p><span class="math display">
+\begin{aligned}
+e^{2\pi i x / 2^l} &amp;= e^{2\pi i (d + r)} \\
+&amp;= e^{2\pi i d} e^{2\pi i r} \\
+&amp;= e^{2\pi i r}
+\end{aligned}
+</span></p>
+<p>Thus we only need to concern ourselves with the fractional part of <span class="math inline">\frac{x}{2^l}</span> when evaluating <span class="math inline">e^{2 \pi i x / 2^l}</span>, for which we’ll denote as <span class="math inline">\text{frac}(x/2^l)</span>. Recall that we can write <span class="math inline">x/2^l</span> in binary as</p>
+<p><span class="math display">
+\begin{aligned}
+x / 2^l = \displaystyle\sum_{i = 1}^{n} x_{i}2^{n-i}/2^l =
+\displaystyle\sum_{i=1}^{n} x_i 2^{n - (i + l)} 
+\end{aligned}
+</span></p>
+<p>Fractional terms occur whenever <span class="math inline">(i + l) &gt; n \implies i &gt; n - l\implies i \geq j = n - l + 1</span></p>
+<p><span class="math display">
+\begin{aligned}
+\text{frac}(x / 2^l) = \displaystyle\sum_{i=j}^{n} x_i 2^{j-i+1} 
+\end{aligned}
+</span></p>
+<p>The above expression is often written as <span class="math inline">0.x_jx_{j+1} \cdots x_n</span>. We can rewrite the tensor product expression we saw earlier as</p>
+<p><span class="math display">
+\hat{U}_\text{QFT}|x_1x_2\cdots x_{n-1}x_{n}\rangle = \frac{1}{\sqrt{2^n}} (|0\rangle + e^{2\pi i 0. x_{n}} |1\rangle) \otimes (|0\rangle +
+e^{2 \pi i 0. x_{n-1} x_{n}} |1\rangle)\cdots(|0\rangle + e^{2\pi i 0. x_1 x_2 \cdots x_{n}} |1\rangle)
+</span></p>
+<h3 id="gates-circuits">Gates &amp; Circuits</h3>
+<p>A quantum logic gate is represented by a norm preserving linear map <span class="math inline">U</span>. The action of a quantum logic gate <span class="math inline">U</span> on an input state <span class="math inline">|\psi\rangle</span> is diagrammatically represented as:</p>
+<p><img src="/static/images/U.png#center" title="Arbitrary quantum logic gate" height="120" /></p>
+<h4 id="examples-of-quantum-logic-gates">Examples of quantum logic gates</h4>
+<p><em>Hadamard</em></p>
+<dl>
+<dt><img src="/static/images/H.png#center" title="Hadamard gate" height="120" /></dt>
+<dd><p>The Hadamard gate <span class="math inline">H</span> acts on the basis states like</p>
+</dd>
+</dl>
+<p><span class="math display">
+H |0\rangle \to |+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + e^{i 0}|1\rangle) \\
+H|1\rangle \to |-\rangle = \frac{1}{\sqrt{2}}(|0\rangle + e^{i \pi}|1\rangle)
+</span></p>
+<p>Visually this gate as the effect of moving a state at one of the poles of the Bloch sphere to line of latitude.</p>
+<p><em>NOT</em></p>
+<dl>
+<dt><img src="/static/images/X.png#center" title="NOT gate" height="120" /></dt>
+<dd><p>The NOT gate <span class="math inline">X</span> flips the basis states</p>
+</dd>
+</dl>
+<p><span class="math display">
+X|0\rangle \to |1\rangle \\
+X|1\rangle \to |0\rangle
+</span></p>
+<p><em>Phase shift</em></p>
+<dl>
+<dt><img src="/static/images/phase.png#center" title="Phase gate" height="120" /></dt>
+<dd><p>The Phase shift gate <span class="math inline">R_{\varphi}</span> modifies the phase of the basis states</p>
+</dd>
+</dl>
+<p><span class="math display">
+\begin{aligned}
+R_{\varphi}|0\rangle &amp;\to |0\rangle \\
+R_{\varphi}|1\rangle &amp;\to e^{i\varphi}|1\rangle
+\end{aligned}
+</span></p>
+<p><em>Controlled-U</em></p>
+<dl>
+<dt><img src="/static/images/Cu.png#center" title="Controlled U gate" height="120" /></dt>
+<dd><p>A controlled-<span class="math inline">U</span> for an arbitrary <span class="math inline">U</span>, is a two-qubit gate, which has the action of applying <span class="math inline">U</span> to the target qubit <span class="math inline">|t\rangle</span> if the control qubit <span class="math inline">|c\rangle</span> is in the state <span class="math inline">|1\rangle</span>.</p>
+</dd>
+</dl>
+<p><span class="math display">
+C(U)|c\rangle|t\rangle \to |c\rangle U^c |t\rangle
+</span></p>
+<p>A controlled-<span class="math inline">U</span> can written as a block diagonal matrix, where first block is the <span class="math inline">2\times2</span> identity matrix and the second block is <span class="math inline">U</span>.</p>
+<p><img src="/static/images/CCU.png#center" title="Action of controlled U gate" /></p>
+<p>Special case when <span class="math inline">U = R_{\varphi}</span> implements a controlled phase shift gate.</p>
+<h4 id="circuits-for-u_textqft">Circuits for <span class="math inline">U_\text{QFT}</span></h4>
+<p>Define unitary map <span class="math inline">R_k \equiv R_{2 \pi / 2^k}</span> as a special case for the phase shift gate. We’ll also denote a single-qubit gate acting on the qubit <span class="math inline">i</span> as <span class="math inline">U^{(i)}</span> and a two-qubit gate controlled by qubit <span class="math inline">j</span> and targeted to qubit <span class="math inline">k</span> as <span class="math inline">C(U)^{(jk)}</span> whenever there’s a possibility of ambiguity.</p>
+<dl>
+<dt><span class="math inline">n = 1</span></dt>
+<dd>This case above is trivial is equivalent to the <span class="math inline">H</span>, since <span class="math inline">H|x_1\rangle = \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1}|1\rangle)</span>, for which <span class="math inline">e^{2\pi 0.x_1}</span> is either <span class="math inline">-1</span> or <span class="math inline">+1</span> for <span class="math inline">x_1 = 1</span> or <span class="math inline">x_1 = 0</span> respectively.
+</dd>
+</dl>
+<p><img src="/static/images/qft1_c.png#center" title="QFT of 1 qubit" height="80" /></p>
+<dl>
+<dt><span class="math inline">n= 2</span></dt>
+<dd>The case is similar to the first, amended only slightly. Consider the operations on a single qubit below
+</dd>
+</dl>
+<p><span class="math display">
+\begin{aligned}
+R_{2} H |x_1\rangle &amp;= R_2 \left[\frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1 0 }|1\rangle)\right] \\
+&amp;= \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1 1}|1\rangle)
+\end{aligned}
+</span></p>
+<p>The action of <span class="math inline">R_2</span> on <span class="math inline">H|x_1\rangle</span> is modifies the phase <span class="math inline">2\pi 0.x_1 0</span> to <span class="math inline">2\pi0.x_1 1</span>. Thus by controlling <span class="math inline">R_2</span> with qubit <span class="math inline">|x_2\rangle</span> we can encode <span class="math inline">2\pi0.x_1x_2</span> in the phase, since whenever <span class="math inline">x_2 = 0</span>, <span class="math inline">R_2</span> isn’t applied on <span class="math inline">|x_1\rangle</span> leaving the phase <span class="math inline">2\pi 0.x_1 0</span> unmodified and whenever <span class="math inline">x_2 = 1</span> we encode <span class="math inline">2\pi 0.x_1 1</span>. Finally by apply a Hadamard gate on the second qubit, we can realize the <span class="math inline">U_\text{QFT}</span> for two qubits.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p><span class="math display">
+\begin{aligned}
+H^{(2)}C(R_{2})^{(21)}H^{(1)}|x_1x_2\rangle &amp;= \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1 x_2 }|1\rangle)\otimes(|0\rangle + e^{2\pi 0.x_2 }|1\rangle)
+\end{aligned}
+</span></p>
+<p><img src="/static/images/qft2_c.png#center" title="QFT of 2 qubits" height="150" /></p>
+<dl>
+<dt><span class="math inline">n = 3</span></dt>
+<dd>I challenge the keen innanet dweller to convince themselves that the circuit below realizes <span class="math inline">U_\text{QFT}</span> for three qubits.
+</dd>
+</dl>
+<p><img src="/static/images/qft3_c.png#center" title="QFT of 3 qubits" /></p>
+<dl>
+<dt>General</dt>
+<dd>The pattern carries on to the general case, each qubit will have a Hadamard gate followed by a sequence of controlled phase shift gates, controlled by each of the qubits below the line – i.e The line immediately below controls <span class="math inline">R_2</span>, the next one <span class="math inline">R_3</span> and so on.
+</dd>
+</dl>
+<p><img src="/static/images/qftn_c.png#center" title="QFT of n qubits" /></p>
+<h3 id="quantum_complexity">Complexity</h3>
+<p>On the <span class="math inline">i^{th}</span> qubit, there’s a Hadamard followed by <span class="math inline">n - i</span> controlled phase shift gates, controlled by the qubits that proceed it and there are <span class="math inline">n</span> qubits in total.</p>
+<p><span class="math display">
+\begin{aligned}
+\displaystyle\sum_{i=1}^{n} n + 1 - i &amp;= \displaystyle\sum_{j=0}^{n-1} n - j \\
+&amp;= n(n+1)/2 \\
+&amp;= n^2/2 + n/2
+\end{aligned}
+</span></p>
+<p>The total number of gates thus scales polynomially <span class="math inline">\mathcal{O}(n^2)</span>, a great improvement over the exponential scaling <span class="math inline">\mathcal{O}(n 2^n)</span> of the classical analog.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>The reduction in complexity of some problems, here the DFT, is one of the reasons why quantum computers hold promise (well, kinda of).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> In the iterations that follow, we will concern ourselves with quantum phase estimation and order-finding.</p>
+<h3 id="notes">Notes</h3>
+<ul>
+<li>There is a fun interactive tools for visualizing the <a href="https://javafxpert.github.io/grok-bloch/">Bloch sphere</a> by <a href="https://github.com/JavaFXpert">James Weaver</a>. Check it out.</li>
+<li>If the inputs to <span class="math inline">\hat{U}_\text{QFT}</span> are just basis states (no superposition of states), one can classically precompute all the relevant combinations of the phase shift angles and avoid controlling the phase shift gates.</li>
+<li>The innanet dweller who seeks a more well thought out delve into the subject, I cannot recommend <a href="https://www.amazon.com/Quantum-Computation-Information-10th-Anniversary/dp/1107002176">Mike &amp; Ike</a> enough.</li>
+</ul>
+<h3 id="bibliography">Bibliography</h3>
+<p>Roberts, S. <em>Lecture 7-The Discrete Fourier Transform</em>. pp. 82-96. <a href="https://www.robots.ox.ac.uk/~sjrob/Teaching/SP/l7.pdf">https://www.robots.ox.ac.uk/~sjrob/Teaching/SP/l7.pdf</a>.</p>
+<p>Weisstein, E, “Discrete Fourier Transform.” From MathWorld–A Wolfram Web Resource. <a href="https://mathworld.wolfram.com/DiscreteFourierTransform.html">https://mathworld.wolfram.com/DiscreteFourierTransform.html</a></p>
+<p>Wikipedia 2020, <em>Periodogram</em>, Wikipedia, viewed 22 Jul. 2020, <a href="https://en.wikipedia.org/wiki/Periodogram">&lt;https://en.wikipedia.org/wiki/Periodogram&gt;</a></p>
+<p>Nielsen, M &amp; Chuang, I 2000, <em>Quantum Computation and Quantum Information</em>, Cambridge University Press, Cambridge.</p>
+<p>Weinstein, Y, Pravia, M, Fortunato, E, Lloyd, S, Cory, D 2001, “Implementation of the Quantum Fourier Transform”, <em>Phys. Rev. Lett.</em>, vol. 86, n. 9, pp. 1889-1891</p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>The (not inverted) quantum Fourier transform is equivalent to the inverse discrete Fourier transform<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Note that this is in reverse order, can be easily remedied by swap gates between the relevant qubits. The swap can also happen on the classical outcomes i.e <span class="math inline">110 \to 011</span><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>Albeit the reduced complexity, the QFT is not very useful (not useful at all) as a direct substitute for the classical analog, as quantum mechanics forbids access to the amplitude coefficients<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+      </div>
+    </div>
+  </div>
+  
+      <div class='pagination'>
+<a href='/posts/tribute_to_pi' title='Tribute to &pi;'>
+      <span>Prev</span>
+      <span>Tribute to &pi;</span>
+    </a>
+<a href='/posts/quantum_phase_estimation' title='Understanding quantum phase estimation' style='margin-left:auto;'>
+      <span>Next</span>
+      <span>Understanding quantum phase estimation</span>
+    </a>
+</div>
+      
+  <footer>
+    <hr/>
+    <div class='social'>
+      <a href='https://github.com/Unathi-Skosana' aria-label='github'
+          title='github' target='_blank' rel='noopener noreferrer'>
+          <img src='/static/images/github.svg' />
+      </a>
+      <a href='https://twitter.com/_DeLicht' aria-label='twitter'
+          title='twitter' target='_blank' rel='noopener noreferrer'>
+          <img src='/static/images/twitter.svg' />
+      </a>
+      <a href='mailto:ukskosana@gmail.com' aria-label='mail' title='mail'
+        target='_blank' rel='noopener noreferrer'>
+        <img src='/static/images/mail.svg' />
+      </a>
+      <a href='https://untitld.xyz/index.xml' aria-label='rss' title='rss'
+        target='_blank' rel='noopener noreferrer'>
+        <img src='/static/images/rss.svg' />
+      </a>
+    </div>
+  </footer>
+  
+    </body>
+  </html>

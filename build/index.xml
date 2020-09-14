@@ -3,7 +3,7 @@
   <channel>
     <title>untitld</title>
     <link>http://untitld.xyz</link>
-    <description>interludic</description>
+    <description>An attempt at demistifying the quantum phase estimation</description>
     <atom:link href='http://untitld.xyz/index.xml' rel='self' type='application/rss+xml' />
     <image>
       <title>untitld</title>
@@ -680,27 +680,27 @@ $$</span></p>
     </item>
   
     <item>
-      <description></description>
+      <description><h3 id="tableau">Tableau</h3></description>
       <link>
   <div class='p'>
     <div class='time'>
-      <div class='date'>09/15/2020</div>
+      <div class='date'>09/09/2020</div>
       <div class='date'>— 0.0 Min</div>
     </div>
     <h2 class='t'>
-      <a href='/posts/interlude' title='Interlude'>Interlude</a>
+      <a href='/posts/quantum_phase_estimation' title='Understanding quantum phase estimation'>Understanding quantum phase estimation</a>
     </h2>
   </div>
   </link>
-      <pubDate>09/15/2020</pubDate>
+      <pubDate>09/09/2020</pubDate>
       <guid>
   <div class='p'>
     <div class='time'>
-      <div class='date'>09/15/2020</div>
+      <div class='date'>09/09/2020</div>
       <div class='date'>— 0.0 Min</div>
     </div>
     <h2 class='t'>
-      <a href='/posts/interlude' title='Interlude'>Interlude</a>
+      <a href='/posts/quantum_phase_estimation' title='Understanding quantum phase estimation'>Understanding quantum phase estimation</a>
     </h2>
   </div>
   </guid>
