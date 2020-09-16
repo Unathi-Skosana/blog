@@ -1,0 +1,146 @@
+
+      
+  <!DOCTYPE html>
+  <html lang='en'>
+    <head>
+      <!--- dark/light mode switch --->
+
+      <script type='module' src='https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs'></script>
+
+      <!--- highlight current nav item --->
+
+      <script>
+        // top navigation
+        document.addEventListener('DOMContentLoaded', function() {
+          var path = location.pathname.split('/')[1]
+          var el = document.querySelector('header ul li a[href=\'/' + path +
+          '/\']');
+          if (el) el.classList.add('active');
+
+
+
+          // table of content navigation
+          const observer = new IntersectionObserver(entries => {
+              entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                var el = document.querySelector('nav li a[href=\'\#' + id + '\']')
+                if (entry.intersectionRatio > 0) {
+                  if (el) el.parentElement.classList.add('active');
+                } else {
+                  if (el) el.parentElement.classList.remove('active');
+                }
+              });
+            });
+
+            // Track all sections that have an uid=1000(lynx) gid=1000(lynx) groups=1000(lynx),56(bumblebee),998(wheel) applied
+            document.querySelectorAll('section[id]').forEach((section) => {
+              observer.observe(section);
+            });
+        });
+      </script>
+
+      <!--- Global site tag (gtag.js) - Google Analytics --->
+
+      <script async src='https://www.googletagmanager.com/gtag/js?id=UA-167451864-1'></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-167451864-1');
+      </script>
+
+      
+
+      <!--- meta --->
+
+      <meta charset='UTF-8'>
+      <meta name='viewport' content='initial-scale=1'>
+      <meta content='#ffffff' name='theme-color'>
+      <meta name='HandheldFriendly' content='true'>
+      <meta property='og:title' content='Academia'>
+      <meta property='og:description' content='An academic track record of some sort'>
+      <meta property='og:url' content='https://untitld.xyz'>
+      <meta property='og:type' content='website'>
+      <meta property='og:image' content='/static/favicon/micro-128.webp'>
+
+      <!--- favicon --->
+
+      <link rel='icon' type='image/x-icon' sizes='16x16' href='/static/favicon/micro-16.webp'>
+      <link rel='icon' type='image/x-icon' sizes='32x32' href='/static/favicon/micro-32.webp'>
+      <link rel='icon' type='image/x-icon' sizes='64x64' href='/static/favicon/micro-62.webp'>
+      <link rel='icon' type='image/x-icon' sizes='128x128' href='/static/favicon/micro-128.webp'>
+
+      <!--- user styles --->
+
+      <link rel='stylesheet' href='/static/css/style.css'>
+      <link rel='stylesheet' href='/static/css/light.css' media='(prefers-color-scheme: light), (prefers-color-scheme: no-preference)'>
+      <link rel='stylesheet' href='/static/css/dark.css' media='(prefers-color-scheme: dark)'>
+      
+
+    <title>Untitld — Academia</title>
+
+    </head>
+    <body>
+      <a id='banner' title='stop gbv' target='_blank' rel='noopener noreferrer' href='https://twitter.com/ZoLekkaa/status/1298705551497535488?s=20'>
+      No more silence. End the genocide against women and LGBTQI+.</a>
+      <header class='nav-header'>
+      <h1 class='logo'>
+        <a href='/'  aria-label='mu'>
+          <img src='/static/favicon/micro-128.webp' width='32' height='32' alt='mu' />
+        </a>
+      </h1>
+      <ul class='navigation'>
+        <li><a href='/about/' title='about me'>About</a></li>
+        <li><a href='/projects/' title='side quests'>Projects</a></li>
+        <li><a href='/academia/' title='academia'>Academia</a></li>
+        <li><a href='/misc/' title='miscellaneous'>Misc</a></li>
+        <li>
+          <dark-mode-toggle
+            id='dark-mode-toggle-1'
+            dark='Dark'
+            light='Light'
+            permanent='true'
+            />
+        </li>
+      </ul>
+    </header>
+  
+      
+  <div class='content'>
+    <div class='misc'>
+    <h1 id="talkspresentations">Talks&amp;Presentations</h1>
+<ul>
+<li><a href="https://docs.google.com/viewer?url=https://github.com/Unathi-Skosana/witsq-summer-school-poster/raw/master/poster.pdf">Quantum Africa V Poster</a> — Modeling of Measurement-Based Quantum Computing on IBMQ Experience Devices.</li>
+</ul>
+<h1 id="publications">Publications</h1>
+<ul>
+<li>ZLITCH</li>
+</ul>
+    </div>
+  </div>
+  
+      
+  <footer>
+    <hr/>
+    <div class='social'>
+      <a href='https://github.com/Unathi-Skosana' aria-label='github'
+          title='github' target='_blank' rel='noopener noreferrer'>
+          <img src='/static/images/github.svg' />
+      </a>
+      <a href='https://twitter.com/_DeLicht' aria-label='twitter'
+          title='twitter' target='_blank' rel='noopener noreferrer'>
+          <img src='/static/images/twitter.svg' />
+      </a>
+      <a href='mailto:ukskosana@gmail.com' aria-label='mail' title='mail'
+        target='_blank' rel='noopener noreferrer'>
+        <img src='/static/images/mail.svg' />
+      </a>
+      <a href='https://untitld.xyz/index.xml' aria-label='rss' title='rss'
+        target='_blank' rel='noopener noreferrer'>
+        <img src='/static/images/rss.svg' />
+      </a>
+    </div>
+  </footer>
+  
+    </body>
+  </html>
