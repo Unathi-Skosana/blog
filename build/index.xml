@@ -3,11 +3,11 @@
   <channel>
     <title>untitld</title>
     <link>http://untitld.xyz</link>
-    <description>An attempt at demistifying the quantum phase estimation</description>
+    <description>An attempt at demistifying the quantum Fourier transform</description>
     <atom:link href='http://untitld.xyz/index.xml' rel='self' type='application/rss+xml' />
     <image>
       <title>untitld</title>
-      <url>http://untitld.xyz/static/favicon/micro-128.png</url>
+      <url>http://untitld.xyz/static/favicon/micro-128.webp</url>
       <link>http://untitld.xyz.sh</link>
     </image>
     <language>en-us</language>
@@ -26,7 +26,7 @@
   <div class='p'>
     <div class='time'>
       <div class='date'>02/10/2020</div>
-      <div class='date'>— 0.0 Min</div>
+      <div class='date'>— 16.0 Min</div>
     </div>
     <h2 class='t'>
       <a href='/posts/ground_zero' title='Ground Zero'>Ground Zero</a>
@@ -38,7 +38,7 @@
   <div class='p'>
     <div class='time'>
       <div class='date'>02/10/2020</div>
-      <div class='date'>— 0.0 Min</div>
+      <div class='date'>— 16.0 Min</div>
     </div>
     <h2 class='t'>
       <a href='/posts/ground_zero' title='Ground Zero'>Ground Zero</a>
@@ -50,12 +50,12 @@
     <item>
       <description><p>Happy 3.14 Day, which also happens to be the day Albert Einstein was born ! So March 14 is irrationally (bad pun, I know) anticipated with much excitement by the science and mathematics communities alike. I will follow tradition, as I did last year and honor <span class="math inline"><em>π</em></span>-day by recreating a visual representation of the digits of <span class="math inline"><em>π</em></span>. The recreation will be a derivative of a 2013 <span class="math inline"><em>π</em></span>-day poster by <a href="https://twitter.com/MKrzywinski">Martin Krzywinski</a> found at <a href="http://mkweb.bcgsc.ca/pi/piday">http://mkweb.bcgsc.ca/pi/piday</a></p>
 <p>The digits of <span class="math inline"><em>π</em></span> were computed using the <a href="https://en.wikipedia.org/wiki/Chudnovsky_algorithm">Chudnovsky algorithm</a>. Due to the CPU-intensive nature of such a computation, I precomputed the digits and saved to them a .dat file for reuse. This is less time consuming than computing the digits every time when visualizing them (or if you write buggy programs like I do). Below is the python script that computes the <span class="math inline"><em>n</em></span> first digits of <span class="math inline"><em>π</em></span> and saves as them to .dat file:</p>
-<p><img src="/static/images/pi_digits.png#center" title="pi digits" /></p>
+<p><img src="/static/images/pi_digits.webp#center" title="pi digits" /></p>
 <p>Since the digits will be displayed on a grid, the python script takes as input the dimensions of the grid, the number of rows and number of columns respectively.</p>
 <p>Now that we have computed the <span class="math inline"><em>n</em> = <em>r</em><em>c</em></span> digits of <span class="math inline"><em>π</em></span>, we want to visualize them. The visualization was done using <code>scatter</code> from <code>matplotlib</code> where the digits are laid out on a <span class="math inline"><em>r</em> × <em>c</em></span> evenly-spaced meshgrid and the values of the digits are used to fill the colors of the points on the grid, these colors are taken from a discrete color map of size <span class="math inline">10</span>. The python script used to read the digits from a file and visualize them as explained above is as follows:</p>
-<p><img src="/static/images/meshgrid.png#center" title="grid" /></p>
+<p><img src="/static/images/meshgrid.webp#center" title="grid" /></p>
 <p>The visualizations below were for <span class="math inline">23 × 23</span> and <span class="math inline">31 × 31</span> grids (yes, I like primes) respectively.</p>
-<p><img src="/static/images/pi_23_by_23.png#center" title="pi 23x23" /> <img src="/static/images/pi_31_by_31.png#center" title="pi 31x31" /></p>
+<p><img src="/static/images/pi_23_by_23.webp#center" title="pi 23x23" /> <img src="/static/images/pi_31_by_31.webp#center" title="pi 31x31" /></p>
 <p>What would be even more visually appealing is if we could connect the same-valued digits that are one point away from each other in either direction with edges as in the original poster. For example, for a 3 by 3 grid</p>
 <p><span class="math display">$$
 \begin{aligned}
@@ -74,10 +74,10 @@ $$</span></p>
 \end{aligned}
 $$</span></p>
 <p>The four <span class="math inline">1</span>s in the grid would deemed as a label/component and we would have only one component in the grid. The <code>SciPy</code> has a high performance C implementation, <code>scipy.ndimage.label</code>, to label the components and subsequently extract their indices. The single downfall of this method is that it also considers isolated groups (<span class="math inline">1</span> surrounded by <span class="math inline">0</span>s in all directions) as connected components. However, one can filter out isolated groups from the original array as done <a href="https://stackoverflow.com/questions/28274091/removing-completely-isolated-cells-from-python-array">here</a>. Putting this all together, we can produce the stunning visuals below. Here are the visualizations for <span class="math inline">23 × 23</span> and <span class="math inline">31 × 31</span> grids.</p>
-<p><img src="/static/images/pi_23_by_23_edges.png#center" title="pi 23x23" /> <img src="/static/images/pi_31_by_31_edges.png#center" title="pi 31x31" /></p>
+<p><img src="/static/images/pi_23_by_23_edges.webp#center" title="pi 23x23" /> <img src="/static/images/pi_31_by_31_edges.webp#center" title="pi 31x31" /></p>
 <p>The updated source code and higher quality images can be found <a href="https://github.com/Unathi-Skosana/numart">here</a>. If you have comments or quarrels, <a href="/">reach out</a>.</p>
 <h2 id="updates-23-by-23-meshgrids-for-eulers-number-and-the-golden-ratio">Updates : 23 by 23 meshgrids for Euler’s number and the golden ratio</h2>
-<p><img src="/static/images/e_23_by_23_edges.png#center" title="e 23x23" /> <img src="/static/images/phi_23_by_23_edges.png#center" title="phi 23x23" /></p>
+<p><img src="/static/images/e_23_by_23_edges.webp#center" title="e 23x23" /> <img src="/static/images/phi_23_by_23_edges.webp#center" title="phi 23x23" /></p>
 <h2 id="sources">Sources:</h2>
 <ul>
 <li>[1]: <a href="https://stackoverflow.com/questions/46737409/finding-connected-components-in-a-pixel-array">Finding connected components in a pixel array</a></li>
@@ -92,7 +92,7 @@ $$</span></p>
   <div class='p'>
     <div class='time'>
       <div class='date'>03/14/2020</div>
-      <div class='date'>— 0.0 Min</div>
+      <div class='date'>— 16.0 Min</div>
     </div>
     <h2 class='t'>
       <a href='/posts/tribute_to_pi' title='Tribute to &pi;'>Tribute to &pi;</a>
@@ -104,7 +104,7 @@ $$</span></p>
   <div class='p'>
     <div class='time'>
       <div class='date'>03/14/2020</div>
-      <div class='date'>— 0.0 Min</div>
+      <div class='date'>— 16.0 Min</div>
     </div>
     <h2 class='t'>
       <a href='/posts/tribute_to_pi' title='Tribute to &pi;'>Tribute to &pi;</a>
@@ -115,23 +115,6 @@ $$</span></p>
   
     <item>
       <description><p>This post is the first iteration of an <span class="math inline"><em>N</em></span>-part series of blog posts aimed at attempting to understand some of the ideas behind Shor’s factoring algorithm. One such idea is that of the quantum Fourier transform (QFT), which will be the subject of inquiry here. I would strongly recommend familiarity with linear algebra and bra-ket notation. The following lecture notes on <a href="https://ocw.mit.edu/courses/physics/8-05-quantum-physics-ii-fall-2013/lecture-notes/MIT8_05F13_Chap_04.pdf">bra-ket</a> notation should be sufficient.</p>
-<h3 id="tableau">Tableau</h3>
-<ol type="1">
-<li><a href="#classical">Not So Quantum Fourier Transform</a>
-<ol type="i">
-<li><a href="#classical_definitions">Definitions</a></li>
-<li><a href="#classical_examples">Examples</a></li>
-<li><a href="#classical_properties">Properties of interest</a></li>
-</ol></li>
-<li><a href="#quantum">Going Quantum</a>
-<ol type="i">
-<li><a href="#quantum_definitions">Definitions</a></li>
-<li><a href="#quantum_examples">Circuits &amp; Examples</a></li>
-<li><a href="#quantum_complexity">Complexity</a></li>
-</ol></li>
-<li><a href="#notes">Notes</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
-</ol>
 <h2 id="classical">Not So Quantum, Fourier Transform</h2>
 <p>The quantum Fourier transform is intimately related (same transform but different notations) to the ubiquitous <strong>discrete Fourier transform (DFT)</strong>. The DFT converts a sequence of values, usually from some time-dependent function <span class="math inline"><em>f</em>(<em>t</em>)</span> sampled at equidistant time intervals, into another sequence of values, sampled from a frequency-dependent function <span class="math inline"><em>F</em>(<em>ν</em>)</span> at equidistant frequency intervals. The transformation from <span class="math inline"><em>f</em>(<em>t</em>)</span> to <span class="math inline"><em>F</em>(<em>ν</em>)</span> is the Fourier transform.</p>
 <h3 id="classical_definitions">Definitions</h3>
@@ -539,11 +522,11 @@ e^{2 \pi i 0. x_{n-1} x_{n}} |1\rangle)\cdots(|0\rangle + e^{2\pi i 0. x_1 x_2 \
 $$</span></p>
 <h3 id="gates-circuits">Gates &amp; Circuits</h3>
 <p>A quantum logic gate is represented by a norm preserving linear map <span class="math inline"><em>U</em></span>. The action of a quantum logic gate <span class="math inline"><em>U</em></span> on an input state <span class="math inline">|<em>ψ</em>⟩</span> is diagrammatically represented as:</p>
-<p><img src="/static/images/U.png#center" title="Arbitrary quantum logic gate" height="120" /></p>
+<p><img src="/static/images/U.webp#center" title="Arbitrary quantum logic gate" height="120" /></p>
 <h4 id="examples-of-quantum-logic-gates">Examples of quantum logic gates</h4>
 <p><em>Hadamard</em></p>
 <dl>
-<dt><img src="/static/images/H.png#center" title="Hadamard gate" height="120" /></dt>
+<dt><img src="/static/images/H.webp#center" title="Hadamard gate" height="120" /></dt>
 <dd><p>The Hadamard gate <span class="math inline"><em>H</em></span> acts on the basis states like</p>
 </dd>
 </dl>
@@ -554,7 +537,7 @@ $$</span></p>
 <p>Visually this gate as the effect of moving a state at one of the poles of the Bloch sphere to line of latitude.</p>
 <p><em>NOT</em></p>
 <dl>
-<dt><img src="/static/images/X.png#center" title="NOT gate" height="120" /></dt>
+<dt><img src="/static/images/X.webp#center" title="NOT gate" height="120" /></dt>
 <dd><p>The NOT gate <span class="math inline"><em>X</em></span> flips the basis states</p>
 </dd>
 </dl>
@@ -564,7 +547,7 @@ X|1\rangle \to |0\rangle
 $$</span></p>
 <p><em>Phase shift</em></p>
 <dl>
-<dt><img src="/static/images/phase.png#center" title="Phase gate" height="120" /></dt>
+<dt><img src="/static/images/phase.webp#center" title="Phase gate" height="120" /></dt>
 <dd><p>The Phase shift gate <span class="math inline"><em>R</em><sub><em>φ</em></sub></span> modifies the phase of the basis states</p>
 </dd>
 </dl>
@@ -576,13 +559,13 @@ R_{\varphi}|1\rangle &amp;\to e^{i\varphi}|1\rangle
 $$</span></p>
 <p><em>Controlled-U</em></p>
 <dl>
-<dt><img src="/static/images/Cu.png#center" title="Controlled U gate" height="120" /></dt>
+<dt><img src="/static/images/Cu.webp#center" title="Controlled U gate" height="120" /></dt>
 <dd><p>A controlled-<span class="math inline"><em>U</em></span> for an arbitrary <span class="math inline"><em>U</em></span>, is a two-qubit gate, which has the action of applying <span class="math inline"><em>U</em></span> to the target qubit <span class="math inline">|<em>t</em>⟩</span> if the control qubit <span class="math inline">|<em>c</em>⟩</span> is in the state <span class="math inline">|1⟩</span>.</p>
 </dd>
 </dl>
 <p><span class="math display"><em>C</em>(<em>U</em>)|<em>c</em>⟩|<em>t</em>⟩ → |<em>c</em>⟩<em>U</em><sup><em>c</em></sup>|<em>t</em>⟩</span></p>
 <p>A controlled-<span class="math inline"><em>U</em></span> can written as a block diagonal matrix, where first block is the <span class="math inline">2 × 2</span> identity matrix and the second block is <span class="math inline"><em>U</em></span>.</p>
-<p><img src="/static/images/CCU.png#center" title="Action of controlled U gate" /></p>
+<p><img src="/static/images/CCU.webp#center" title="Action of controlled U gate" /></p>
 <p>Special case when <span class="math inline"><em>U</em> = <em>R</em><sub><em>φ</em></sub></span> implements a controlled phase shift gate.</p>
 <h4 id="circuits-for-u_textqft">Circuits for <span class="math inline"><em>U</em><sub>QFT</sub></span></h4>
 <p>Define unitary map <span class="math inline"><em>R</em><sub><em>k</em></sub> ≡ <em>R</em><sub>2<em>π</em>/2<sup><em>k</em></sup></sub></span> as a special case for the phase shift gate. We’ll also denote a single-qubit gate acting on the qubit <span class="math inline"><em>i</em></span> as <span class="math inline"><em>U</em><sup>(<em>i</em>)</sup></span> and a two-qubit gate controlled by qubit <span class="math inline"><em>j</em></span> and targeted to qubit <span class="math inline"><em>k</em></span> as <span class="math inline"><em>C</em>(<em>U</em>)<sup>(<em>j</em><em>k</em>)</sup></span> whenever there’s a possibility of ambiguity.</p>
@@ -591,7 +574,7 @@ $$</span></p>
 <dd>This case above is trivial is equivalent to the <span class="math inline"><em>H</em></span>, since <span class="math inline">$H|x_1\rangle = \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1}|1\rangle)$</span>, for which <span class="math inline"><em>e</em><sup>2<em>π</em>0.<em>x</em><sub>1</sub></sup></span> is either <span class="math inline"> − 1</span> or <span class="math inline"> + 1</span> for <span class="math inline"><em>x</em><sub>1</sub> = 1</span> or <span class="math inline"><em>x</em><sub>1</sub> = 0</span> respectively.
 </dd>
 </dl>
-<p><img src="/static/images/qft1_c.png#center" title="QFT of 1 qubit" height="80" /></p>
+<p><img src="/static/images/qft1_c.webp#center" title="QFT of 1 qubit" height="80" /></p>
 <dl>
 <dt><span class="math inline"><em>n</em> = 2</span></dt>
 <dd>The case is similar to the first, amended only slightly. Consider the operations on a single qubit below
@@ -609,19 +592,19 @@ $$</span></p>
 H^{(2)}C(R_{2})^{(21)}H^{(1)}|x_1x_2\rangle &amp;= \frac{1}{\sqrt{2}} (|0\rangle + e^{2\pi 0.x_1 x_2 }|1\rangle)\otimes(|0\rangle + e^{2\pi 0.x_2 }|1\rangle)
 \end{aligned}
 $$</span></p>
-<p><img src="/static/images/qft2_c.png#center" title="QFT of 2 qubits" height="150" /></p>
+<p><img src="/static/images/qft2_c.webp#center" title="QFT of 2 qubits" height="150" /></p>
 <dl>
 <dt><span class="math inline"><em>n</em> = 3</span></dt>
 <dd>I challenge the keen innanet dweller to convince themselves that the circuit below realizes <span class="math inline"><em>U</em><sub>QFT</sub></span> for three qubits.
 </dd>
 </dl>
-<p><img src="/static/images/qft3_c.png#center" title="QFT of 3 qubits" /></p>
+<p><img src="/static/images/qft3_c.webp#center" title="QFT of 3 qubits" /></p>
 <dl>
 <dt>General</dt>
 <dd>The pattern carries on to the general case, each qubit will have a Hadamard gate followed by a sequence of controlled phase shift gates, controlled by each of the qubits below the line – i.e The line immediately below controls <span class="math inline"><em>R</em><sub>2</sub></span>, the next one <span class="math inline"><em>R</em><sub>3</sub></span> and so on.
 </dd>
 </dl>
-<p><img src="/static/images/qftn_c.png#center" title="QFT of n qubits" /></p>
+<p><img src="/static/images/qftn_c.webp#center" title="QFT of n qubits" /></p>
 <h3 id="quantum_complexity">Complexity</h3>
 <p>On the <span class="math inline"><em>i</em><sup><em>t</em><em>h</em></sup></span> qubit, there’s a Hadamard followed by <span class="math inline"><em>n</em> − <em>i</em></span> controlled phase shift gates, controlled by the qubits that proceed it and there are <span class="math inline"><em>n</em></span> qubits in total.</p>
 <p><span class="math display">$$
@@ -658,7 +641,7 @@ $$</span></p>
   <div class='p'>
     <div class='time'>
       <div class='date'>07/22/2020</div>
-      <div class='date'>— 0.0 Min</div>
+      <div class='date'>— 16.0 Min</div>
     </div>
     <h2 class='t'>
       <a href='/posts/quantum_fourier_transform' title='Quantum Fourier Transform'>Quantum Fourier Transform</a>
@@ -670,37 +653,10 @@ $$</span></p>
   <div class='p'>
     <div class='time'>
       <div class='date'>07/22/2020</div>
-      <div class='date'>— 0.0 Min</div>
+      <div class='date'>— 16.0 Min</div>
     </div>
     <h2 class='t'>
       <a href='/posts/quantum_fourier_transform' title='Quantum Fourier Transform'>Quantum Fourier Transform</a>
-    </h2>
-  </div>
-  </guid>
-    </item>
-  
-    <item>
-      <description><h3 id="tableau">Tableau</h3></description>
-      <link>
-  <div class='p'>
-    <div class='time'>
-      <div class='date'>09/09/2020</div>
-      <div class='date'>— 0.0 Min</div>
-    </div>
-    <h2 class='t'>
-      <a href='/posts/quantum_phase_estimation' title='Understanding quantum phase estimation'>Understanding quantum phase estimation</a>
-    </h2>
-  </div>
-  </link>
-      <pubDate>09/09/2020</pubDate>
-      <guid>
-  <div class='p'>
-    <div class='time'>
-      <div class='date'>09/09/2020</div>
-      <div class='date'>— 0.0 Min</div>
-    </div>
-    <h2 class='t'>
-      <a href='/posts/quantum_phase_estimation' title='Understanding quantum phase estimation'>Understanding quantum phase estimation</a>
     </h2>
   </div>
   </guid>

@@ -3,6 +3,7 @@ title: Quantum Fourier Transform
 description: An attempt at demistifying the quantum Fourier transform
 date: 2020-07-22 05:04
 draft: false
+toc: true
 ---
 
 This post is the first iteration of an $N$-part series of blog posts aimed at
@@ -10,19 +11,6 @@ attempting to understand some of the ideas behind Shor's factoring algorithm.
 One such idea is that of the quantum Fourier transform (QFT), which will be
 the subject of inquiry here. I would strongly recommend familiarity with linear algebra and bra-ket notation.
 The following lecture notes on [bra-ket](https://ocw.mit.edu/courses/physics/8-05-quantum-physics-ii-fall-2013/lecture-notes/MIT8_05F13_Chap_04.pdf) notation should be sufficient.
-
-### Tableau
-
-1) [Not So Quantum Fourier Transform](#classical)
-   i. [Definitions](#classical_definitions)
-   ii. [Examples](#classical_examples)
-   iii. [Properties of interest](#classical_properties)
-2) [Going Quantum](#quantum)
-   i. [Definitions](#quantum_definitions)
-   ii. [Circuits & Examples](#quantum_examples)
-   iii. [Complexity](#quantum_complexity)
-4) [Notes](#notes)
-5) [Conclusion](#conclusion)
 
 ## Not So Quantum, Fourier Transform {#classical}
 

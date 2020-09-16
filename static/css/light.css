@@ -22,6 +22,7 @@
 
   --white: #fff;
   --dark-white: #eee;
+  --off-white: #ccc
 }
 
 body {
@@ -37,10 +38,6 @@ body {
 
 #banner:hover {
   text-decoration: underline;
-}
-
-header ul li:nth-child(4) {
-  border-right: .1rem solid var(--black);
 }
 
 header ul li a[href] {
@@ -86,14 +83,23 @@ h2.t a:hover {
 }
 
 /* links */
-footer a[href],p a[href], li a[href] {
+footer a[href],p a[href] {
   text-decoration-color: var(--magenta);
   color: var(--magenta);
 }
 
-li a[href^="#"], p a[href^="#"] {
+p a[href^="#"] {
   text-decoration-style: dashed !important;
 }
+
+.section-nav li.active > a {
+  color: var(--black);
+}
+
+.section-nav a {
+  color: var(--off-white)
+}
+
 
 strong {
   color: var(--dark-blue);

@@ -37,23 +37,62 @@ pre:not(.sourceCode),div.sourceCode {
   border-radius: 0.5em;
 }
 
+
+/* 2. Make nav sticky */
+#TOC {
+  position: sticky;
+  top: 2em;
+  height: 0px;
+}
+
+#TOC > ul {
+  transform: translateX(calc(-90% - 2em)) translateY(4em);
+}
+
+.section-nav ul {
+  display: inline-block;
+  width: 300px;
+}
+
+.section-nav li.active > a {
+	font-weight: 550;
+}
+
+.section-nav a {
+	text-decoration: none;
+	display: block;
+	padding: .125rem 0;
+	transition: all 50ms ease-in-out;
+}
+
+
+ul, ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
 /* nav bar */
 
 #banner {
-  position: fixed;
+  position: sticky;
   left: 0;
   right: 0;
   top: 0;
   height: var(--banner-height);
-  padding: 6em 1em 0 1em;
+
   z-index: 999;
-  transform: translate(0, -6em);
   text-align: center;
-  font-size: 14px;
+  font-size: .8em;
+  line-height: 1.3em;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
+
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 /* header */
@@ -81,7 +120,6 @@ header ul {
 }
 
 header ul li {
-  list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
@@ -89,13 +127,9 @@ header ul li {
   justify-content: center;
 }
 
-header ul li:last-child {
-  margin-left: 5px;
-}
-
 header ul li a[href] {
   cursor: pointer;
-  padding: 0 0.5em;
+  padding: 0 0.3em;
   text-decoration: none;
 }
 

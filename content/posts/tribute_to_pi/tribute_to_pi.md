@@ -3,6 +3,7 @@ title: Tribute to &pi;
 description: In celebration of &pi; Day
 date: 2020-03-14 16:33
 draft: false
+toc: false
 ---
 
 Happy 3.14 Day, which also happens to be the day Albert Einstein was born ! So

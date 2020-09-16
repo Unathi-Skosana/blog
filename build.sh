@@ -120,11 +120,32 @@ function header {
       <!--- highlight current nav item --->
 
       <script>
+        // top navigation
         document.addEventListener('DOMContentLoaded', function() {
           var path = location.pathname.split('/')[1]
           var el = document.querySelector('header ul li a[href=\'/' + path +
           '/\']');
           if (el) el.classList.add('active');
+
+
+
+          // table of content navigation
+          const observer = new IntersectionObserver(entries => {
+              entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                var el = document.querySelector('nav li a[href=\'\#' + id + '\']')
+                if (entry.intersectionRatio > 0) {
+                  if (el) el.parentElement.classList.add('active');
+                } else {
+                  if (el) el.parentElement.classList.remove('active');
+                }
+              });
+            });
+
+            // Track all sections that have an `id` applied
+            document.querySelectorAll('section[id]').forEach((section) => {
+              observer.observe(section);
+            });
         });
       </script>
 
@@ -298,8 +319,15 @@ function post {
   # $3 - date
   # $4 - file
 
+  toc=""
+  flag=$(rg "toc" -m 1 "$4" | sed -e 's/^[a-z]*:\|\"//g' | xargs)
+  if [ "$flag" = "true" ]; then
+    toc="$(pandoc --toc --quiet -t html --template=static/templates/toc.html $4)"
+  fi
+
   printf '%s\n' "
   <div class='content'>
+    $toc
     <div class='s p'>
       <h1>$1</h1>
       <div class='m'>
@@ -308,7 +336,7 @@ function post {
         <em>$2 minute read</em>
       </div>
       <div class='c'>
-        $(pandoc --katex --quiet -t html $4)
+        $(pandoc --katex --quiet --section-divs -t html $4)
       </div>
     </div>
   </div>

@@ -39,10 +39,6 @@ body {
   text-decoration: underline;
 }
 
-header ul li:nth-child(4) {
-  border-right: .1rem solid var(--white);
-}
-
 header ul li a[href] {
   color: var(--white);
 }
@@ -94,13 +90,21 @@ h2.t a:hover {
 }
 
 /* links */
-footer a[href],p a[href], li a[href] {
+footer a[href],p a[href] {
   text-decoration-color: var(--cyan);
   color: var(--cyan);
 }
 
-li a[href^="#"], p a[href^="#"] {
+p a[href^="#"] {
   text-decoration-style: dashed !important;
+}
+
+.section-nav li.active > a {
+  color: var(--white);
+}
+
+.section-nav a {
+  color: var(--light-black);
 }
 
 strong {
