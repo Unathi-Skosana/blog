@@ -12,15 +12,17 @@ favouritism.
 
 ### READING:
 
-- [_The Complete Essays_](https://hyperessays.net/) by **Michel de Montaigne**.
-- _How to Think about God: An ancient Guide for Believers and Nonbelievers_ by
-    Marcus Tullius Cicero
-- _How to Be Free: An ancient Guide to the Stoic Life_ by Epictetus
 - _How to Win an Argument: An ancient Guide to the Art of Persuasion_ by Marcus
     Tullius Cicero
+- [_The Complete Essays_](https://hyperessays.net/) by **Michel De Montaigne**.
+
+<br/>
 
 ### TO READ:
 
+- The Nicomachean Ethics By Aristole
+- Meditations by Marcus Aurelius
+- Letters Of A Stoic by Seneca the Younger
 - _Antifragile_ by **Nassim Nicholas Taleb**
 - _Fooled by Randomness_ by **Nassim Nicholas Taleb**
 - _Skin in the Game_ by **Nassim Nicholas Taleb**
@@ -29,13 +31,19 @@ favouritism.
 - _Know This: Today's Most Interesting and Important Scientific Ideas, Discoveries, and Developments_ by John Brockman
 - _Brief Answers to the Big Questions_ by Stephen Hawking
 
-### BOOKS READ (from 19'):
+<br/>
 
+### BOOKS READ:
+
+- _How to Be Free: An ancient Guide to the Stoic Life_ by Epictetus
+- _How to Think about God: An ancient Guide for Believers and Nonbelievers_ by
+    Marcus Tullius Cicero
 - _The Black Swan: The Impact of the Highly Improbable_ by **Nassim Nicholas Taleb**
 - _The Grand Design_ by Stephen Hawking & Leonard Mlodinow
 - _Algorithms to Live By: The Computer Sicnece of Human Decisions_ by Brian Christian & Tom Griffiths
 - _The Elegant Universe: Superstrings, Hidden Dimensions and the Quest for the Ultimate Theory_ by Brian Greene
 
+<br/>
 
 ## Podcasts
 
@@ -49,6 +57,7 @@ Here is a list of podcasts I enjoy listening to
 - _Stuff To Blow Your Mind_ by iHeartRadio & HowStuffWorks
 - *The Y Combinator Podcast*
 
+<br/>
 
 ## Etc.
 

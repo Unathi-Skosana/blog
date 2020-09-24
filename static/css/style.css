@@ -248,7 +248,7 @@ footer {
 }
 
 .pagination a span:last-of-type {
-  white-space: nowrap;
+  white-space: normal;
   font-weight: 700;
   margin-top: .25em;
 }
