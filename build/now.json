@@ -1,6 +1,8 @@
 {
   "version": 2,
   "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 404, "dest": "/other-404.html"},
     { "src": "/", "dest": "/index.html" },
     { "src": "/about", "dest": "/about/index.html"},
     { "src": "/academia", "dest": "/academia/index.html"},

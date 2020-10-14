@@ -20,4 +20,3 @@ Some small fun projects I've been involved in or contributed in
 - [Ising](https://github.com/Unathi-Skosana/Ising) — Simulation of the Ising model on a 2D lattice.
 - [Huff-n-puff](https://github.com/Unathi-Skosana/Huff-n-puff) — NASM Huffman compressor.
 - [Network Layout](https://github.com/Unathi-Skosana/NetworkLayout) — A graph layout algorithm to minimize the number of edge crossings.
-- [QPong](https://github.com/HuangJunye/QPong) — Quantum Pong
