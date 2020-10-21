@@ -12,17 +12,19 @@ favouritism.
 
 ### READING:
 
-- _How to Win an Argument: An ancient Guide to the Art of Persuasion_ by Marcus
-    Tullius Cicero
+- _The Greatest Minds and Ideas of All Time_ by **Will Durant**
+- _The Nicomachean Ethics_ By Aristole
 - [_The Complete Essays_](https://hyperessays.net/) by **Michel De Montaigne**.
 
 <br/>
 
 ### TO READ:
 
-- The Nicomachean Ethics By Aristole
-- Meditations by Marcus Aurelius
-- Letters Of A Stoic by Seneca the Younger
+- _The Blue and Brown Books_ by Ludwig Wittgenstein
+- _Culture and Value_ by Ludwig Wittgenstein
+- _The Story of Philosophy_ by **Will Durant**
+- _Meditations_ by Marcus Aurelius
+- _Letters from A Stoic_ by Seneca the Younger
 - _Antifragile_ by **Nassim Nicholas Taleb**
 - _Fooled by Randomness_ by **Nassim Nicholas Taleb**
 - _Skin in the Game_ by **Nassim Nicholas Taleb**
@@ -35,6 +37,7 @@ favouritism.
 
 ### BOOKS READ:
 
+- _How to Win an Argument: An ancient Guide to the Art of Persuasion_ by Marcus Tullius Cicero
 - _How to Be Free: An ancient Guide to the Stoic Life_ by Epictetus
 - _How to Think about God: An ancient Guide for Believers and Nonbelievers_ by
     Marcus Tullius Cicero
