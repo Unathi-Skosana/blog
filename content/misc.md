@@ -7,24 +7,22 @@ draft: false
 
 ## Books&Essays
 
-Titles or authors highlighted to indicate my strong recommendation or
-favouritism.
+Titles or persons are highlighted indicative of recommendation and favouritism.
 
-### READING:
+### READING/STUDYING:
 
-- _The Greatest Minds and Ideas of All Time_ by **Will Durant**
-- _The Nicomachean Ethics_ By Aristole
 - [_The Complete Essays_](https://hyperessays.net/) by **Michel De Montaigne**.
+- _Letters from A Stoic_ by Lucius Annaeus Seneca
 
 <br/>
 
-### TO READ:
+### TO READ/STUDY:
 
-- _The Blue and Brown Books_ by Ludwig Wittgenstein
-- _Culture and Value_ by Ludwig Wittgenstein
-- _The Story of Philosophy_ by **Will Durant**
 - _Meditations_ by Marcus Aurelius
-- _Letters from A Stoic_ by Seneca the Younger
+- _Culture and Value_ by Ludwig Wittgenstein
+- _The Blue and Brown Books_ by Ludwig Wittgenstein
+- _The Story of Philosophy_ by **Will Durant**
+- _The Nicomachean Ethics_ By Aristole
 - _Antifragile_ by **Nassim Nicholas Taleb**
 - _Fooled by Randomness_ by **Nassim Nicholas Taleb**
 - _Skin in the Game_ by **Nassim Nicholas Taleb**
@@ -35,8 +33,9 @@ favouritism.
 
 <br/>
 
-### BOOKS READ:
+### BOOKS READ/STUDIED:
 
+- _The Greatest Minds and Ideas of All Time_ by **Will Durant**
 - _How to Win an Argument: An ancient Guide to the Art of Persuasion_ by Marcus Tullius Cicero
 - _How to Be Free: An ancient Guide to the Stoic Life_ by Epictetus
 - _How to Think about God: An ancient Guide for Believers and Nonbelievers_ by
@@ -52,7 +51,8 @@ favouritism.
 
 Here is a list of podcasts I enjoy listening to
 
-- _Sean Caroll's Mindscape_ by Sean Caroll
+- _The Rest is History_ by **Tom Holland** and **Dominic Sandbrook** 
+- _Sean Caroll's Mindscape_ by **Sean Caroll**
 - _Making sense with Sam Harris_ by Sam Harris
 - _The Numberphile Podcast_ by Brady Haran
 - _Unexplained Mystseries_ by Parcast Network
@@ -62,7 +62,6 @@ Here is a list of podcasts I enjoy listening to
 
 <br/>
 
-## Etc.
+## Etc
 
-Soon come.
-
+[Gallery](/photos)

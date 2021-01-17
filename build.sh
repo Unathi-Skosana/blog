@@ -4,7 +4,7 @@ function optimize {
   find "./build/static/" -type f \
       \( -name '*.png' -or -name '*.jpg' -or -name '*.jpeg' \) \
       -exec echo {} \; \
-      -exec cwebp -q 80 {} -o {}.webp \; \
+      -exec convert -auto-orient {} {}.webp \; \
       -exec rm {} \; \
       -exec sh -c "echo {}.webp | sed 's/\.[^.]*\.[^.]*$/.webp/' | xargs mv {}.webp" \; \
 
@@ -266,6 +266,50 @@ function projects {
     <div class='pro'>
     $(pandoc --quiet -t html $1)
     </div>
+  </div>
+  "
+}
+
+function photos {
+  # $1 - file
+
+  col1=$(find "static/images/photos/column1/" -mindepth 1 -maxdepth 1 -type f)
+  col2=$(find "static/images/photos/column2/" -mindepth 1 -maxdepth 1 -type f)
+  col3=$(find "static/images/photos/column3/" -mindepth 1 -maxdepth 1 -type f)
+
+
+  c1=""
+  for p in $col1; do
+    c1+="$(printf '%s\n' "
+    <img src='/$p' style='width:100%'/>
+  ")"
+  done;
+
+  c2=""
+  for p in $col2; do
+    c2+="$(printf '%s\n' "
+    <img src='/$p' style='width:100%'/>
+  ")"
+  done;
+
+  c3=""
+  for p in $col3; do
+    c3+="$(printf '%s\n' "
+      <img src='/$p' style='width:100%'/>
+    ")"
+  done;
+
+
+  printf '%s\n' "
+  <div class='misc'>
+    <h2>Gallery</h2>
+  </div>
+  <p>...under constuction...</p>
+  <br/>
+  <div class='row'>
+    <div class='column'>$c1</div>
+    <div class='column'>$c2</div>
+    <div class='column'>$c3</div>
   </div>
   "
 }
